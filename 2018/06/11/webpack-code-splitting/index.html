@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Sameen&#39;s Blog">
 <meta property="og:description" content="webpack的代码拆分工作中，随着需求不断迭代，业务代码量也越来越大，明显感觉到开发过程中代码编译速度太慢啦! 就算改一点样式代码，编译也得六万多毫秒，一分多钟，简直忍不了┭┮﹏┭┮…所以研究一下改进webpack编译速度的方法，其中，看到webpack的文档有这么一篇指南：Code Splitting，故翻译学习。 原文地址 正文开始本指南(guide)扩展(extends)了入门(Getti">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2018-06-11T15:03:46.283Z">
+<meta property="og:updated_time" content="2018-06-11T15:12:28.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Code Splitting[译]">
 <meta name="twitter:description" content="webpack的代码拆分工作中，随着需求不断迭代，业务代码量也越来越大，明显感觉到开发过程中代码编译速度太慢啦! 就算改一点样式代码，编译也得六万多毫秒，一分多钟，简直忍不了┭┮﹏┭┮…所以研究一下改进webpack编译速度的方法，其中，看到webpack的文档有这么一篇指南：Code Splitting，故翻译学习。 原文地址 正文开始本指南(guide)扩展(extends)了入门(Getti">
@@ -176,8 +176,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="webpack的代码拆分"><a href="#webpack的代码拆分" class="headerlink" title="webpack的代码拆分"></a>webpack的代码拆分</h2><p>工作中，随着需求不断迭代，业务代码量也越来越大，明显感觉到开发过程中代码编译速度太慢啦! 就算改一点样式代码，编译也得六万多毫秒，一分多钟，简直忍不了┭┮﹏┭┮…所以研究一下改进webpack编译速度的方法，其中，看到webpack的文档有这么一篇指南：Code Splitting，故翻译学习。</p>
-<p><a href="https://webpack.js.org/guides/code-splitting/#prevent-duplication" target="_blank" rel="noopener">原文地址</a></p>
-<h3 id="正文开始"><a href="#正文开始" class="headerlink" title="正文开始"></a>正文开始</h3><p><code>本指南(guide)扩展(extends)了入门(Getting Started)和输出管理(Output Management)中提供的示例。请确保你至少熟悉其中提供的示例。</code><br><a id="more"></a></p>
+<p><a href="https://webpack.js.org/guides/code-splitting" target="_blank" rel="noopener">原文地址</a></p>
+<h3 id="正文开始"><a href="#正文开始" class="headerlink" title="正文开始"></a>正文开始</h3><p><code>本指南(guide)扩展(extends)了</code><a href="https://webpack.js.org/guides/getting-started" target="_blank" rel="noopener">入门(Getting Started)</a><code>和</code><a href="https://webpack.js.org/guides/output-management" target="_blank" rel="noopener">输出管理(Output Management)</a><code>中提供的示例。请确保你至少熟悉其中提供的示例。</code><br><a id="more"></a></p>
 <p>代码拆分是webpack最引人注目的特性(features)之一。这个特性允许你将你的代码分成不同的bundle，然后可以按需(on demand)或并行(in parallel)加载。它可以用来实现更小的打包文件和控制资源负载的优先级(prioritization)，如果使用得当，可以对加载时间产生重大影响(major impact)。</p>
 <p>这里有三种可用的代码拆分一般方法(general approaches)：</p>
 <ul>

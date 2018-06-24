@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sameenzm.github.io">
-  <title>那些布局 | Sameen&#39;s Blog</title>
+  <title>Archives | Sameen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="工作中经常遇到要写布局，所以在这里总结一些常用布局。并且会不断补充。 其中，两列布局和三列布局中，思路主要是利用float， 然后，自适应的部分都是 在外层包裹一层div，并且设置width:100%; 然后定宽的元素反方向设置margin(即margin设为和宽度数值一样的负值)。">
-<meta name="keywords" content="布局,css">
-<meta property="og:type" content="article">
-<meta property="og:title" content="那些布局">
-<meta property="og:url" content="https://sameenzm.github.io/2018/05/27/layout/index.html">
+  <meta name="description" content="前端开发博客, 前端修炼之地">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sameen&#39;s Blog">
+<meta property="og:url" content="https://sameenzm.github.io/archives/page/2/index.html">
 <meta property="og:site_name" content="Sameen&#39;s Blog">
-<meta property="og:description" content="工作中经常遇到要写布局，所以在这里总结一些常用布局。并且会不断补充。 其中，两列布局和三列布局中，思路主要是利用float， 然后，自适应的部分都是 在外层包裹一层div，并且设置width:100%; 然后定宽的元素反方向设置margin(即margin设为和宽度数值一样的负值)。">
+<meta property="og:description" content="前端开发博客, 前端修炼之地">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2018-05-27T15:02:29.924Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="那些布局">
-<meta name="twitter:description" content="工作中经常遇到要写布局，所以在这里总结一些常用布局。并且会不断补充。 其中，两列布局和三列布局中，思路主要是利用float， 然后，自适应的部分都是 在外层包裹一层div，并且设置width:100%; 然后定宽的元素反方向设置margin(即margin设为和宽度数值一样的负值)。">
+<meta name="twitter:title" content="Sameen&#39;s Blog">
+<meta name="twitter:description" content="前端开发博客, 前端修炼之地">
   
     <link rel="alternative" href="/atom.xml" title="Sameen&#39;s Blog" type="application/atom+xml">
   
@@ -155,240 +153,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-layout" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      那些布局
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/03/07/hello-world/" class="archive-article-date">
+  	<time datetime="2018-03-07T07:30:25.414Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-07</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/03/07/hello-world/">Hello World</a>
     </h1>
   
 
-        
-        <a href="/2018/05/27/layout/" class="archive-article-date">
-  	<time datetime="2018-05-27T15:01:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>工作中经常遇到要写布局，所以在这里总结一些常用布局。并且会不断补充。</p>
-<p>其中，两列布局和三列布局中，思路主要是利用float， 然后，自适应的部分都是 在外层包裹一层div，并且设置width:100%; 然后定宽的元素反方向设置margin(即margin设为和宽度数值一样的负值)。</p>
-<a id="more"></a>
-<h2 id="两列布局"><a href="#两列布局" class="headerlink" title="两列布局"></a>两列布局</h2><h3 id="两列右侧自适应布局"><a href="#两列右侧自适应布局" class="headerlink" title="两列右侧自适应布局"></a>两列右侧自适应布局</h3><p>html:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;container clearfix&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;left&quot;&gt;</span><br><span class="line">    左侧定宽</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;right-wrap&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;right&quot;&gt;</span><br><span class="line">      右侧自适应</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<p>css:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">.left &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  background: lightgreen;</span><br><span class="line">  float: left;</span><br><span class="line">  margin-right:-300px;</span><br><span class="line">&#125;</span><br><span class="line">.right-wrap &#123;</span><br><span class="line">  float: right;</span><br><span class="line">  width: 100%;</span><br><span class="line">&#125;</span><br><span class="line">.right &#123;</span><br><span class="line">  background: lightcoral;</span><br><span class="line">  margin-left: 310px;</span><br><span class="line">&#125;</span><br><span class="line">/* 清除浮动 */</span><br><span class="line"></span><br><span class="line">.clearfix:after &#123;</span><br><span class="line">  content: &quot;&quot;;</span><br><span class="line">  clear: both;</span><br><span class="line">  display: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="两列左侧自适应布局"><a href="#两列左侧自适应布局" class="headerlink" title="两列左侧自适应布局"></a>两列左侧自适应布局</h3><p>html:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;container clerafix&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;left-wrap&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;left&quot;&gt;</span><br><span class="line">      左侧自适应</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;right&quot;&gt;</span><br><span class="line">    右侧定宽</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<p>css:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">.left-wrap &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  width: 100%;</span><br><span class="line">&#125;</span><br><span class="line">.left &#123;</span><br><span class="line">  background: lightcoral;</span><br><span class="line">  margin-right: 310px;</span><br><span class="line">&#125;</span><br><span class="line">.right &#123;</span><br><span class="line">  width: 300px;</span><br><span class="line">  float: right;</span><br><span class="line">  margin-left: -300px;</span><br><span class="line">  background: lawngreen;</span><br><span class="line">&#125;</span><br><span class="line"> /* 清除浮动 */</span><br><span class="line">.clearfix:after &#123;</span><br><span class="line">  content: &quot;&quot;;</span><br><span class="line">  clear: both;</span><br><span class="line">  display: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="三列布局"><a href="#三列布局" class="headerlink" title="三列布局"></a>三列布局</h2><h3 id="三列中间自适应布局"><a href="#三列中间自适应布局" class="headerlink" title="三列中间自适应布局"></a>三列中间自适应布局</h3><p>html:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;container clearfix&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;left&quot;&gt;左&lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;center-wrap&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;center&quot;&gt;中&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">  &lt;div class=&quot;right&quot;&gt;右&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
-<p>css:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">.left,</span><br><span class="line">.right &#123;</span><br><span class="line">  background: #edaeda;</span><br><span class="line">  width: 200px;</span><br><span class="line">  height: 300px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.left &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  margin-right: -200px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.right &#123;</span><br><span class="line">  float: right;</span><br><span class="line">  margin-left: -200px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.center-wrap &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  width: 100%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.center &#123;</span><br><span class="line">  background: #3eabcd;</span><br><span class="line">  margin-left: 210px;</span><br><span class="line">  margin-right: 210px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/* 清除浮动 */</span><br><span class="line"></span><br><span class="line">.clearfix:after &#123;</span><br><span class="line">  content: &quot;&quot;;</span><br><span class="line">  clear: both;</span><br><span class="line">  display: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>未完待续，，，</p>
+        <div class="article-info info-on-right">
+          
+          
 
-      
-
-      
-        <div id="busuanzi_container_page_pv">
-          本文总阅读量<span id="busuanzi_value_page_pv"></span>次
         </div>
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/imgs/ali.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/imgs/wx.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-      <br>
-
-      </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">布局</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
-        </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://sameenzm.github.io/2018/05/27/layout/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/06/11/webpack-code-splitting/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Code Splitting[译]
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/05/27/Class/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">How to Use Classes and Sleep at Night[译]</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#两列布局"><span class="toc-number">1.</span> <span class="toc-text">两列布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#两列右侧自适应布局"><span class="toc-number">1.1.</span> <span class="toc-text">两列右侧自适应布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两列左侧自适应布局"><span class="toc-number">1.2.</span> <span class="toc-text">两列左侧自适应布局</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三列布局"><span class="toc-number">2.</span> <span class="toc-text">三列布局</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三列中间自适应布局"><span class="toc-number">2.1.</span> <span class="toc-text">三列中间自适应布局</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-
-  
-  <!-- 来必力City版安装代码 -->
-<div id="lv-container" data-id="city" data-uid="MTAyMC8zNjg3NC8xMzQxMA==">
-	<script type="text/javascript">
-   (function(d, s) {
-       var j, e = d.getElementsByTagName(s)[0];
-
-       if (typeof LivereTower === 'function') { return; }
-
-       j = d.createElement(s);
-       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-       j.async = true;
-
-       e.parentNode.insertBefore(j, e);
-   })(document, 'script');
-	</script>
-<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-</div>
-<!-- City版安装代码已完成 -->
+    </div></section>
   
 
-  
-
-  
-
-  
-
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -417,8 +227,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

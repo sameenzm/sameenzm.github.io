@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sameenzm.github.io">
-  <title>react-lifecycle | Sameen&#39;s Blog</title>
+  <title>总结React生命周期 | Sameen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端开发博客, 前端修炼之地">
+  <meta name="description" content="学习React，生命周期是必须知晓的。写了这么久React，一直没好好弄清楚生命周期的适用情况，今天归纳总结一下。">
 <meta name="keywords" content="react">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react-lifecycle">
+<meta property="og:title" content="总结React生命周期">
 <meta property="og:url" content="https://sameenzm.github.io/2018/07/06/react-lifecycle/index.html">
 <meta property="og:site_name" content="Sameen&#39;s Blog">
-<meta property="og:description" content="前端开发博客, 前端修炼之地">
+<meta property="og:description" content="学习React，生命周期是必须知晓的。写了这么久React，一直没好好弄清楚生命周期的适用情况，今天归纳总结一下。">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2018-07-06T06:56:14.969Z">
+<meta property="og:updated_time" content="2018-07-09T06:16:34.044Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="react-lifecycle">
-<meta name="twitter:description" content="前端开发博客, 前端修炼之地">
+<meta name="twitter:title" content="总结React生命周期">
+<meta name="twitter:description" content="学习React，生命周期是必须知晓的。写了这么久React，一直没好好弄清楚生命周期的适用情况，今天归纳总结一下。">
   
   <meta type="keywords" content="前端,技术博客,react,程序媛,分享学习">
   <meta type="description" content="react生命周期方法,前端学习博客">
@@ -173,7 +173,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      react-lifecycle
+      总结React生命周期
     </h1>
   
 
@@ -186,7 +186,95 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>学习React，生命周期是必须知晓的。写了这么久React，一直没好好弄清楚生命周期的适用情况，今天归纳总结一下。</p>
+<a id="more"></a>
+<h3 id="react生命周期介绍"><a href="#react生命周期介绍" class="headerlink" title="react生命周期介绍"></a>react生命周期介绍</h3><p>开始：<br>constructor | 初始化</p>
+<p>react生命周期分三个阶段:<br>实例化 | 挂载阶段<br>存在期 | 更新阶段<br>销毁期 | 卸载阶段</p>
+<table>
+<thead>
+<tr>
+<th>顺序</th>
+<th>生命周期</th>
+<th>阶段</th>
+<th>说明&amp;注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>componentWillMount()</td>
+<td>挂载阶段</td>
+<td>(B/S), 如果在这里调用setState，本次的render函数可以看到更新后的state，并且只渲染一次。</td>
+</tr>
+<tr>
+<td>2</td>
+<td>render</td>
+<td>挂载阶段</td>
+<td>不要在render里面修改state</td>
+</tr>
+<tr>
+<td>3</td>
+<td>√ componentDidMount()</td>
+<td>挂载阶段</td>
+<td>(B), 可以在这里使用refs,一般列表数据请求在这里</td>
+</tr>
+<tr>
+<td>4</td>
+<td>componentWillReceiveProps(nextProps)</td>
+<td>更新阶段</td>
+<td>在 props改变 时 被调用</td>
+</tr>
+<tr>
+<td>5</td>
+<td>√ shouldComponentUpdate(nextProps, nextState)</td>
+<td>更新阶段</td>
+<td>props或state改变时调用，决定是否重新render组件，默认return true; 在比较复杂的应用里，有一些数据的改变并不影响界面展示，可以在这里做判断，优化渲染效率</td>
+</tr>
+<tr>
+<td>6</td>
+<td>componentWillUpdate(nextProps, nextState)</td>
+<td>更新阶段</td>
+<td>props或state改变时调用，shouldComponentUpdate返回true或者调用forceUpdate之后，componentWillUpdate会被调用。</td>
+</tr>
+<tr>
+<td>7</td>
+<td>render</td>
+<td>更新阶段</td>
+<td>重新渲染啦~</td>
+</tr>
+<tr>
+<td>8</td>
+<td>componentDidUpdate()</td>
+<td>更新阶段</td>
+<td>除了首次render之后调用componentDidMount，其它render结束之后都是调用componentDidUpdate。这个方法在更新真实的DOM成功后调用，当我们需要访问真实的DOM时，这个方法就也经常用到。</td>
+</tr>
+<tr>
+<td>9</td>
+<td>√ componentWillUnmount()</td>
+<td>卸载阶段</td>
+<td>一般在componentDidMount里面注册的事件需要在这里删除。</td>
+</tr>
+</tbody>
+</table>
+<p>比较常用的是 3 componentDidMount（首屏数据请求）、5 shouldComponentUpdate（性能优化）、9 componentWillUnmount（卸载数据、事件等）</p>
+<h3 id="生命周期更新相关"><a href="#生命周期更新相关" class="headerlink" title="生命周期更新相关"></a>生命周期更新相关</h3><p>2018年3月29日, React 发布了16.3.0, 主要更新了两个点：新的生命周期函数和context API <a href="https://reactjs.org/blog/2018/03/29/react-v-16-3.html" target="_blank" rel="noopener">React v16.3.0: New lifecycles and context API
+</a>.</p>
+<p>对于生命周期函数，主要有以下改变（<a href="https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html" target="_blank" rel="noopener">Update on Async Rendering</a>）<br>以下生命周期函数将在以后的版本（17.0）中弃用（加上UNSAFE_前缀）：<br>1 componentWillMount<br>4 componentWillReceiveProps<br>8 componentWillUpdate</p>
+<p>添加了两个生命周期函数：<br>getDerivedStateFromProps<br>getSnapshotBeforeUpdate</p>
+<p><a href="https://reactjs.org/docs/react-component.html#static-getderivedstatefromprops" target="_blank" rel="noopener">static getDerivedStateFromProps(nextProps, prevState)</a></p>
+<ul>
+<li>替代componentWillReceiveProps这个生命周期更加安全的方法</li>
+<li>在组件被实例化或接收到新的 props 时被调用;</li>
+<li>函数返回一个对象用于更新 state 以响应 props 变化。</li>
+</ul>
+<p><a href="https://link.zhihu.com/?target=https%3A//doc.react-china.org/docs/react-component.html%23getsnapshotbeforeupdate" target="_blank" rel="noopener">getSnapshotBeforeUpdate(prevProps, prevState)</a></p>
+<ul>
+<li>为了支持在组件更新前更加安全的读取属</li>
+<li>这个函数会在最新的渲染输出提交给DOM前将会立即调用</li>
+<li>函数会返回一个Snapshot实例。在componentDidUpdate 函数中它可以作为第三个参数被调用，以便对DOM进行状态更新。</li>
+</ul>
+<p>推荐阅读：<br><a href="https://zhuanlan.zhihu.com/p/37169569" target="_blank" rel="noopener">React 新生命周期函数和迁移路径</a></p>
+
       
 
       
@@ -334,7 +422,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#react生命周期介绍"><span class="toc-number">1.</span> <span class="toc-text">react生命周期介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#生命周期更新相关"><span class="toc-number">2.</span> <span class="toc-text">生命周期更新相关</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -465,14 +553,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">布局</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
@@ -490,6 +570,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">布局</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
             
             <div class="clearfix"></div>

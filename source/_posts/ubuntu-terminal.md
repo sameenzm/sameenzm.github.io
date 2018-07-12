@@ -121,6 +121,13 @@ scp -r 用户名@域名/ip:远程文件夹的地址 本地地址
   可以在上面出现的提示中按D,将临时文件删除掉
 
 
+### 文件了解
+- /etc/profile: 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行.并从/etc/profile.d目录的配置文件中搜集shell的设置.此文件默认调用/etc/bash.bashrc文件。
+- /etc/bashrc: 为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取.
+- ~/.bash_profile:每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件.
+- ~/.bashrc:该文件包含专用于你的bash shell的bash信息。
+- ~/.bash_logout:当每次退出系统(退出bash shell)时,执行该文件.
+
 
 ### linux命令学习
 1、不保存退出：    :q!
@@ -130,11 +137,4 @@ scp -r 用户名@域名/ip:远程文件夹的地址 本地地址
   敲字符N（大写N）就会向前查询； 
 
 
-### 文件了解
-- /etc/profile: 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行.并从/etc/profile.d目录的配置文件中搜集shell的设置.此文件默认调用/etc/bash.bashrc文件。
-- /etc/bashrc: 为每一个运行bash shell的用户执行此文件.当bash shell被打开时,该文件被读取.
-- ~/.bash_profile:每个用户都可使用该文件输入专用于自己使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件.
-- ~/.bashrc:该文件包含专用于你的bash shell的bash信息。
-- ~/.bash_logout:当每次退出系统(退出bash shell)时,执行该文件.
-
-
+未完，后续补充...

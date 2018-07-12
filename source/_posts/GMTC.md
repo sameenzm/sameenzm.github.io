@@ -12,7 +12,7 @@ tags:
 
 ## 对GMTC的初感觉
 个人感觉吧，这个大会的门票略贵，BTW，因为是公司出钱给的团体票，所以我很乐意很开心参与了啦~
-![price](pic/gmtc.JPG)
+![price](GMTC/gmtc.JPG)
 
 知乎上有人提问说：GMTC全球大前端技术大会值得去吗？
 有网友说的我还蛮认同的：
@@ -85,7 +85,7 @@ hulu：美国视频网站
 
 #### 《V8、JavaScript+的现在与未来》-迷渡
 
-![history](pic/history.png)
+![history](GMTC/history.png)
 
 V8有Turbofan引擎和Ignition引擎； Turbofan 是新的优化编译器，而 Ignition 则是新的解释器。
 
@@ -112,7 +112,7 @@ PPT做得很细致，也很值得回看并且回看是能看懂学到东西的�
 开发和运维的介绍：
 阿⾥的 Node.js 运维场景：运维的功能让开发承担起来
 
-![node](pic/node.JPG)
+![node](GMTC/node.JPG)
 没听太懂，，，但是算是长见识了，别人都在搞什么o(╥﹏╥)o
 
 可能回看PPT也看不出什么。。。而且发现上传的PPT被删掉了很多。。。

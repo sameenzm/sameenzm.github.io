@@ -6,22 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sameenzm.github.io">
-  <title>react-component | Sameen&#39;s Blog</title>
+  <title>数组去重大集合 | Sameen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="react组件的一般般实践，用了typescript、webpack4，react-router4事情是这样的三周前(5.29)，我决定用react，webpack4，typescript写一个Transfer组件(类antd的穿梭框)，一拖再拖，就前天才写完个粗略版。今天做个小总结，记录下遇到的问题和改进。">
-<meta name="keywords" content="react,typwscript,webpack">
+  <meta name="description" content="js数组去重是工作中、笔试练习题库中很常遇到的一个简单问题，今天来归纳一番数组去重到底有哪些方案，哪些更高效，分别什么特点；方案一到方案四是无论数组元素是数字还是字符串都通用的，因为涉及数字的可能需要排序。">
+<meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react-component">
-<meta property="og:url" content="https://sameenzm.github.io/2018/06/19/react-component/index.html">
+<meta property="og:title" content="数组去重大集合">
+<meta property="og:url" content="https://sameenzm.github.io/2018/07/31/array-deduplication/index.html">
 <meta property="og:site_name" content="Sameen&#39;s Blog">
-<meta property="og:description" content="react组件的一般般实践，用了typescript、webpack4，react-router4事情是这样的三周前(5.29)，我决定用react，webpack4，typescript写一个Transfer组件(类antd的穿梭框)，一拖再拖，就前天才写完个粗略版。今天做个小总结，记录下遇到的问题和改进。">
+<meta property="og:description" content="js数组去重是工作中、笔试练习题库中很常遇到的一个简单问题，今天来归纳一番数组去重到底有哪些方案，哪些更高效，分别什么特点；方案一到方案四是无论数组元素是数字还是字符串都通用的，因为涉及数字的可能需要排序。">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:image" content="https://github.com/sameenzm/React-Practice/blob/master/screenshots/transfer.png?raw=true">
-<meta property="og:updated_time" content="2018-06-19T15:49:34.934Z">
+<meta property="og:image" content="https://sameenzm.github.io/2018/07/31/array-deduplication/array-deduplication/consoletime.JPG">
+<meta property="og:updated_time" content="2018-07-31T13:36:56.586Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="react-component">
-<meta name="twitter:description" content="react组件的一般般实践，用了typescript、webpack4，react-router4事情是这样的三周前(5.29)，我决定用react，webpack4，typescript写一个Transfer组件(类antd的穿梭框)，一拖再拖，就前天才写完个粗略版。今天做个小总结，记录下遇到的问题和改进。">
-<meta name="twitter:image" content="https://github.com/sameenzm/React-Practice/blob/master/screenshots/transfer.png?raw=true">
+<meta name="twitter:title" content="数组去重大集合">
+<meta name="twitter:description" content="js数组去重是工作中、笔试练习题库中很常遇到的一个简单问题，今天来归纳一番数组去重到底有哪些方案，哪些更高效，分别什么特点；方案一到方案四是无论数组元素是数字还是字符串都通用的，因为涉及数字的可能需要排序。">
+<meta name="twitter:image" content="https://sameenzm.github.io/2018/07/31/array-deduplication/array-deduplication/consoletime.JPG">
   
   <meta type="keywords" content="前端,技术博客,react,程序媛,分享学习">
   <meta type="description" content="react生命周期方法,前端学习博客">
@@ -168,41 +168,50 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-react-component" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-array-deduplication" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      react-component
+      数组去重大集合
     </h1>
   
 
         
-        <a href="/2018/06/19/react-component/" class="archive-article-date">
-  	<time datetime="2018-06-19T15:41:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
+        <a href="/2018/07/31/array-deduplication/" class="archive-article-date">
+  	<time datetime="2018-07-31T08:21:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="react组件的一般般实践，用了typescript、webpack4，react-router4"><a href="#react组件的一般般实践，用了typescript、webpack4，react-router4" class="headerlink" title="react组件的一般般实践，用了typescript、webpack4，react-router4"></a>react组件的一般般实践，用了typescript、webpack4，react-router4</h2><h3 id="事情是这样的"><a href="#事情是这样的" class="headerlink" title="事情是这样的"></a>事情是这样的</h3><p>三周前(5.29)，我决定用react，webpack4，typescript写一个Transfer组件(类antd的穿梭框)，一拖再拖，就前天才写完个粗略版。<br>今天做个小总结，记录下遇到的问题和改进。</p>
+        <p>js数组去重是工作中、笔试练习题库中很常遇到的一个简单问题，今天来归纳一番数组去重到底有哪些方案，哪些更高效，分别什么特点；<br>方案一到方案四是无论数组元素是数字还是字符串都通用的，因为涉及数字的可能需要排序。</p>
 <a id="more"></a>
-<p>先摆个效果图：<br><img src="https://github.com/sameenzm/React-Practice/blob/master/screenshots/transfer.png?raw=true" width="585" height="319"></p>
-<h3 id="初版行动"><a href="#初版行动" class="headerlink" title="初版行动"></a>初版行动</h3><p>首先，我一开始的思路是，确定props，必然需要有的就是 dataSource 和 value (后来参考了antd的api，改成同名的dataSource和targetKeys)，再者，我考虑了onChange，想着是不是用户不一定要有onChange方法我也能给实现穿梭框的功能，如果用户需要获取新的targetKeys，我也能返回。所以开始动手：</p>
-<p>确定props:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const TransferPropTypes = &#123;</span><br><span class="line">  dataSource: PropTypes.array,</span><br><span class="line">  targetKeys: PropTypes.array,</span><br><span class="line">  onChange: PropTypes.func,</span><br><span class="line">  className: PropTypes.string</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>并且定义了typescript泛型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">export interface TransferProps &#123;</span><br><span class="line">  dataSource?: TransferItem[],</span><br><span class="line">  targetKeys?: string[],</span><br><span class="line">  className?: string,</span><br><span class="line">  onChange?: (targetKeys: string[]) =&gt; void</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>确定state:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">state = &#123;</span><br><span class="line">  target: Array(0),   // 时刻变换的target，(在Mount的时候去赋值targetKeys)</span><br><span class="line">  tempAdd: Array(0),  // 左框中用户的暂时勾选</span><br><span class="line">  tempDel: Array(0),  // 右框中用户的暂时勾选</span><br><span class="line">  leftData: Array(0), // 左穿梭框中的数据</span><br><span class="line">  rightData: Array(0) // 右穿梭框中的数据</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
-<p>接着我定义了一个 filterDataSource 方法，传dataSource、target和isLeft的布尔值，返回相应的数据展现数据(isLeft决定是左框数据还是右框数据)<br>接着就是处理左框和右框的选中事件<br>再来就是处理向左添加和向右添加的事件<br>至此就大概完成数据穿梭效果了。</p>
-<h3 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h3><p>后来被发现，犯了一个致命错误，我用了内部state： target，是和外部props的targetKeys是一样的值，那么，我就得关注state和props的同步问题，但是我忽略了，以至于是有bug的。解决state和props的同步问题那就得用到componentWillReceiveProps和shouldComponentUpdate等生命周期方法，其实这么一类，渲染流就更乱了。</p>
-<p>所以，我就不该用state存target，就直接用props就好。【后来想了一下，我其实心里是有概念的，知道能不用内部state就不要用，遵循单向数据流原则，但是我最后还是感觉迫不得已就用了，其实是因为我一开始思路就想错了，我不可能开发一个用户不处理onChange的组件，应该就是让用户必须有onChange去改targetKeys，保证单一的数据流渲染流】</p>
-<p><a href="https://github.com/sameenzm/React-Practice/blob/3e1b8f91bf688e2a526b301632c0d6247df2197b/components/tansfer-select/index.tsx" target="_blank" rel="noopener">初版比较垃圾的代码┭┮﹏┭┮</a></p>
-<h3 id="大改版一下"><a href="#大改版一下" class="headerlink" title="大改版一下"></a>大改版一下</h3><p>之后，重写改进了，<br>props不变，state改进：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">state = &#123;</span><br><span class="line">  leftSelected: Array(0),</span><br><span class="line">  rightSelected: Array(0),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>改进命名，只能两个state，state和props不再有正交，不需要关心state和props同步的问题<br>干掉filterDataSource方法，把计算逻辑放在render里，左框数据和右框数据就由dataSource和targetKeys计算决定，就循环渲染那么两次<br>其他功能性的就同理了<br>改进之后代码量少了很多，而且渲染流更清晰了，性能也比原来好很多。<br><a href="https://github.com/sameenzm/React-Practice/blob/master/components/tansfer-select/index.tsx" target="_blank" rel="noopener">第二版代码</a></p>
-<p>现在完成的版本还是非常不完善的，我会继续更新！</p>
-<h3 id="个人总结："><a href="#个人总结：" class="headerlink" title="个人总结："></a>个人总结：</h3><p>1、我一开始写的组件，用了state去存target，和props的targetKeys重复了，违反了单一渲染流！我得时刻关注state和props的同步问题，就非常容易出错！（就得用到componentWillReceiveProps和shouldComponentUpdate等生命周期方法去搞，流越多，越复杂，越难维护）<br>2、so，state &amp; props 不可以存在相互推导关系，更不可以一模一样！state必须是正交的（正交就是不相交），，否则，就是设计有问题<br>3、tempAdd和tempDel这种命名不好，最好别简写，因为javascript的根基里就没有简写文化，比如document.getElementById，这么长也不简写。so，命名也尽量表达清楚，别简写，so我改名为：leftSelected 和 rightSelected<br>4、不要利用componentDidMount、componentWillMount等来赋初始值，这样会引发重新render。初始值，在constructor的时候赋值就好了<br>5、当if和else的内容都很多的时候，就拆分成两个function，颗粒度拆小点，因为放在一起，需要改动的时候，涉及的面积越广，就越容易出错。</p>
+<h3 id="方案一"><a href="#方案一" class="headerlink" title="方案一"></a>方案一</h3><blockquote>
+<p>遍历 push 新元素 到 新数组，O(n)，排名：2</p>
+</blockquote>
+<p>1、遍历原数组，把元素push到一个新的空数组temp中<br>2、做条件判断， 如果temp中已经存在的就不再push了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let arr = [1,3,3,8,33,33, 91,91,91,92,100];</span><br><span class="line"></span><br><span class="line">const unique = function(arr) &#123;</span><br><span class="line">  let temp = [];</span><br><span class="line">  for(let i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    if(temp.indexOf(arr[i]) &lt; 0) &#123;</span><br><span class="line">        temp.push(arr[i])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="方案二"><a href="#方案二" class="headerlink" title="方案二"></a>方案二</h3><blockquote>
+<p>因为object的key是唯一的，利用这个特点去重，O(n)，排名：4</p>
+</blockquote>
+<p>1、创建一个object，把数组的每一项作为key；<br>2、利用Object.keys方法，取key即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let arr = [&apos;red&apos;,&apos;blue&apos;,&apos;green&apos;,&apos;pink&apos;,&apos;yellow&apos;,&apos;blue&apos;,&apos;black&apos;,&apos;red&apos;];</span><br><span class="line"></span><br><span class="line">const unique = function(arr) &#123;</span><br><span class="line">  let obj = &#123;&#125;;</span><br><span class="line">  for(let i = 0; i&lt;arr.length;i++) &#123;</span><br><span class="line">    obj[arr[i]] = true;</span><br><span class="line">  &#125;</span><br><span class="line">  return Object.keys(obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="方案三"><a href="#方案三" class="headerlink" title="方案三"></a>方案三</h3><blockquote>
+<p>利用Set, 排名：1</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const unique = function(arr) &#123;</span><br><span class="line">  return new Set(arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方案四"><a href="#方案四" class="headerlink" title="方案四"></a>方案四</h3><blockquote>
+<p>indexOf()与filter结合使用，O(n)，排名：2<br>1、filter是返回为true的元素<br>2、indexOf会返回元素第一次出现的位置<br>3、利用以上两个特点就有下面的代码</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const unique = function(arr) &#123;</span><br><span class="line">    return arr.filter(function(item,index,array)&#123;</span><br><span class="line">        return array.indexOf(item) === index;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="方案五"><a href="#方案五" class="headerlink" title="方案五"></a>方案五</h3><blockquote>
+<p>数字元素需要先排序，O(n)，排名：5<br>1、先排序<br>2、再利用filter，返回符合true条件的元素<br>3、条件就是：当前项和后一项不相等的(如2,2,3,4,4,5  =&gt; 22相等，23不相等返回2,34不相等返回3，44相等，45不相等返回4，5undefined不相等返回5)</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const unique = function(arr) &#123;</span><br><span class="line">    return arr.sort(function(a,b)&#123;return a-b&#125;).filter(function(item,index,array)&#123;</span><br><span class="line">        return item !== array[index+1];</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>利用console.time去看执行时间，最快的是方案三，方案一&amp;方案四不相上下，最慢的是方案五；</p>
+<p><img src="array-deduplication/consoletime.JPG" alt="consoletime"></p>
 
       
 
@@ -252,15 +261,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">typwscript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		
 		</ul>
@@ -316,7 +317,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://sameenzm.github.io/2018/06/19/react-component/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://sameenzm.github.io/2018/07/31/array-deduplication/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -330,18 +331,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/06/24/GMTC/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          GMTC参会总结
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/06/11/webpack-code-splitting/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Code Splitting[译]</div>
+    <a href="/2018/07/11/ubuntu-terminal/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">win10的bash ssh 连接远程服务器 &amp; ubuntu 终端个性化</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -368,7 +360,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#react组件的一般般实践，用了typescript、webpack4，react-router4"><span class="toc-number">1.</span> <span class="toc-text">react组件的一般般实践，用了typescript、webpack4，react-router4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#事情是这样的"><span class="toc-number">1.1.</span> <span class="toc-text">事情是这样的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#初版行动"><span class="toc-number">1.2.</span> <span class="toc-text">初版行动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发现问题"><span class="toc-number">1.3.</span> <span class="toc-text">发现问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大改版一下"><span class="toc-number">1.4.</span> <span class="toc-text">大改版一下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#个人总结："><span class="toc-number">1.5.</span> <span class="toc-text">个人总结：</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#方案一"><span class="toc-number">1.</span> <span class="toc-text">方案一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方案二"><span class="toc-number">2.</span> <span class="toc-text">方案二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方案三"><span class="toc-number">3.</span> <span class="toc-text">方案三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方案四"><span class="toc-number">4.</span> <span class="toc-text">方案四</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方案五"><span class="toc-number">5.</span> <span class="toc-text">方案五</span></a></li></ol>
                     </div>
                 </span>
             </div>

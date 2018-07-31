@@ -16,17 +16,17 @@
 <meta property="og:site_name" content="Sameen&#39;s Blog">
 <meta property="og:description" content="搞了个服务器，ubuntu的，尝试用win10的bash连接，后来感觉终端的一些配色不是很合适，看得眼睛累，就尝试改改，期间还遇到很多问题，在此做做笔记。">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/win-dev.JPG">
-<meta property="og:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/win-linux.JPG">
-<meta property="og:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/install.JPG">
-<meta property="og:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/path-color-before.png">
-<meta property="og:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/path.png">
-<meta property="og:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/path-color-after.png">
+<meta property="og:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/ubuntu-terminal/win-dev.JPG">
+<meta property="og:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/ubuntu-terminal/win-linux.JPG">
+<meta property="og:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/ubuntu-terminal/install.JPG">
+<meta property="og:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/ubuntu-terminal/path-color-before.png">
+<meta property="og:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/ubuntu-terminal/path.png">
+<meta property="og:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/ubuntu-terminal/path-color-after.png">
 <meta property="og:updated_time" content="2018-07-12T07:49:58.407Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="win10的bash ssh 连接远程服务器 &amp; ubuntu 终端个性化">
 <meta name="twitter:description" content="搞了个服务器，ubuntu的，尝试用win10的bash连接，后来感觉终端的一些配色不是很合适，看得眼睛累，就尝试改改，期间还遇到很多问题，在此做做笔记。">
-<meta name="twitter:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/win-dev.JPG">
+<meta name="twitter:image" content="https://sameenzm.github.io/2018/07/11/ubuntu-terminal/ubuntu-terminal/win-dev.JPG">
   
   <meta type="keywords" content="前端,技术博客,react,程序媛,分享学习">
   <meta type="description" content="react生命周期方法,前端学习博客">
@@ -196,9 +196,9 @@
         <p>搞了个服务器，ubuntu的，尝试用win10的bash连接，后来感觉终端的一些配色不是很合适，看得眼睛累，就尝试改改，期间还遇到很多问题，在此做做笔记。</p>
 <a id="more"></a>
 <h3 id="win10的bash使用ssh连接远程服务器"><a href="#win10的bash使用ssh连接远程服务器" class="headerlink" title="win10的bash使用ssh连接远程服务器"></a>win10的bash使用ssh连接远程服务器</h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>Win10加入了Ubuntu Bash命令支持，本来windows连接远程服务器的话要使用xshell、putty什么的，现在可以用这个了。</p>
-<p>1、 设置 -&gt; 安全和更新 -&gt; 开发者选项, 选择开发人员模式<br><img src="/2018/07/11/ubuntu-terminal/win-dev.JPG" alt="dev"></p>
-<p>2、 控制面板 -&gt; 程序和功能 -&gt; 启用或关闭windows功能, 勾上“适用于Linux的Windows子系统”<br><img src="/2018/07/11/ubuntu-terminal/win-linux.JPG" alt="linux"></p>
-<p>3、重启电脑<br>4、在Microsoft Store里安装Ubuntu（或其他子系统）<br><img src="/2018/07/11/ubuntu-terminal/install.JPG" alt="install"></p>
+<p>1、 设置 -&gt; 安全和更新 -&gt; 开发者选项, 选择开发人员模式<br><img src="ubuntu-terminal/win-dev.JPG" alt="dev"></p>
+<p>2、 控制面板 -&gt; 程序和功能 -&gt; 启用或关闭windows功能, 勾上“适用于Linux的Windows子系统”<br><img src="ubuntu-terminal/win-linux.JPG" alt="linux"></p>
+<p>3、重启电脑<br>4、在Microsoft Store里安装Ubuntu（或其他子系统）<br><img src="ubuntu-terminal/install.JPG" alt="install"></p>
 <p>5、安装好之后打开ubuntu终端，会让你设置用户名密码<br>6、以后想进入bash，有以下几种方法：</p>
 <ul>
 <li>win+R -&gt; 输入 bash</li>
@@ -216,7 +216,7 @@
 <ol>
 <li>为了让修改生效，退出，并重新进入系统<br>命令： exit<br>搞定~</li>
 </ol>
-<h5 id="改变路径的颜色："><a href="#改变路径的颜色：" class="headerlink" title="改变路径的颜色："></a>改变路径的颜色：</h5><p>1、vim ~/.bashrc<br><img src="/2018/07/11/ubuntu-terminal/path-color-before.png" alt="path-color-before"><br>2、找到关键词 PS1 找到这句话：<br><img src="/2018/07/11/ubuntu-terminal/path.png" alt="path"><br>3、把01:34 （蓝色）改成01:33（黄色）<br>搞定~<br><img src="/2018/07/11/ubuntu-terminal/path-color-after.png" alt="path-color-after"></p>
+<h5 id="改变路径的颜色："><a href="#改变路径的颜色：" class="headerlink" title="改变路径的颜色："></a>改变路径的颜色：</h5><p>1、vim ~/.bashrc<br><img src="ubuntu-terminal/path-color-before.png" alt="path-color-before"><br>2、找到关键词 PS1 找到这句话：<br><img src="ubuntu-terminal/path.png" alt="path"><br>3、把01:34 （蓝色）改成01:33（黄色）<br>搞定~<br><img src="ubuntu-terminal/path-color-after.png" alt="path-color-after"></p>
 <ul>
 <li>补充：</li>
 </ul>
@@ -350,6 +350,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/07/31/array-deduplication/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          数组去重大集合
+        
+      </div>
+    </a>
   
   
     <a href="/2018/07/06/react-lifecycle/" id="article-nav-older" class="article-nav-link-wrap">
@@ -511,6 +520,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">React</a>
               </li>
              
@@ -519,19 +532,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">布局</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+                <a href="javascript:void(0)" class="js-tag color1">typwscript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -539,7 +544,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">typwscript</a>
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">布局</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
             
             <div class="clearfix"></div>

@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sameenzm.github.io">
-  <title>Code Splitting[译] | Sameen&#39;s Blog</title>
+  <title>Archives: 2018/10 | Sameen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="webpack的代码拆分工作中，随着需求不断迭代，业务代码量也越来越大，明显感觉到开发过程中代码编译速度太慢啦! 就算改一点样式代码，编译也得六万多毫秒，一分多钟，简直忍不了┭┮﹏┭┮…所以研究一下改进webpack编译速度的方法，其中，看到webpack的文档有这么一篇指南：Code Splitting，故翻译学习。 原文地址 正文开始本指南(guide)扩展(extends)了入门(Getti">
-<meta name="keywords" content="webpack">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Code Splitting[译]">
-<meta property="og:url" content="https://sameenzm.github.io/2018/06/11/webpack-code-splitting/index.html">
+  <meta name="description" content="前端开发博客, 前端修炼之地">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sameen&#39;s Blog">
+<meta property="og:url" content="https://sameenzm.github.io/archives/2018/10/index.html">
 <meta property="og:site_name" content="Sameen&#39;s Blog">
-<meta property="og:description" content="webpack的代码拆分工作中，随着需求不断迭代，业务代码量也越来越大，明显感觉到开发过程中代码编译速度太慢啦! 就算改一点样式代码，编译也得六万多毫秒，一分多钟，简直忍不了┭┮﹏┭┮…所以研究一下改进webpack编译速度的方法，其中，看到webpack的文档有这么一篇指南：Code Splitting，故翻译学习。 原文地址 正文开始本指南(guide)扩展(extends)了入门(Getti">
+<meta property="og:description" content="前端开发博客, 前端修炼之地">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2018-06-11T15:20:54.606Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Code Splitting[译]">
-<meta name="twitter:description" content="webpack的代码拆分工作中，随着需求不断迭代，业务代码量也越来越大，明显感觉到开发过程中代码编译速度太慢啦! 就算改一点样式代码，编译也得六万多毫秒，一分多钟，简直忍不了┭┮﹏┭┮…所以研究一下改进webpack编译速度的方法，其中，看到webpack的文档有这么一篇指南：Code Splitting，故翻译学习。 原文地址 正文开始本指南(guide)扩展(extends)了入门(Getti">
+<meta name="twitter:title" content="Sameen&#39;s Blog">
+<meta name="twitter:description" content="前端开发博客, 前端修炼之地">
   
   <meta type="keywords" content="前端,技术博客,react,程序媛,分享学习">
   <meta type="description" content="react生命周期方法,前端学习博客">
@@ -166,313 +164,64 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-webpack-code-splitting" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Code Splitting[译]
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/10/16/git/" class="archive-article-date">
+  	<time datetime="2018-10-16T01:03:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-16</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/10/16/git/">git &amp; svn</a>
     </h1>
   
 
-        
-        <a href="/2018/06/11/webpack-code-splitting/" class="archive-article-date">
-  	<time datetime="2018-06-11T13:14:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="webpack的代码拆分"><a href="#webpack的代码拆分" class="headerlink" title="webpack的代码拆分"></a>webpack的代码拆分</h2><p>工作中，随着需求不断迭代，业务代码量也越来越大，明显感觉到开发过程中代码编译速度太慢啦! 就算改一点样式代码，编译也得六万多毫秒，一分多钟，简直忍不了┭┮﹏┭┮…所以研究一下改进webpack编译速度的方法，其中，看到webpack的文档有这么一篇指南：Code Splitting，故翻译学习。</p>
-<p><a href="https://webpack.js.org/guides/code-splitting" target="_blank" rel="noopener">原文地址</a></p>
-<h3 id="正文开始"><a href="#正文开始" class="headerlink" title="正文开始"></a>正文开始</h3><p><code>本指南(guide)扩展(extends)了</code><a href="https://webpack.js.org/guides/getting-started" target="_blank" rel="noopener">入门(Getting Started)</a><code>和</code><a href="https://webpack.js.org/guides/output-management" target="_blank" rel="noopener">输出管理(Output Management)</a><code>中提供的示例。请确保你至少熟悉其中提供的示例。</code><br><a id="more"></a></p>
-<p>代码拆分是webpack最引人注目的特性(features)之一。这个特性允许你 将你的代码分成不同的bundle，然后可以按需(on demand)或并行(in parallel)加载。它可以用来实现更小的打包文件 和 控制资源负载的优先级(prioritization)，如果使用得当，可以对加载时间产生重大影响(major impact)。</p>
-<p>这里有三种可用的 代码拆分 的一般方法(general approaches)：</p>
-<ul>
-<li>入口点(Entry)：使用<a href="https://webpack.js.org/configuration/entry-context/" target="_blank" rel="noopener">entry</a>配置 手动地(Manually)拆分代码</li>
-<li>防止重复(Duplication)： 使用 <a href="https://webpack.js.org/plugins/split-chunks-plugin/" target="_blank" rel="noopener">SplitChunks</a> 重复数据删除(dedupe) 和拆分 块(chunks)</li>
-<li>动态导入(Dynamic Imports)： 通过模块内(within modules)的内联函数(inline function)调用来分割代码</li>
-</ul>
-<h3 id="入口点"><a href="#入口点" class="headerlink" title="入口点"></a>入口点</h3><p>这是迄今为止(by far)最简单、最直观(intuitive)的分解代码的方式。但是，这更多的是手动的，并且有一些我们会经历的陷阱。我们来看看我们如何从主包中拆分另一个模块：</p>
-<p>project</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">webpack-demo</span><br><span class="line">|- package.json</span><br><span class="line">|- webpack.config.js</span><br><span class="line">|- /dist</span><br><span class="line">|- /src</span><br><span class="line">  |- index.js</span><br><span class="line">+ |- another-module.js</span><br><span class="line">|- /node_modules</span><br></pre></td></tr></table></figure>
-<p>another-module.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import _ from &apos;lodash&apos;;</span><br><span class="line"></span><br><span class="line">console.log(</span><br><span class="line">  _.join([&apos;Another&apos;, &apos;module&apos;, &apos;loaded!&apos;], &apos; &apos;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
-<p>webpack.config.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  mode: &apos;development&apos;,</span><br><span class="line">  entry: &#123;</span><br><span class="line">    index: &apos;./src/index.js&apos;,</span><br><span class="line">+   another: &apos;./src/another-module.js&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &apos;[name].bundle.js&apos;,</span><br><span class="line">    path: path.resolve(__dirname, &apos;dist&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这将产生(yield)以下构建结果：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Hash: a948f6cc8219cc2d39a1</span><br><span class="line">Version: webpack 4.7.0</span><br><span class="line">Time: 323ms</span><br><span class="line">            Asset     Size   Chunks             Chunk Names</span><br><span class="line">another.bundle.js  550 KiB  another  [emitted]  another</span><br><span class="line">  index.bundle.js  550 KiB    index  [emitted]  index</span><br><span class="line">Entrypoint index = index.bundle.js</span><br><span class="line">Entrypoint another = another.bundle.js</span><br><span class="line">[./node_modules/webpack/buildin/global.js] (webpack)/buildin/global.js 489 bytes &#123;another&#125; &#123;index&#125; [built]</span><br><span class="line">[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 497 bytes &#123;another&#125; &#123;index&#125; [built]</span><br><span class="line">[./src/another-module.js] 88 bytes &#123;another&#125; [built]</span><br><span class="line">[./src/index.js] 86 bytes &#123;index&#125; [built]</span><br><span class="line">    + 1 hidden module</span><br></pre></td></tr></table></figure>
-<p>如前所述(As mentioned)，这种方法存在一些缺陷(pitfalls):</p>
-<ul>
-<li>如果在入口块之间有任何重复的模块，他们将被包含在两个包中。</li>
-<li>它不够灵活，不能用于动态地(dynamically)将代码与核心应用程序逻辑分离。</li>
-</ul>
-<p>这两点中的第一点对于我们的例子来说无疑(definitely)是个问题，因为 lodash 也是在 ./src/index.js 中导入的，因此会在这两个包重复使用。让我们通过使用 SplitChunks 插件删除这个重复。</p>
-<h3 id="防止重复"><a href="#防止重复" class="headerlink" title="防止重复"></a>防止重复</h3><p>SplitChunks允许我们将公共依赖关系提取(extract)到现有的entry块或全新的块中。用它来解决前面例子中的lodash依赖重复的问题：</p>
-<p>webpack.config.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">  const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">  module.exports = &#123;</span><br><span class="line">    mode: &apos;development&apos;,</span><br><span class="line">    entry: &#123;</span><br><span class="line">      index: &apos;./src/index.js&apos;,</span><br><span class="line">      another: &apos;./src/another-module.js&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">      filename: &apos;[name].bundle.js&apos;,</span><br><span class="line">      path: path.resolve(__dirname, &apos;dist&apos;)</span><br><span class="line">    &#125;,</span><br><span class="line">+   optimization: &#123;</span><br><span class="line">+     splitChunks: &#123;</span><br><span class="line">+       chunks: &apos;all&apos;</span><br><span class="line">+     &#125;</span><br><span class="line">+   &#125;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
-<p>使用SplitChunks后，我们现在应该看到从 index.bundle.js中删除了重复的依赖项。该插件应该注意到我们已经将lodash分离出来，并将其从主包中移除。让我们npm run build来看看它是否工作：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Hash: ac2ac6042ebb4f20ee54</span><br><span class="line">Version: webpack 4.7.0</span><br><span class="line">Time: 316ms</span><br><span class="line">                          Asset      Size                 Chunks             Chunk Names</span><br><span class="line">              another.bundle.js  5.95 KiB                another  [emitted]  another</span><br><span class="line">                index.bundle.js  5.89 KiB                  index  [emitted]  index</span><br><span class="line">vendors~another~index.bundle.js   547 KiB  vendors~another~index  [emitted]  vendors~another~index</span><br><span class="line">Entrypoint index = vendors~another~index.bundle.js index.bundle.js</span><br><span class="line">Entrypoint another = vendors~another~index.bundle.js another.bundle.js</span><br><span class="line">[./node_modules/webpack/buildin/global.js] (webpack)/buildin/global.js 489 bytes &#123;vendors~another~index&#125; [built]</span><br><span class="line">[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 497 bytes &#123;vendors~another~index&#125; [built]</span><br><span class="line">[./src/another-module.js] 88 bytes &#123;another&#125; [built]</span><br><span class="line">[./src/index.js] 86 bytes &#123;index&#125; [built]</span><br><span class="line">    + 1 hidden module</span><br></pre></td></tr></table></figure>
-<p>以下是社区提供的用于拆分代码的其他一些有用的插件和加载器：</p>
-<ul>
-<li><a href="https://webpack.js.org/plugins/mini-css-extract-plugin/" target="_blank" rel="noopener">mini-css-extract-plugin</a>:用于将css从主应用程序中分离出来</li>
-<li><a href="https://webpack.js.org/loaders/bundle-loader/" target="_blank" rel="noopener">bundle-loader</a>: 用于分割代码并延迟加载结果包</li>
-<li><a href="https://github.com/gaearon/promise-loader" target="_blank" rel="noopener">promise-loader</a>:类似于bundle-loader，但用了promises</li>
-</ul>
-<p><a href="https://webpack.js.org/plugins/commons-chunk-plugin/" target="_blank" rel="noopener">CommonsChunkPlugin</a><code>还可以用</code><a href="https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk" target="_blank" rel="noopener">explicit vendor chunks</a><code>，从核心应用程序代码拆分vendor 模块。</code></p>
-<h3 id="动态导入"><a href="#动态导入" class="headerlink" title="动态导入"></a>动态导入</h3><p>当涉及动态代码拆分时，webpack支持两种类似的技术。第一种和推荐的方法是使用符合<a href="https://github.com/tc39/proposal-dynamic-import" target="_blank" rel="noopener">ECMAScript提案</a>的<a href="https://webpack.js.org/api/module-methods/#import-" target="_blank" rel="noopener">import()</a>语法来进行动态导入。传统的(The legacy),特定于webpack的方法是使用 <a href="https://webpack.js.org/api/module-methods/#require-ensure" target="_blank" rel="noopener">require.ensure</a>。让我们尝试使用者两种方法的第一种。</p>
-<p><code>import（）调用在内部使用</code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener">promise</a><code>，如果您在旧浏览器中使用import（），请记住使用</code><a href="https://github.com/stefanpenner/es6-promise" target="_blank" rel="noopener">es6-promise</a><code>或</code><a href="https://github.com/taylorhakes/promise-polyfill" target="_blank" rel="noopener">promise-polyfill</a><code>等polyfill来支持Promise。</code></p>
-<p>在我们开始之前，让我们从我们的配置中删除额外的 entry和<a href="https://webpack.js.org/plugins/split-chunks-plugin/" target="_blank" rel="noopener">optimization.splitChunks</a>，因为下一个演示(demonstration)不需要它们:</p>
-<p>webpack.config.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">  const path = require(&apos;path&apos;);</span><br><span class="line"></span><br><span class="line">  module.exports = &#123;</span><br><span class="line">    mode: &apos;development&apos;,</span><br><span class="line">    entry: &#123;</span><br><span class="line">+     index: &apos;./src/index.js&apos;</span><br><span class="line">-     index: &apos;./src/index.js&apos;,</span><br><span class="line">-     another: &apos;./src/another-module.js&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    output: &#123;</span><br><span class="line">      filename: &apos;[name].bundle.js&apos;,</span><br><span class="line">+     chunkFilename: &apos;[name].bundle.js&apos;,</span><br><span class="line">      path: path.resolve(__dirname, &apos;dist&apos;)</span><br><span class="line">    &#125;,</span><br><span class="line">-   optimization: &#123;</span><br><span class="line">-     splitChunks: &#123;</span><br><span class="line">-       chunks: &apos;all&apos;</span><br><span class="line">-     &#125;</span><br><span class="line">-   &#125;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
-<p>请注意使用chunkFilename,它决定了non-entry 块文件的名称，有关chunkFilename的更多信息，请参阅 output documentation。我们还会更新我们的项目以删除现在未使用的文件：</p>
-<p>project</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">webpack-demo</span><br><span class="line">|- package.json</span><br><span class="line">|- webpack.config.js</span><br><span class="line">|- /dist</span><br><span class="line">|- /src</span><br><span class="line">  |- index.js</span><br><span class="line">- |- another-module.js</span><br><span class="line">|- /node_modules</span><br></pre></td></tr></table></figure>
-<p>现在，我们将使用动态导入来分隔(separate)块，而不是静态导入lodash:</p>
-<p>src/index.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">- import _ from &apos;lodash&apos;;</span><br><span class="line">-</span><br><span class="line">- function component() &#123;</span><br><span class="line">+ function getComponent() &#123;</span><br><span class="line">-   var element = document.createElement(&apos;div&apos;);</span><br><span class="line">-</span><br><span class="line">-   // Lodash, now imported by this script</span><br><span class="line">-   element.innerHTML = _.join([&apos;Hello&apos;, &apos;webpack&apos;], &apos; &apos;);</span><br><span class="line">+   return import(/* webpackChunkName: &quot;lodash&quot; */ &apos;lodash&apos;).then(_ =&gt; &#123;</span><br><span class="line">+     var element = document.createElement(&apos;div&apos;);</span><br><span class="line">+     var _ = _.default;</span><br><span class="line">+</span><br><span class="line">+     element.innerHTML = _.join([&apos;Hello&apos;, &apos;webpack&apos;], &apos; &apos;);</span><br><span class="line">+</span><br><span class="line">+     return element;</span><br><span class="line">+</span><br><span class="line">+   &#125;).catch(error =&gt; &apos;An error occurred while loading the component&apos;);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">- document.body.appendChild(component());</span><br><span class="line">+ getComponent().then(component =&gt; &#123;</span><br><span class="line">+   document.body.appendChild(component);</span><br><span class="line">+ &#125;)</span><br></pre></td></tr></table></figure>
-<p>请注意在评论中使用webpackChunkName。这将导致我们的单独的bundle被命名为 lodash.bundle.js，而不仅仅是 [id] .bundle.js。有关webpackChunkName和其他可用选项的更多信息，请参阅import（）文档。让我们运行webpack查看lodash分离出来的一个单独的包：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Hash: a3f7446ffbeb7fb897ff</span><br><span class="line">Version: webpack 4.7.0</span><br><span class="line">Time: 316ms</span><br><span class="line">                   Asset      Size          Chunks             Chunk Names</span><br><span class="line">         index.bundle.js  7.88 KiB           index  [emitted]  index</span><br><span class="line">vendors~lodash.bundle.js   547 KiB  vendors~lodash  [emitted]  vendors~lodash</span><br><span class="line">Entrypoint index = index.bundle.js</span><br><span class="line">[./node_modules/webpack/buildin/global.js] (webpack)/buildin/global.js 489 bytes &#123;vendors~lodash&#125; [built]</span><br><span class="line">[./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 497 bytes &#123;vendors~lodash&#125; [built]</span><br><span class="line">[./src/index.js] 394 bytes &#123;index&#125; [built]</span><br><span class="line">    + 1 hidden module</span><br></pre></td></tr></table></figure>
-<p>由于import（）返回一个promise，它可以用于异步函数。然而，这需要使用Babel和Syntax Dynamic Import Babel Plugin等预处理器。以下介绍了它将如何简化代码：</p>
-<p>src/index.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- function getComponent() &#123;</span><br><span class="line">+ async function getComponent() &#123;</span><br><span class="line">-   return import(/* webpackChunkName: &quot;lodash&quot; */ &apos;lodash&apos;).then(_ =&gt; &#123;</span><br><span class="line">-     var element = document.createElement(&apos;div&apos;);</span><br><span class="line">-</span><br><span class="line">-     element.innerHTML = _.join([&apos;Hello&apos;, &apos;webpack&apos;], &apos; &apos;);</span><br><span class="line">-</span><br><span class="line">-     return element;</span><br><span class="line">-</span><br><span class="line">-   &#125;).catch(error =&gt; &apos;An error occurred while loading the component&apos;);</span><br><span class="line">+   var element = document.createElement(&apos;div&apos;);</span><br><span class="line">+   const _ = await import(/* webpackChunkName: &quot;lodash&quot; */ &apos;lodash&apos;);</span><br><span class="line">+</span><br><span class="line">+   element.innerHTML = _.join([&apos;Hello&apos;, &apos;webpack&apos;], &apos; &apos;);</span><br><span class="line">+</span><br><span class="line">+   return element;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  getComponent().then(component =&gt; &#123;</span><br><span class="line">    document.body.appendChild(component);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-<h3 id="预取-预加载模块"><a href="#预取-预加载模块" class="headerlink" title="预取/预加载模块"></a>预取/预加载模块</h3><p>webpack 4.6.0+增加了对预取和预加载的支持。<br>在声明导入时使用这些内联指​​令允许webpack输出“资源提示”，告诉​​浏览器：</p>
-<ul>
-<li>prefetch: 未来某些导航可能需要的资源</li>
-<li>preload: 在当前导航期间可能需要的资源</li>
-</ul>
-<p>简单的prefetch示例可以有一个HomePage组件，该组件可以呈现一个LoginButton组件，然后在点击后按需加载LoginModal组件。</p>
-<p>LoginButton.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import(/* webpackPrefetch: true */ &apos;LoginModal&apos;);</span><br></pre></td></tr></table></figure>
-<p>这将导致<link rel="prefetch" href="login-modal-chunk.js">被附加在页面的头部，这将指示浏览器在空闲时间预取login-modal-chunk.js文件。</p>
-<p><code>一旦父块已被加载，webpack将添加prefetch提示(hint:暗示，示意)。</code></p>
-<p>与prefetch相比，Preload(预加载)指令有很多不同之处：</p>
-<ul>
-<li>preload的块开始与父块并行加载。prefetch块在父块完成后开始。</li>
-<li>preload的块具有中等优先级并立即下载。prefetch块在浏览器空闲时间下载。</li>
-<li>父块应立即请求preload的块。prefetch的块可以在将来随时使用。</li>
-<li>浏览器支持不同</li>
-</ul>
-<p>简单的Preload示例可以是 有一个组件，它总是 依赖于 应该位于单独块中的 大型库。</p>
-<p>让图像组件ChartComponent需要巨大的ChartingLibrary。它在渲染时显示一个LoadingIndicator，并立即按需导入ChartingLibrary：</p>
-<p>ChartComponent.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import(/* webpackPreload: true */ &apos;ChartingLibrary&apos;);</span><br></pre></td></tr></table></figure>
-<p>当请求使用ChartComponent的页面时，通过通过<link rel="preload">，charting-library-chunk也被请求了，假设页面块较小并且速度更快，该页面将显示一个LoadingIndicator，直到已经请求的charting-library-chunk完成。这样可以缩短加载时间，因为它只需要请求(往返round-trip)一次而不是两次。特别是在高延迟(high-latency)环境中。</p>
-<p><code>错误地(incorrectly)使用webpackPreload实际上可能会损害性能(hurt performance)，所以在使用它时要小心</code></p>
-<h3 id="Bundle-分析"><a href="#Bundle-分析" class="headerlink" title="Bundle 分析"></a>Bundle 分析</h3><p>一旦开始分解代码，分析输出以检查模块结束的位置会很有用。 <a href="https://github.com/webpack/analyse" target="_blank" rel="noopener">official analyze tool</a> 是一个很好的开始。还有其他一些社区支持的选项：</p>
-<ul>
-<li><a href="https://alexkuz.github.io/webpack-chart/" target="_blank" rel="noopener">webpack-chart</a>: webpack统计的交互饼图</li>
-<li><a href="https://chrisbateman.github.io/webpack-visualizer/" target="_blank" rel="noopener">webpack-visualizer</a>: 可视化并分析你的 bundles，看看哪些模块占用了空间，哪些可能是重复的。</li>
-<li><a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank" rel="noopener">webpack-bundle-analyzer</a>: 插件和CLI实用程序，它将bundle内容表示为方便的交互式可缩放树形图</li>
-</ul>
-<h3 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h3><p>有关如何在实际应用程序中使用import（）以及如何更有效地分解代码的<a href="https://webpack.js.org/guides/caching" target="_blank" rel="noopener">缓存</a>，请参阅<a href="https://webpack.js.org/guides/lazy-loading" target="_blank" rel="noopener">Lazy Loading</a>。</p>
-<h3 id="进一步-Further-阅读"><a href="#进一步-Further-阅读" class="headerlink" title="进一步(Further)阅读"></a>进一步(Further)阅读</h3><ul>
-<li><a href="https://medium.com/webpack/link-rel-prefetch-preload-in-webpack-51a52358f84c" target="_blank" rel="noopener">&lt;link rel=”prefetch/preload”&gt; in webpack</a></li>
-<li><a href="https://medium.com/webpack/link-rel-prefetch-preload-in-webpack-51a52358f84c" target="_blank" rel="noopener">Preload, Prefetch And Priorities in Chrome</a></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content" target="_blank" rel="noopener">Preloading content with rel=”preload”</a></li>
-</ul>
-
-      
-
-      
-        <div id="busuanzi_container_page_pv">
-          本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-        </div>
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/imgs/ali.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/imgs/wx.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-      <br>
-
-      </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">svn</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://sameenzm.github.io/2018/06/11/webpack-code-splitting/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2018/06/19/react-component/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          react-component
-        
-      </div>
-    </a>
   
   
-    <a href="/2018/05/27/layout/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">那些布局</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack的代码拆分"><span class="toc-number">1.</span> <span class="toc-text">webpack的代码拆分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正文开始"><span class="toc-number">1.1.</span> <span class="toc-text">正文开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#入口点"><span class="toc-number">1.2.</span> <span class="toc-text">入口点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#防止重复"><span class="toc-number">1.3.</span> <span class="toc-text">防止重复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#动态导入"><span class="toc-number">1.4.</span> <span class="toc-text">动态导入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#预取-预加载模块"><span class="toc-number">1.5.</span> <span class="toc-text">预取/预加载模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bundle-分析"><span class="toc-number">1.6.</span> <span class="toc-text">Bundle 分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下一步"><span class="toc-number">1.7.</span> <span class="toc-text">下一步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进一步-Further-阅读"><span class="toc-number">1.8.</span> <span class="toc-text">进一步(Further)阅读</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-
-  
-  <!-- 来必力City版安装代码 -->
-<div id="lv-container" data-id="city" data-uid="MTAyMC8zNjg3NC8xMzQxMA==">
-	<script type="text/javascript">
-   (function(d, s) {
-       var j, e = d.getElementsByTagName(s)[0];
-
-       if (typeof LivereTower === 'function') { return; }
-
-       j = d.createElement(s);
-       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-       j.async = true;
-
-       e.parentNode.insertBefore(j, e);
-   })(document, 'script');
-	</script>
-<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
-</div>
-<!-- City版安装代码已完成 -->
+    </div></section>
   
 
-  
-
-  
-
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -500,8 +249,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

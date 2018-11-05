@@ -6,18 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sameenzm.github.io">
-  <title>Archives: 2018 | Sameen&#39;s Blog</title>
+  <title>Write better code together | Sameen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端开发博客, 前端修炼之地">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Sameen&#39;s Blog">
-<meta property="og:url" content="https://sameenzm.github.io/archives/2018/index.html">
+  <meta name="description" content="业务代码，可能简单的if-else for循环也就能搞定一些通用逻辑了，但是怎么把简单的代码写的更简洁、可读性更好嘞，想想(￣^￣)…后来看了网上的一篇文章，感觉颇有收获，就做下笔记，再加上自己日常业务开发遇到的，整理出下篇，嗯。一起写出可读性更高的代码吧。">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Write better code together">
+<meta property="og:url" content="https://sameenzm.github.io/2018/11/05/better-code/index.html">
 <meta property="og:site_name" content="Sameen&#39;s Blog">
-<meta property="og:description" content="前端开发博客, 前端修炼之地">
+<meta property="og:description" content="业务代码，可能简单的if-else for循环也就能搞定一些通用逻辑了，但是怎么把简单的代码写的更简洁、可读性更好嘞，想想(￣^￣)…后来看了网上的一篇文章，感觉颇有收获，就做下笔记，再加上自己日常业务开发遇到的，整理出下篇，嗯。一起写出可读性更高的代码吧。">
 <meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/compatibility.png">
+<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/tests.png">
+<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/log-result.png">
+<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/match.png">
+<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/exec.png">
+<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/search.png">
+<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/test.png">
+<meta property="og:updated_time" content="2018-11-05T11:24:02.175Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sameen&#39;s Blog">
-<meta name="twitter:description" content="前端开发博客, 前端修炼之地">
+<meta name="twitter:title" content="Write better code together">
+<meta name="twitter:description" content="业务代码，可能简单的if-else for循环也就能搞定一些通用逻辑了，但是怎么把简单的代码写的更简洁、可读性更好嘞，想想(￣^￣)…后来看了网上的一篇文章，感觉颇有收获，就做下笔记，再加上自己日常业务开发遇到的，整理出下篇，嗯。一起写出可读性更高的代码吧。">
+<meta name="twitter:image" content="https://sameenzm.github.io/2018/11/05/better-code/compatibility.png">
   
   <meta type="keywords" content="前端,技术博客,react,程序媛,分享学习">
   <meta type="description" content="react生命周期方法,前端学习博客">
@@ -164,36 +174,145 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-better-code" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Write better code together
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/05/better-code/" class="archive-article-date">
+
+        
+        <a href="/2018/11/05/better-code/" class="archive-article-date">
   	<time datetime="2018-11-05T10:23:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-05</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/05/better-code/">Write better code together</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>业务代码，可能简单的if-else for循环也就能搞定一些通用逻辑了，但是怎么把简单的代码写的更简洁、可读性更好嘞，想想(￣^￣)…<br>后来看了网上的一篇文章，感觉颇有收获，就做下笔记，再加上自己日常业务开发遇到的，整理出下篇，嗯。<br>一起写出可读性更高的代码吧。</p>
+<a id="more"></a>
+<h2 id="Case-1，多种条件，不要用-“-”-了"><a href="#Case-1，多种条件，不要用-“-”-了" class="headerlink" title="Case 1，多种条件，不要用 “ || ” 了"></a>Case 1，多种条件，不要用 “ || ” 了</h2><p>题目，如果<code>fruit</code>是<code>apple、strawberry</code>，则log <code>red</code>；<br>你会怎么写？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function test(fruit) &#123;</span><br><span class="line">  if (fruit == &apos;apple&apos; || fruit == &apos;strawberry&apos;) &#123;</span><br><span class="line">    console.log(&apos;red&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>嗯，没什么问题。</p>
+<p>进阶，如果是<code>apple、strawberry、cherry、cranberries</code>，则log <code>red</code><br>这样呢？<br>如果还像上面那样写，if语句就太长了…也太low了吧 是不是！</p>
+<p>改进：使用<code>Array.includes</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function test(fruit) &#123;</span><br><span class="line">  // 把条件提取到数组中</span><br><span class="line">  const redFruits = [&apos;apple&apos;, &apos;strawberry&apos;, &apos;cherry&apos;, &apos;cranberries&apos;];</span><br><span class="line"></span><br><span class="line">  if (redFruits.includes(fruit)) &#123;</span><br><span class="line">    console.log(&apos;red&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>或者使用 <code>Array.indexOf</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function test(fruit) &#123;</span><br><span class="line">  // 把条件提取到数组中</span><br><span class="line">  const redFruits = [&apos;apple&apos;, &apos;strawberry&apos;, &apos;cherry&apos;, &apos;cranberries&apos;];</span><br><span class="line"></span><br><span class="line">  if (redFruits.indexOf(fruit) &gt; -1) &#123;</span><br><span class="line">    console.log(&apos;red&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>includes兼容性：<img src="/2018/11/05/better-code/compatibility.png" alt="compatibility"></p>
+<h2 id="Case-2，多层嵌套"><a href="#Case-2，多层嵌套" class="headerlink" title="Case 2，多层嵌套"></a>Case 2，多层嵌套</h2><p>题目，继续上题，加俩条件：<br>如果没有<code>fruit</code>，抛出错误<br>如果重量(weight)大于10的，则log <code>good</code>；<br>继续写吧<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function test(fruit, weight ) &#123;</span><br><span class="line">    const redFruits = [&apos;apple&apos;, &apos;strawberry&apos;, &apos;cherry&apos;, &apos;cranberries&apos;];</span><br><span class="line"></span><br><span class="line">    // 条件 1：fruit 必须有值</span><br><span class="line">    if (fruit) &#123;</span><br><span class="line">        // 条件 2：必须为红色</span><br><span class="line">        if (redFruits.includes(fruit)) &#123;</span><br><span class="line">          console.log(&apos;red&apos;);</span><br><span class="line"></span><br><span class="line">          // 条件 3：必须质量大于10</span><br><span class="line">          if (weight &gt; 10) &#123;</span><br><span class="line">            console.log(&apos;good&apos;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        thrownewError(&apos;No fruit!&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 测试结果</span><br><span class="line">test(null); // 报错：No fruits</span><br><span class="line">test(&apos;apple&apos;); // 打印：red</span><br><span class="line">test(&apos;apple&apos;, 20); // 打印：red good</span><br></pre></td></tr></table></figure></p>
+<p>嗯…看起来好长<br>有1个<code>if/else</code>来筛选无效条件，3个if嵌套，可读性凑合<br>试想一下，你得滚动到底部才能知道那还有个 <code>else</code> 语句，是不是不爽(＃￣～￣＃)</p>
+<p>改进：无效条件，优先返回<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function test(fruit, weight ) &#123;</span><br><span class="line">  const redFruits = [&apos;apple&apos;, &apos;strawberry&apos;, &apos;cherry&apos;, &apos;cranberries&apos;];</span><br><span class="line"></span><br><span class="line">  // 条件 1：尽早抛出错误</span><br><span class="line">  if (!fruit) thrownewError(&apos;No fruit!&apos;);</span><br><span class="line"></span><br><span class="line">  // 条件2：必须为红色</span><br><span class="line">  if (redFruits.includes(fruit)) &#123;</span><br><span class="line">    console.log(&apos;red&apos;);</span><br><span class="line"></span><br><span class="line">    // 条件 3：必须是大量存在</span><br><span class="line">    if (weight  &gt; 10) &#123;</span><br><span class="line">      console.log(&apos;good&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样就少一层嵌套啦(～￣▽￣)～</p>
+<p>进一步：不满足条件，就不给往下走<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function test(fruit, weight ) &#123;</span><br><span class="line">  const redFruits = [&apos;apple&apos;, &apos;strawberry&apos;, &apos;cherry&apos;, &apos;cranberries&apos;];</span><br><span class="line"></span><br><span class="line">  if (!fruit) thrownewError(&apos;No fruit!&apos;); // 条件 1：尽早抛出错误</span><br><span class="line">  if (!redFruits.includes(fruit)) return; // 条件 2：当 fruit 不是红色的时候，直接返回</span><br><span class="line">  console.log(&apos;red&apos;);</span><br><span class="line"></span><br><span class="line">  // 条件 3：必须是大量存在</span><br><span class="line">  if (weight  &gt; 10) &#123;</span><br><span class="line">    console.log(&apos;good&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>思考：以上两种哪种更好？<br>有人觉得第三种 条件反转会导致更多的思考过程（增加认知负担）。始终追求更少的嵌套，更早地返回，但是不要过度。<br>但个人觉得第三种理解上不会太困难，而且少了嵌套看起来更舒服。看个人喜欢和习惯？</p>
+<h2 id="Case-3，用Map-Object替代switch"><a href="#Case-3，用Map-Object替代switch" class="headerlink" title="Case 3，用Map/Object替代switch"></a>Case 3，用Map/Object替代switch</h2><p>看一段代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function test(color) &#123;</span><br><span class="line">  // 使用 switch case 来找到对应颜色的水果</span><br><span class="line">  switch (color) &#123;</span><br><span class="line">    case &apos;red&apos;:</span><br><span class="line">      return [&apos;apple&apos;, &apos;strawberry&apos;];</span><br><span class="line">    case &apos;yellow&apos;:</span><br><span class="line">      return [&apos;banana&apos;, &apos;pineapple&apos;];</span><br><span class="line">    case &apos;purple&apos;:</span><br><span class="line">      return [&apos;grape&apos;];</span><br><span class="line">    default:</span><br><span class="line">      return [];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">//测试结果</span><br><span class="line">test(null); // []</span><br><span class="line">test(&apos;yellow&apos;); // [&apos;banana&apos;, &apos;pineapple&apos;]</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码可以用 对象字面量 来实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const fruitColor = &#123;</span><br><span class="line">    red: [&apos;apple&apos;, &apos;strawberry&apos;],</span><br><span class="line">    yellow: [&apos;banana&apos;, &apos;pineapple&apos;],</span><br><span class="line">    purple: [&apos;grape&apos;]</span><br><span class="line">  &#125;;</span><br><span class="line">function test(color) &#123;</span><br><span class="line">  return fruitColor[color] || [];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>或者用Map实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const fruitColor = new Map()</span><br><span class="line">    .set(&apos;red&apos;, [&apos;apple&apos;, &apos;strawberry&apos;])</span><br><span class="line">    .set(&apos;yellow&apos;, [&apos;banana&apos;, &apos;pineapple&apos;])</span><br><span class="line">    .set(&apos;purple&apos;, [&apos;grape&apos;, &apos;plum&apos;]);</span><br><span class="line">function test(color) &#123;</span><br><span class="line">  return fruitColor.get(color) || [];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Case-4，使用Array的迭代方法们"><a href="#Case-4，使用Array的迭代方法们" class="headerlink" title="Case 4，使用Array的迭代方法们"></a>Case 4，使用Array的迭代方法们</h2><h3 id="一"><a href="#一" class="headerlink" title="一"></a>一</h3><p>看下面数组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const fruits = [</span><br><span class="line">    &#123; name: &apos;apple&apos;, color: &apos;red&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;strawberry&apos;, color: &apos;red&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;banana&apos;, color: &apos;yellow&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;pineapple&apos;, color: &apos;yellow&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;grape&apos;, color: &apos;purple&apos; &#125;</span><br><span class="line"> ];</span><br></pre></td></tr></table></figure></p>
+<p>Q1：输入color，找到对应color的水果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function test(color) &#123;</span><br><span class="line">    return fruits.filter(item =&gt; item.color === color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Q2: 检查 是否存在红色的水果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function test(color) &#123;</span><br><span class="line">    return fruits.some(item =&gt; item.color === color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>Q3，检查 是否所有水果都是红色的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function test(color) &#123;</span><br><span class="line">    return fruits.every(item =&gt; item.color === color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="二"><a href="#二" class="headerlink" title="二"></a>二</h3><p>看下面数据，数组tests和wrongArr：<br>tests：<br><img src="/2018/11/05/better-code/tests.png" alt="tests"><br>wrongArr:   <code>[3,5,7,8]</code><br>取出数组<code>tests</code>中<code>key</code>出现过在<code>wrongArr</code>中的对象 中的<code>relateTo</code>的值；<br>即返回： <code>[‘http://xxxx/a/a/pnj’, ‘http://xxx’, ...]</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function test(color) &#123;</span><br><span class="line">    return tests.map((item, key)=&gt; wrongArr.includes(key) &amp;&amp; item.relateTo)</span><br><span class="line">		.filter(item =&gt; item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>如果不加后面的filter会返回<code>[false, false, ‘http://xxx’, false, ‘http://xxx’, …]</code>这样。</p>
+<h2 id="Case-5-正则相关的几个傻傻分不清楚的函数"><a href="#Case-5-正则相关的几个傻傻分不清楚的函数" class="headerlink" title="Case 5  正则相关的几个傻傻分不清楚的函数"></a>Case 5  正则相关的几个傻傻分不清楚的函数</h2><p>match()、search()、exec()、test()</p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th>match()</th>
+<th>search()</th>
+<th>exec()</th>
+<th>test()</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所属对象</td>
+<td>String</td>
+<td>String</td>
+<td>RegExp</td>
+<td>RegExp</td>
+</tr>
+<tr>
+<td>函数功能</td>
+<td>提取出匹配项</td>
+<td>验证是否匹配</td>
+<td>提取出匹配项</td>
+<td>验证是否匹配</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>返回数组，可通过下标取值</td>
+<td>返回成功匹配的索引或-1</td>
+<td>返回数组，可通过下标取值</td>
+<td>返回true或false</td>
+</tr>
+<tr>
+<td>Url如下：<a href="https://www.baidu.com/s?tn=baidutop10&amp;rsv_idx=2&amp;wd=%E5%8C%97%E4%BA%AC%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5" target="_blank" rel="noopener">https://www.baidu.com/s?tn=baidutop10&amp;rsv_idx=2&amp;wd=%E5%8C%97%E4%BA%AC%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5</a> 取参数方法，eg：<img src="/2018/11/05/better-code/log-result.png" alt="log-result"></td>
+<td><img src="/2018/11/05/better-code/match.png" alt="match"></td>
+<td>-</td>
+<td><img src="/2018/11/05/better-code/exec.png" alt="exec"></td>
+<td>-</td>
+</tr>
+<tr>
+<td>const str = ‘Take the world as it is.’ (随遇而安。)</td>
+<td>-</td>
+<td><img src="/2018/11/05/better-code/search.png" alt="search"></td>
+<td>-</td>
+<td><img src="/2018/11/05/better-code/test.png" alt="test"></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>此篇不断补充</p>
+</blockquote>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div id="busuanzi_container_page_pv">
+          本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </div>
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/ali.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/wx.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+      <br>
+
+      </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -205,397 +324,141 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://sameenzm.github.io/2018/11/05/better-code/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/10/16/git/" class="archive-article-date">
-  	<time datetime="2018-10-16T01:03:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/10/16/git/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">git &amp; svn</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/10/16/git/">git &amp; svn</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">svn</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-1，多种条件，不要用-“-”-了"><span class="toc-number">1.</span> <span class="toc-text">Case 1，多种条件，不要用 “ || ” 了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-2，多层嵌套"><span class="toc-number">2.</span> <span class="toc-text">Case 2，多层嵌套</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-3，用Map-Object替代switch"><span class="toc-number">3.</span> <span class="toc-text">Case 3，用Map/Object替代switch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-4，使用Array的迭代方法们"><span class="toc-number">4.</span> <span class="toc-text">Case 4，使用Array的迭代方法们</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一"><span class="toc-number">4.1.</span> <span class="toc-text">一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二"><span class="toc-number">4.2.</span> <span class="toc-text">二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-5-正则相关的几个傻傻分不清楚的函数"><span class="toc-number">5.</span> <span class="toc-text">Case 5  正则相关的几个傻傻分不清楚的函数</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/31/array-deduplication/" class="archive-article-date">
-  	<time datetime="2018-07-31T08:21:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/31/array-deduplication/">数组去重大集合</a>
-    </h1>
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNjg3NC8xMzQxMA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/11/ubuntu-terminal/" class="archive-article-date">
-  	<time datetime="2018-07-11T04:12:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/11/ubuntu-terminal/">win10的bash ssh 连接远程服务器 &amp; ubuntu 终端个性化</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">ubuntu</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/06/react-lifecycle/" class="archive-article-date">
-  	<time datetime="2018-07-06T06:55:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/06/react-lifecycle/">总结React生命周期</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/24/GMTC/" class="archive-article-date">
-  	<time datetime="2018-06-24T13:22:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/24/GMTC/">GMTC参会总结</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/19/react-component/" class="archive-article-date">
-  	<time datetime="2018-06-19T15:41:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/19/react-component/">react-component</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">typwscript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/11/webpack-code-splitting/" class="archive-article-date">
-  	<time datetime="2018-06-11T13:14:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/11/webpack-code-splitting/">Code Splitting[译]</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/27/layout/" class="archive-article-date">
-  	<time datetime="2018-05-27T15:01:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/27/layout/">那些布局</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">布局</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/27/Class/" class="archive-article-date">
-  	<time datetime="2018-05-27T11:40:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/27/Class/">How to Use Classes and Sleep at Night[译]</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">React</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Class</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/07/hello-world/" class="archive-article-date">
-  	<time datetime="2018-03-07T08:21:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/07/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -623,8 +486,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

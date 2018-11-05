@@ -23,7 +23,8 @@
 <meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/exec.png">
 <meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/search.png">
 <meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/test.png">
-<meta property="og:updated_time" content="2018-11-05T11:24:02.175Z">
+<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/lodash-get.png">
+<meta property="og:updated_time" content="2018-11-05T11:30:29.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Write better code together">
 <meta name="twitter:description" content="业务代码，可能简单的if-else for循环也就能搞定一些通用逻辑了，但是怎么把简单的代码写的更简洁、可读性更好嘞，想想(￣^￣)…后来看了网上的一篇文章，感觉颇有收获，就做下笔记，再加上自己日常业务开发遇到的，整理出下篇，嗯。一起写出可读性更高的代码吧。">
@@ -266,6 +267,17 @@
 </tr>
 </tbody>
 </table>
+<h2 id="Case-6-js中获取多层级的对象有什么比较优雅的方式？"><a href="#Case-6-js中获取多层级的对象有什么比较优雅的方式？" class="headerlink" title="Case 6, js中获取多层级的对象有什么比较优雅的方式？"></a>Case 6, js中获取多层级的对象有什么比较优雅的方式？</h2><p>比如有个对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;a: &#123;b: &#123;c: 123&#125;&#125;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这时候你要取c的值就得：<code>a.b.c</code>。<br>如果a或者b不存在，那就变成undefined.xxx，然后就会<span style="color: red">报错</span>了！！！</p>
+<p>目标：没数据也不报错！</p>
+<p>1、<code>obj &amp;&amp; obj.a &amp;&amp; obj.a.b &amp;&amp; obj.a.b.c</code><br>2、    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const defaults = &#123;&#125;;</span><br><span class="line">(((obj || defaults).a || defaults).b || defaults).c</span><br></pre></td></tr></table></figure></p>
+<p>但当业务项目中变量名很长的时候以上两种写法就好长好长啊 (ಥ_ಥ)</p>
+<p>3、不介意使用第三方库的话可以用lodash的get：<br><code>_.get(obj, &#39;a.b.c&#39;, &#39;no data&#39;)</code><br><img src="/2018/11/05/better-code/lodash-get.png" alt="lodash-get"></p>
+<blockquote>
+<p>提问: 还有什么比较优雅的方式吗？ 欢迎补充！</p>
+</blockquote>
+<h2 id="直达"><a href="#直达" class="headerlink" title="直达"></a>直达</h2><p>深入讨论 switch 语句和对象字面量的文章：<br><a href="https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/" target="_blank" rel="noopener">https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/</a></p>
+<p>参考原文链接：<br><a href="https://scotch.io/tutorials/5-tips-to-write-better-conditionals-in-javascript" target="_blank" rel="noopener">https://scotch.io/tutorials/5-tips-to-write-better-conditionals-in-javascript</a></p>
 <blockquote>
 <p>此篇不断补充</p>
 </blockquote>
@@ -417,7 +429,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-1，多种条件，不要用-“-”-了"><span class="toc-number">1.</span> <span class="toc-text">Case 1，多种条件，不要用 “ || ” 了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-2，多层嵌套"><span class="toc-number">2.</span> <span class="toc-text">Case 2，多层嵌套</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-3，用Map-Object替代switch"><span class="toc-number">3.</span> <span class="toc-text">Case 3，用Map/Object替代switch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-4，使用Array的迭代方法们"><span class="toc-number">4.</span> <span class="toc-text">Case 4，使用Array的迭代方法们</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一"><span class="toc-number">4.1.</span> <span class="toc-text">一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二"><span class="toc-number">4.2.</span> <span class="toc-text">二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-5-正则相关的几个傻傻分不清楚的函数"><span class="toc-number">5.</span> <span class="toc-text">Case 5  正则相关的几个傻傻分不清楚的函数</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-1，多种条件，不要用-“-”-了"><span class="toc-number">1.</span> <span class="toc-text">Case 1，多种条件，不要用 “ || ” 了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-2，多层嵌套"><span class="toc-number">2.</span> <span class="toc-text">Case 2，多层嵌套</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-3，用Map-Object替代switch"><span class="toc-number">3.</span> <span class="toc-text">Case 3，用Map/Object替代switch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-4，使用Array的迭代方法们"><span class="toc-number">4.</span> <span class="toc-text">Case 4，使用Array的迭代方法们</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一"><span class="toc-number">4.1.</span> <span class="toc-text">一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二"><span class="toc-number">4.2.</span> <span class="toc-text">二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-5-正则相关的几个傻傻分不清楚的函数"><span class="toc-number">5.</span> <span class="toc-text">Case 5  正则相关的几个傻傻分不清楚的函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-6-js中获取多层级的对象有什么比较优雅的方式？"><span class="toc-number">6.</span> <span class="toc-text">Case 6, js中获取多层级的对象有什么比较优雅的方式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#直达"><span class="toc-number">7.</span> <span class="toc-text">直达</span></a></li></ol>
                     </div>
                 </span>
             </div>

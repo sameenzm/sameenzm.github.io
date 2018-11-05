@@ -8,22 +8,23 @@
   <link rel="dns-prefetch" href="https://sameenzm.github.io">
   <title>git &amp; svn | Sameen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="版本控制系统对比   git svn     分布式(每个人电脑上都是一个完整的版本库) 集中式(版本库集中存放在中央服务器)   安全性高(任何一个人电脑挂掉还可以从其他电脑重新拉取) 安全性低(中央服务器挂掉就完了)   无需联网也能工作(在本地工作不用考虑远程库的存在，有网络时再把本地代码推送即完成同步代码) 必须联网才能工作   有暂存区的概念    git 命令 查看历史git log简">
+  <meta name="description" content="大学在工作室做项目的时候用过svn，后来实习了，公司也在用小乌龟。到2016的冬天，整个公司开始转git，然后就开始学习使用git，至今，可能也就停留在日常工作需要的简单使用上。  所以想做个对比总结，来加深自己对这些版本控制工具的了解，也使自己清楚其原理及更熟练的使用。">
 <meta name="keywords" content="git,svn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="git &amp; svn">
 <meta property="og:url" content="https://sameenzm.github.io/2018/10/16/git/index.html">
 <meta property="og:site_name" content="Sameen&#39;s Blog">
-<meta property="og:description" content="版本控制系统对比   git svn     分布式(每个人电脑上都是一个完整的版本库) 集中式(版本库集中存放在中央服务器)   安全性高(任何一个人电脑挂掉还可以从其他电脑重新拉取) 安全性低(中央服务器挂掉就完了)   无需联网也能工作(在本地工作不用考虑远程库的存在，有网络时再把本地代码推送即完成同步代码) 必须联网才能工作   有暂存区的概念    git 命令 查看历史git log简">
+<meta property="og:description" content="大学在工作室做项目的时候用过svn，后来实习了，公司也在用小乌龟。到2016的冬天，整个公司开始转git，然后就开始学习使用git，至今，可能也就停留在日常工作需要的简单使用上。  所以想做个对比总结，来加深自己对这些版本控制工具的了解，也使自己清楚其原理及更熟练的使用。">
 <meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://sameenzm.github.io/2018/10/16/git/svn.png">
 <meta property="og:image" content="https://sameenzm.github.io/2018/10/16/git/pointer.png">
 <meta property="og:image" content="https://sameenzm.github.io/2018/10/16/git/reset.png">
 <meta property="og:image" content="https://sameenzm.github.io/2018/10/16/git/delete.png">
-<meta property="og:updated_time" content="2018-10-18T04:01:33.842Z">
+<meta property="og:updated_time" content="2018-11-05T05:52:08.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git &amp; svn">
-<meta name="twitter:description" content="版本控制系统对比   git svn     分布式(每个人电脑上都是一个完整的版本库) 集中式(版本库集中存放在中央服务器)   安全性高(任何一个人电脑挂掉还可以从其他电脑重新拉取) 安全性低(中央服务器挂掉就完了)   无需联网也能工作(在本地工作不用考虑远程库的存在，有网络时再把本地代码推送即完成同步代码) 必须联网才能工作   有暂存区的概念    git 命令 查看历史git log简">
-<meta name="twitter:image" content="https://sameenzm.github.io/2018/10/16/git/pointer.png">
+<meta name="twitter:description" content="大学在工作室做项目的时候用过svn，后来实习了，公司也在用小乌龟。到2016的冬天，整个公司开始转git，然后就开始学习使用git，至今，可能也就停留在日常工作需要的简单使用上。  所以想做个对比总结，来加深自己对这些版本控制工具的了解，也使自己清楚其原理及更熟练的使用。">
+<meta name="twitter:image" content="https://sameenzm.github.io/2018/10/16/git/svn.png">
   
   <meta type="keywords" content="前端,技术博客,react,程序媛,分享学习">
   <meta type="description" content="react生命周期方法,前端学习博客">
@@ -190,7 +191,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="版本控制系统对比"><a href="#版本控制系统对比" class="headerlink" title="版本控制系统对比"></a>版本控制系统对比</h3><table>
+        <p>  大学在工作室做项目的时候用过svn，后来实习了，公司也在用小乌龟。到2016的冬天，整个公司开始转git，然后就开始学习使用git，至今，可能也就停留在日常工作需要的简单使用上。<br>  所以想做个对比总结，来加深自己对这些版本控制工具的了解，也使自己清楚其原理及更熟练的使用。<br><img src="/2018/10/16/git/svn.png" alt="svn"></p>
+<a id="more"></a>
+<h3 id="版本控制系统对比"><a href="#版本控制系统对比" class="headerlink" title="版本控制系统对比"></a>版本控制系统对比</h3><table>
 <thead>
 <tr>
 <th>git</th>
@@ -554,7 +557,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">svn</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">布局</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,22 +586,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">svn</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">布局</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">

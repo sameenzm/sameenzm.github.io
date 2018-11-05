@@ -186,80 +186,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="版本控制系统对比"><a href="#版本控制系统对比" class="headerlink" title="版本控制系统对比"></a>版本控制系统对比</h3><table>
-<thead>
-<tr>
-<th>git</th>
-<th>svn</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>分布式<br>(每个人电脑上都是一个完整的版本库)</td>
-<td>集中式<br>(版本库集中存放在中央服务器)</td>
-</tr>
-<tr>
-<td>安全性高<br>(任何一个人电脑挂掉还可以从其他电脑重新拉取)</td>
-<td>安全性低<br>(中央服务器挂掉就完了)</td>
-</tr>
-<tr>
-<td>无需联网也能工作<br>(在本地工作不用考虑远程库的存在，有网络时再把本地代码推送即完成同步代码)</td>
-<td>必须联网才能工作<br></td>
-</tr>
-<tr>
-<td>有暂存区的概念</td>
-</tr>
-</tbody>
-</table>
-<h3 id="git-命令"><a href="#git-命令" class="headerlink" title="git 命令"></a>git 命令</h3><ul>
-<li><p>查看历史<br><code>git log</code><br>简化的历史<br><code>git log --pretty=oneline</code></p>
-</li>
-<li><p>回退版本<br><code>git reset --hard HEAD^</code></p>
-<blockquote>
-<p>上一个版本就是 <code>HEAD^</code> ，上上一个版本就是<code>HEAD^^</code>，当然往上100个版本写100个^比较容易数不过来，所以写成<code>HEAD~100</code>;</p>
-</blockquote>
-<p>指定回到未来某版本：<br><code>git reset --hard 1094axxxxx</code>(这是commit id)</p>
-<blockquote>
-<p>HEAD指向的就是当前版本</p>
-</blockquote>
-</li>
-</ul>
-<p><img src="/2018/10/16/git/pointer.png" alt="pointer"></p>
-<ul>
-<li><p>查看命令历史(之前都敲了下啥命令)<br><code>git reflog</code></p>
-</li>
-<li><p>把文件添加到暂存区<br><code>git add xx</code></p>
-</li>
-<li><p>把暂存区的内容提交到当前分支<br><code>git commit -m &quot;messagexx&quot;</code></p>
-</li>
-<li><p>查看工作区状态<br><code>git status</code></p>
-</li>
-</ul>
-<blockquote>
-<p>Git跟踪并管理的是修改，而非文件（什么是修改？比如你新增了一行，这就是一个修改）</p>
-</blockquote>
-<ul>
-<li><p>查看工作区和版本库里面最新版本的区别<br><code>git diff HEAD -- readme.txt</code></p>
-</li>
-<li><p>撤销修改（丢弃工作区的修改）<br><code>git checkout -- readme.txt</code><br>【撤销到最后一次git add 或 git commit（无add时就commit）时的状态】<br><img src="/2018/10/16/git/reset.png" alt="reset"></p>
-</li>
-<li><p>取消add<br><code>git reset HEAD &lt;file&gt;（HEAD表示最新的版本）</code></p>
-</li>
-<li>删除文件（要从版本库中删除该文件）<br><code>git rm test.txt</code></li>
-</ul>
-<p><img src="/2018/10/16/git/delete.png" alt="delete"></p>
-<ul>
-<li><p>如果手动删错文件了，恢复误删<br><code>git checkout -- test.txt</code></p>
-</li>
-<li><p>本地有个代码库learngit，github 上new 了一个仓库，那么可以用下面命令来让使之关联起来：<br><code>git remote add origin git@github.com:[github账户名]/learngit.git</code></p>
-</li>
-<li><p>然后就可以把本地代码库推到github远程库上了：<br><code>git push -u origin master</code></p>
-</li>
-</ul>
-<blockquote>
-<p>上面的命令加上了-u参数是因为第一次推送， 你可能还不想把内容推上去，只是想把本地master和远程关联，后面推代码就不用-u了</p>
-</blockquote>
-
+        <p>  大学在工作室做项目的时候用过svn，后来实习了，公司也在用小乌龟。到2016的冬天，整个公司开始转git，然后就开始学习使用git，至今，可能也就停留在日常工作需要的简单使用上。<br>  所以想做个对比总结，来加深自己对这些版本控制工具的了解，也使自己清楚其原理及更熟练的使用。<br><img src="/2018/10/16/git/svn.png" alt="svn"></p>
+        
+          <a class="article-more-a" href="/2018/10/16/git/#more">more >></a>
+        
       
 
       
@@ -1119,7 +1049,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">svn</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">布局</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1132,22 +1078,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">webpack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">svn</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">布局</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">

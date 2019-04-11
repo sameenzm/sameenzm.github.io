@@ -6,18 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sameenzm.github.io">
-  <title>Archives: 2018/11 | Sameen&#39;s Blog</title>
+  <title>初识 redux-saga | Sameen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端开发博客, 前端修炼之地">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Sameen&#39;s Blog">
-<meta property="og:url" content="https://sameenzm.github.io/archives/2018/11/index.html">
+  <meta name="description" content="最近项目用了dva，dva对于异步action的处理是用了redux-saga，故简单学习了下redux-saga；">
+<meta name="keywords" content="redux middleware,async">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识 redux-saga">
+<meta property="og:url" content="https://sameenzm.github.io/2019/04/11/redux-saga/index.html">
 <meta property="og:site_name" content="Sameen&#39;s Blog">
-<meta property="og:description" content="前端开发博客, 前端修炼之地">
+<meta property="og:description" content="最近项目用了dva，dva对于异步action的处理是用了redux-saga，故简单学习了下redux-saga；">
 <meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://cube.elemecdn.com/7/3f/bf8593c537d4fb0f6a2d2673fc316gif.gif">
+<meta property="og:image" content="https://cube.elemecdn.com/5/42/103157821b9f05daab45d395b3fd4png.png">
+<meta property="og:image" content="https://www.ruphi.cn/usr/uploads/2017/06/1616038871.png">
+<meta property="og:image" content="https://gw.alipayobjects.com/zos/rmsportal/fkpkHBwmTAJtjgyDhMto.png">
+<meta property="og:image" content="https://cube.elemecdn.com/6/9f/b42ac72b9bf5b58a27411859e8682png.png">
+<meta property="og:image" content="https://cube.elemecdn.com/d/30/2f28cecf36826405206c4781f0d59gif.gif">
+<meta property="og:image" content="https://cube.elemecdn.com/e/5e/e6ba777f34a42d4be7a36ee959da2png.png">
+<meta property="og:updated_time" content="2019-04-11T12:57:24.611Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sameen&#39;s Blog">
-<meta name="twitter:description" content="前端开发博客, 前端修炼之地">
+<meta name="twitter:title" content="初识 redux-saga">
+<meta name="twitter:description" content="最近项目用了dva，dva对于异步action的处理是用了redux-saga，故简单学习了下redux-saga；">
+<meta name="twitter:image" content="https://cube.elemecdn.com/7/3f/bf8593c537d4fb0f6a2d2673fc316gif.gif">
   
   <meta type="keywords" content="前端,技术博客,react,程序媛,分享学习">
   <meta type="description" content="react生命周期方法,前端学习博客">
@@ -164,98 +174,438 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-redux-saga" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/17/pursuing-more-natural-code/" class="archive-article-date">
-  	<time datetime="2018-11-17T12:58:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-17</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/17/pursuing-more-natural-code/">Pursuing more natural code</a>
+    <h1 class="article-title" itemprop="name">
+      初识 redux-saga
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/04/11/redux-saga/" class="archive-article-date">
+  	<time datetime="2019-04-11T12:52:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近项目用了dva，dva对于异步action的处理是用了redux-saga，故简单学习了下redux-saga；</p>
+<a id="more"></a>
+<h4 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h4><ol>
+<li><a href="#是什么">是什么</a><ol>
+<li><a href="#名词解释">名词解释</a></li>
+</ol>
+</li>
+<li><a href="#为什么">为什么</a><ol>
+<li><a href="#作用">作用</a></li>
+<li><a href="#优点">优点</a></li>
+</ol>
+</li>
+<li><a href="#怎么用">怎么用</a><ol>
+<li><a href="#hello saga">hello saga</a></li>
+<li><a href="#api">api</a></li>
+<li><a href="#高级概念">高级概念</a></li>
+<li><a href="#对比redux-thunk">对比redux-thunk</a></li>
+</ol>
+</li>
+</ol>
+<h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>redux-saga 就是 redux 的一个<strong>中间件</strong>，用于<strong>更优雅地管理副作用</strong>(side effects);</p>
+<p>redux-saga可以理解为一个 和 系统交互的 常驻进程，可简单定义：<br><code>saga = Worker + Warcher</code></p>
+<h4 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h4><ul>
+<li>side effects<blockquote>
+<p>Side effects are the most common way that a program interacts with the outside world    (people, filesystems, other computers on networks)   [from  Wikipedia]</p>
+</blockquote>
+</li>
+</ul>
+<p>副作用是 程序与外部世界（人、文件系统，网络上的其他计算机） 交互的最常用的方式。<br>映射到前端， 副作用一般指异步网络请求。</p>
+<ul>
+<li>Effect<blockquote>
+<p>An effect is a plain JavaScript Object containing some instructions to be executed by the saga middleware.</p>
+</blockquote>
+</li>
+</ul>
+<p>effect 是一个普通的 javascript对象，包含一些指令，这些指令最终会被 redux-saga 中间件 解释并执行。</p>
+<p>在 redux-saga 世界里，所有的 Effect 都必须被 yield 才会执行</p>
+<p>原则上来说，所有的 yield 后面也只能跟Effect，以保证代码的易测性。<br>eg：</p>
+<p><code>yield fetch(UrlMap.fetchData);</code></p>
+<p>应该用 call Effect ：<br><code>yield call(fetch, UrlMap.fetchData)</code></p>
+<ul>
+<li>task<br>task 是 generator 方法的执行环境，所有saga的generator方法都跑在task里。</li>
+</ul>
+<h2 id="为什么"><a href="#为什么" class="headerlink" title="为什么"></a>为什么</h2><h5 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h5><p>用于<strong>更优雅地管理副作用</strong>， 在前端就是异步网络请求；本质就是为了解决异步action的问题；</p>
+<h5 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h5><ul>
+<li><p>副作用转移到单独的saga.js中，不再掺杂在action.js中，保持 action 的简单纯粹，又使得异步操作集中可以被集中处理。<a href="#对比redux-thunk">对比redux-thunk</a></p>
+</li>
+<li><p>redux-saga 提供了丰富的 Effects，以及 sagas 的机制（所有的 saga 都可以被中断），在处理复杂的异步问题上更顺手。提供了更加细腻的<a href="#登录流程案例">控制流</a>。</p>
+</li>
+<li><p>对比thunk，dispatch 的参数依然是一个纯粹的 action <a href="#对比redux-thunk">(FSA)</a>。</p>
+</li>
+<li><p>每一个 saga  都是 一个 generator function，代码可以采用 同步书写 的方式 去处理 异步逻辑（No Callback Hell），代码变得更易读。</p>
+</li>
+<li><p>同样是受益于 generator function 的 saga 实现，代码异常/请求失败 都可以直接通过 try/catch 语法直接捕获处理。</p>
+</li>
+</ul>
+<h2 id="怎么用"><a href="#怎么用" class="headerlink" title="怎么用"></a>怎么用</h2><h3 id="hello-saga"><a href="#hello-saga" class="headerlink" title="hello saga"></a>hello saga</h3><ol>
+<li><p>单独的文件：sagas.js, 统一管理副作用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export function* helloSaga() &#123;</span><br><span class="line">   console.log(&apos;Hello Sagas!&apos;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将saga和store关联起来, 入口文件 main.js：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import &#123; createStore, applyMiddleware &#125; from &apos;redux&apos;;</span><br><span class="line">import createSagaMiddleware from &apos;redux-saga&apos;;</span><br><span class="line"></span><br><span class="line">import helloSaga from &apos;./sagas&apos;</span><br><span class="line">import rootReducer from &apos;./reducers&apos;</span><br><span class="line"></span><br><span class="line">// 创建 saga middleware</span><br><span class="line"> const sagaMiddleware  = createSagaMiddleware();</span><br><span class="line"></span><br><span class="line">// 创建 store</span><br><span class="line">const store = createStore(</span><br><span class="line">  rootReducer,</span><br><span class="line">  applyMiddleware(sagaMiddleware)   // 注入 saga middleware</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">// 启动 saga</span><br><span class="line">sagaMiddleware.run(helloSaga);</span><br><span class="line"></span><br><span class="line">// 省略ReactDOM.render部分的代码...</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这时候就可以看到<code>Hello Sagas!</code>了；</p>
+<p>代码分析：</p>
+<blockquote>
+<p><strong>line 8</strong> :通过redux-saga提供的工厂函数 createSagaMiddleware 创建 sagaMiddleware（当然创建时，你也可以传递一些可选的<a href="https://redux-saga.js.org/docs/api/" target="_blank" rel="noopener">配置参数</a>）。<br><strong>line 11-14</strong> : 创建 store 实例, 并注入 saga中间件。意味着：之后每次执行 store.dispatch(action)，数据流都会经过 sagaMiddleware 这一道工序，进行必要的 “加工处理”（比如：发送一个异步请求）。<br><strong>line 17</strong> : 启动 saga，调用run方法使得generator可以开始执行，也就是执行 rootSaga。通常是程序的一些初始化操作（比如：初始化数据、注册 action 监听）。</p>
+</blockquote>
+<p>3、接下来加入异步调用的流程</p>
+<p>先看下要实现的效果：</p>
+<p><img src="https://cube.elemecdn.com/7/3f/bf8593c537d4fb0f6a2d2673fc316gif.gif" alt="计数器"></p>
+<p>省略UI代码；</p>
+<p>reducer中已有加一的处理：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">case &apos;INCREMENT&apos;:</span><br><span class="line">  return &#123;</span><br><span class="line">    ...state,</span><br><span class="line">    count: state.count + 1</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>sagas.js：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> import &#123; all, put, takeEvery &#125; from &apos;redux-saga/effects&apos;</span><br><span class="line"> const delay = (ms) =&gt; new Promise(res =&gt; setTimeout(res, ms))</span><br><span class="line"></span><br><span class="line"> // worker Saga: 执行异步的 increment 任务</span><br><span class="line"> export function* incrementAsync() &#123;</span><br><span class="line">   yield delay(1000) // middleware 拿到一个 yield 后的 Promise，暂停1s后再继续执行</span><br><span class="line">   yield put(&#123; type: &apos;INCREMENT&apos; &#125;)  // 告诉 middleware 发起一个 INCREMENT 的 action。</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> // watcher Saga: 在每个INCREMENT_ASYNC上生成一个新的incrementAsync任务</span><br><span class="line"> export function* watchIncrementAsync() &#123;</span><br><span class="line">  yield takeEvery(&apos;INCREMENT_ASYNC&apos;, incrementAsync)</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">// 启动saga们</span><br><span class="line"> export default function* rootSaga() &#123;</span><br><span class="line">  yield all([</span><br><span class="line">    watchIncrementAsync(),</span><br><span class="line">    helloSaga()</span><br><span class="line">  ])</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>把saga和store联系起来的代码和上面相似，就是把helloSaga替换成rootSaga即可；</p>
+<p>代码分析：</p>
+<blockquote>
+<p>Sagas 是被实现为 Generator functions 的<br><strong>line 2</strong> ： 创建一个<code>delay</code>函数，返回一个Promise，它在指定的毫秒数后解析。<br><strong>line 5-8</strong> : incrementAsync 这个 Saga 会暂停，直到 delay 返回的 Promise 被 resolve，即 1000ms 之后；<br><strong>line 6</strong> : middleware 拿到一个 yield 后的 Promise，middleware 暂停 Saga，直到 Promise 完成。一旦 Promise 被 resolve，middleware 会恢复 Saga 接着执行，直到遇到下一个 yield。<br><strong>line 7</strong> : 这里就是第二个yield啦，这里的 <code>put({type: &#39;INCREMENT&#39;})</code> 就是一个Effect，Effect 是纯js对象，其中包含了给 middleware 执行的指令；当 middleware 拿到被Saga yield的Effect的时候，也会暂停Saga，直到Effect 执行完成，然后Saga 会再次被恢复。<br><strong>line 11-13</strong> ： 写一个watcher saga，用redux-saga的api <code>takeEvery</code> 来监听所有的 INCREMENT_ASYNC action，并在 action 被匹配时执行 incrementAsync 任务。<br><strong>line 15-18</strong> : 有了Saga，，现添加一个rootSaga来负责启动所有Saga，用了<code>all</code> api，如果有其他Saga都能一起启动。</p>
+</blockquote>
+<p>line 7 返回的是一个Effect，<code>console(&#39;Effect&#39;, put({ type: &#39;INCREMENT&#39; }))</code>：<br><img src="https://cube.elemecdn.com/5/42/103157821b9f05daab45d395b3fd4png.png" alt="Effect"></p>
+<p>基于redux的数据流：<br>状态决定展现，交互就是改状态<br><img src="https://www.ruphi.cn/usr/uploads/2017/06/1616038871.png" alt="redux的数据流"></p>
+<p>基于redux-saga的一次完整单向数据流：<br><img src="https://gw.alipayobjects.com/zos/rmsportal/fkpkHBwmTAJtjgyDhMto.png" alt="完整单向数据流"></p>
+<h3 id="api"><a href="#api" class="headerlink" title="api"></a>api</h3><blockquote>
+<p>在第一次<a href="#在dva中使用">使用dva</a>的时候，用的最多的api就是<code>put</code>和<code>call</code>，有时还有用<code>select</code></p>
+</blockquote>
+<h4 id="❀Effect-创建器（creators）"><a href="#❀Effect-创建器（creators）" class="headerlink" title="❀Effect 创建器（creators）"></a>❀Effect 创建器（creators）</h4><p><strong>1、<code>put(action)</code></strong></p>
+<blockquote>
+<p>创建一个Effect描述信息，指示 middleware 向Store dispatch一个action</p>
+</blockquote>
+<p>相当于在 saga 中调用 store.dispatch(action)。</p>
+<p><strong>2、<code>select(selector, ...args)</code></strong></p>
+<blockquote>
+<p>创建一个Effect，指示 middleware 调用提供的选择器获取 Store state 上的数据，即获取状态</p>
+</blockquote>
+<p><strong>3、<code>call(fn, ...args)</code></strong></p>
+<blockquote>
+<p>创建一个Effect描述信息，指示 middleware 以args为参数调用fn；</p>
+</blockquote>
+<p>即执行fn(…args);<br>如果fn是个Generator，或者返回Promise，那么会阻塞当前 saga 的执行，直到被调用函数 fn 返回结果，才会执行下一步代码。</p>
+<p><strong>4、<code>take(pattern)</code></strong></p>
+<blockquote>
+<p>创建一个Effect描述信息，指示 middleware 等待 Store 上指定的 action。 Generator 会暂停(被阻塞了)，直到一个与 pattern 匹配的 action 被发起。<br>有种事件监听的感觉。<br>take的返回值是action</p>
+</blockquote>
+<p>如果调用take而没有参数或是’*’，则所有调度的操作都匹配（例如，<code>take()</code>将匹配所有操作）</p>
+<p>可以监听多个，eg:<br><code>yield take([&#39;LOGOUT&#39;, &#39;LOGIN_ERROR&#39;])</code></p>
+<p><strong>5、<code>fork(fn, ...args)</code></strong></p>
+<blockquote>
+<p>创建一个Effect描述信息，指示 middleware 以 无阻塞调用 方式执行 fn<br>fork的返回值是task</p>
+</blockquote>
+<p>类似于 call effect，区别在于它不会阻塞当前 saga，如同后台运行一般，会立即返回一个 task 对象。<br><code>yield fork(fn ...args)</code> 的结果是一个 Task 对象 —— 具有一些有用方法和属性的对象。</p>
+<p><strong>6、<code>cancel(task)</code></strong></p>
+<blockquote>
+<p>创建一个Effect描述信息，针对 fork 方法返回的 task ，可以进行取消关闭。</p>
+</blockquote>
+<p><strong>7、<code>cancelled()</code></strong></p>
+<blockquote>
+<p>创建一个Effect描述信息，指示 middleware 返回 该 generator 是否已经被取消。通常你会在 finally 区块中使用这个 Effect 来运行取消时专用的代码。</p>
+</blockquote>
+<h4 id="❀在强大的低阶-API-之上构建的-wrapper-effect"><a href="#❀在强大的低阶-API-之上构建的-wrapper-effect" class="headerlink" title="❀在强大的低阶 API 之上构建的 wrapper effect"></a>❀在强大的低阶 API 之上构建的 wrapper effect</h4><p><strong>8、<code>takeEvery(pattern, saga, ...args)</code></strong></p>
+<blockquote>
+<p>被 dispatch 的 action 中，在匹配到 pattern 的每一个 action 上派生一个 saga<br>takeEvery 是一个使用 take 和 fork 构建的高级 API。</p>
+</blockquote>
+<p>实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const takeEvery = (patternOrChannel, saga, ...args) =&gt; fork(function*() &#123;</span><br><span class="line">  while (true) &#123;</span><br><span class="line">    const action = yield take(patternOrChannel)</span><br><span class="line">    yield fork(saga, ...args.concat(action))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><strong>9、<code>takeLastest(pattern, saga, ...args)</code></strong></p>
+<blockquote>
+<p>被 dispatch 的 action 中，在匹配 pattern 的每一个 action 上派生一个 saga。并自动取消之前所有已经启动但仍在执行中的 saga 任务。<br>takeLatest 也是一个使用 take 和 fork 构建的高级 API。<br>实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const takeLatest = (patternOrChannel, saga, ...args) =&gt; fork(function*() &#123;</span><br><span class="line">  let lastTask</span><br><span class="line">  while (true) &#123;</span><br><span class="line">    const action = yield take(patternOrChannel)</span><br><span class="line">    if (lastTask) &#123;</span><br><span class="line">      yield cancel(lastTask) // 如果任务已经结束，cancel 则是空操作</span><br><span class="line">    &#125;</span><br><span class="line">    lastTask = yield fork(saga, ...args.concat(action))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h4 id="❀Effect-组合器（combinators）"><a href="#❀Effect-组合器（combinators）" class="headerlink" title="❀Effect 组合器（combinators）"></a>❀Effect 组合器（combinators）</h4><p><strong>10、<code>race([...effects])</code></strong></p>
+<blockquote>
+<p>创建一个Effect描述信息，指示 middleware  在多个 Effect 之间运行一个 race(与 Promise.race([…]) 的行为类似)。</p>
+</blockquote>
+<p>race可以取到最快完成的那个结果，常用于请求超时</p>
+<p><strong>11、<code>all([...effects])</code></strong></p>
+<blockquote>
+<p>创建一个 Effect 描述信息，指示 middleware 并行运行多个 Effect，并等待它们全部完成。这是与标准的<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank" rel="noopener">Promise#all</a>相对应的 API。</p>
+</blockquote>
+<p>也可用<code>[...effects]</code>，yield 一个包含 effects 的数组，eg：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &#123; call &#125; from &apos;redux-saga/effects&apos;</span><br><span class="line"></span><br><span class="line">// 正确写法, effects 将会同步执行</span><br><span class="line">const [users, repos] = yield [</span><br><span class="line">  call(fetch, &apos;/users&apos;),</span><br><span class="line">  call(fetch, &apos;/repos&apos;)</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>generator 会被阻塞直到所有的 effects 都执行完毕，或者当一个 effect 被拒绝 （就像 Promise.all 的行为）。</p>
+<p>欲了解其他api可以访问： <a href="https://redux-saga.js.org/docs/api/" target="_blank" rel="noopener">速查直达</a></p>
+<p><a href="#api">返回</a></p>
+<h5 id="在dva中使用"><a href="#在dva中使用" class="headerlink" title="在dva中使用"></a>在dva中使用</h5><p><img src="https://cube.elemecdn.com/6/9f/b42ac72b9bf5b58a27411859e8682png.png" alt="dva中使用"></p>
+<p>对于try catch的<a href="#额外补充">额外补充</a></p>
+<h5 id="Call-vs-Fork"><a href="#Call-vs-Fork" class="headerlink" title="Call vs Fork"></a>Call vs Fork</h5><p>saga 中 call 和 fork 都是用来执行指定函数 fn，区别在于：</p>
+<ul>
+<li>call Effect 会阻塞当前 saga 的执行，直到被调用函数 fn 返回结果才执行下一步代码。</li>
+<li>fork Effect 则不会阻塞当前 saga，会立即返回一个 task 对象。</li>
+</ul>
+<blockquote>
+<p>fork 的异步非阻塞特性更适合于在后台运行一些不影响主流程的代码</p>
+</blockquote>
+<h3 id="高级概念"><a href="#高级概念" class="headerlink" title="高级概念"></a>高级概念</h3><p>1、监听未来的action  —— take</p>
+<p>先看下要实现的效果：<br><img src="https://cube.elemecdn.com/d/30/2f28cecf36826405206c4781f0d59gif.gif" alt="日志记录器"></p>
+<p>take的实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import &#123; select, take &#125; from &apos;redux-saga/effects&apos;</span><br><span class="line"></span><br><span class="line">function* watchAndLog() &#123;</span><br><span class="line"> while (true) &#123;</span><br><span class="line">   const action = yield take(&apos;*&apos;);</span><br><span class="line">   const state = yield select();</span><br><span class="line">   console.log(&apos;action&apos;, action);</span><br><span class="line">   console.log(&apos;state after&apos;, state);</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>代码分析：</p>
+<blockquote>
+<p>这是一个简单的打印日志功能<br><strong>line 5</strong>: 指示 middleware 等待一个特定的 action。这里整个Generator被暂停了，直到匹配到的action被dispatch了，这里是<em>，所以是任意一个action; yield take(‘</em>‘)的返回值就是匹配到的action<br><strong>line 6</strong>: 用select api 拿到所有状态<br><strong>line 4-9</strong>: 这里用了<code>while(true)</code>,因为 Generator 函数不具备 从运行至完成 的行为（run-to-completion behavior），这个Generator 会每次迭代到第5行时阻塞，以等待 action 发起。</p>
+</blockquote>
+<p>对比<code>takeEvery</code>，实现一样的效果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import &#123; select, takeEvery &#125; from &apos;redux-saga/effects&apos;</span><br><span class="line"></span><br><span class="line">function* watchAndLog() &#123;</span><br><span class="line">  yield takeEvery(&apos;*&apos;, function* logger(action) &#123; // 这里action被被动注入回调了</span><br><span class="line">    const state = yield select()</span><br><span class="line"></span><br><span class="line">    console.log(&apos;action&apos;, action)</span><br><span class="line">    console.log(&apos;state after&apos;, state)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>可以看出，takeEvery 的实现中， 匹配到action就执行回调， action就被动的被 push 到任务处理函数的。<br>每次 action 被匹配时任务处理函数就会一遍又一遍地被调用。并且它们也无法控制何时停止监听。<br>而 take 的实现中，Saga 是自己主动 pull action 的，就像是在执行一个普通函数一样: <code>action = getNextAction()</code>。主动拿到action就可以控制停止，流程上更灵活；</p>
+</blockquote>
+<p>eg:<br>监听用户的操作，并在用户初次创建完三条 Todo 信息时显示祝贺信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import &#123; take, put &#125; from &apos;redux-saga/effects&apos;</span><br><span class="line"></span><br><span class="line">function* watchFirstThreeTodosCreation() &#123;</span><br><span class="line">  for (let i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">    const action = yield take(&apos;TODO_CREATED&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">  yield put(&#123;type: &apos;SHOW_CONGRATULATION&apos;&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>action被匹配到3次之后，Generator 会被回收并且相应的监听不会再发生</p>
+</blockquote>
+<p>主动拉取 action 可以让我们使用熟悉的同步风格来描述我们的控制流<br>eg:<br>监听得来，还有顺序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function* loginFlow() &#123;</span><br><span class="line">  while (true) &#123;</span><br><span class="line">    yield take(&apos;LOGIN&apos;)</span><br><span class="line">    // ... perform the login logic</span><br><span class="line">    yield take(&apos;LOGOUT&apos;)</span><br><span class="line">    // ... perform the logout logic</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><a href="#为什么">返回</a></p>
+<p>2、无阻塞调用 —— fork</p>
+<h6 id="登录流程案例"><a href="#登录流程案例" class="headerlink" title="登录流程案例"></a>登录流程案例</h6><p>就着上面说的登录登出流程，先提前看一段代码（有问题的）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">import &#123; take, call, put &#125; from &apos;redux-saga/effects&apos;</span><br><span class="line">import Api from &apos;...&apos;</span><br><span class="line"></span><br><span class="line">function* authorize(user, password) &#123;</span><br><span class="line"> try &#123;</span><br><span class="line">   const token = yield call(Api.authorize, user, password)</span><br><span class="line">   yield put(&#123;type: &apos;LOGIN_SUCCESS&apos;, token&#125;)</span><br><span class="line">   return token</span><br><span class="line"> &#125; catch(error) &#123;</span><br><span class="line">    yield put(&#123;type: &apos;LOGIN_ERROR&apos;, error&#125;)</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function* loginFlow() &#123;</span><br><span class="line">  while(true) &#123;</span><br><span class="line">   const &#123;user, password&#125; = yield take(&apos;LOGIN_REQUEST&apos;)</span><br><span class="line">   const token = yield call(authorize, user, password)</span><br><span class="line">   if(token) &#123;</span><br><span class="line">     yield call(Api.storeItem(&#123;token&#125;))</span><br><span class="line">     yield take(&apos;LOGOUT&apos;)</span><br><span class="line">     yield call(Api.clearItem(&apos;token&apos;))</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>line 16： 当 LOGIN_REQUEST 的action被匹配时，拿到用户名密码就去调用 authorize 这个Generator<br>（PS: call 不仅可以用来调用返回 Promise 的函数。我们也可以用它来调用其他 Generator 函数。 ）<br>line 4-12： 拿到用户名密码之后就去执行真正的请求，这时候 authorize 就被阻塞了，等待着拿token；拿到 token 就 dispatch 登录成功，返回token；登录失败就 dispatch 登录失败<br>line 18-22： 登录成功之后就缓存token，并且监听登出的action，当匹配LOGOUT，则清楚token</p>
+</blockquote>
+<p><em>上面的代码流程很清晰，就像阅读同步代码一样，自然顺序确定了执行步骤，不用专门理解控制流（如果用takeEvery就会需要去理解）</em></p>
+<p><strong>但是</strong>，上面的代码有问题。<br>当用户点登录之后，authorize 被阻塞，请求还没返回，token还没拿到，就在此刻，用户又点了登出，那么…</p>
+<p><img src="https://cube.elemecdn.com/e/5e/e6ba777f34a42d4be7a36ee959da2png.png" alt="有问题的登录流程"></p>
+<p><em>上面代码的问题是 call 是一个会阻塞的 Effect。即 Generator 在调用结束之前不能执行或处理任何其他事情</em>，然后，LOGOUT 与调用 authorize 是 并发的，导致出问题了</p>
+<p>所以，需要本小节的主角登场 —— <strong>☆ fork ☆</strong></p>
+<p>fork 一个 任务，任务会在后台启动，Generator不会被阻塞，调用者可以继续它自己的流程，而不用等待被 fork 的任务结束。</p>
+<p>具体改进如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">import &#123; fork, call, take, put, cancel &#125; from &apos;redux-saga/effects&apos;</span><br><span class="line">import Api from &apos;...&apos;</span><br><span class="line"></span><br><span class="line">function* authorize(user, password) &#123;</span><br><span class="line"> try &#123;</span><br><span class="line">   const token = yield call(Api.authorize, user, password)</span><br><span class="line">   yield put(&#123;type: &apos;LOGIN_SUCCESS&apos;, token&#125;)</span><br><span class="line">   yield call(Api.storeItem, &#123;token&#125;)</span><br><span class="line"> &#125; catch(error) &#123;</span><br><span class="line">    yield put(&#123;type: &apos;LOGIN_ERROR&apos;, error&#125;)</span><br><span class="line"> &#125; finally &#123;</span><br><span class="line">    if (yield cancelled()) &#123;</span><br><span class="line">      // 取消task之后的操作，比如取消loading之类</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function* loginFlow() &#123;</span><br><span class="line">  while (true) &#123;</span><br><span class="line">    const &#123;user, password&#125; = yield take(&apos;LOGIN_REQUEST&apos;)</span><br><span class="line">    const task = yield fork(authorize, user, password)</span><br><span class="line">    const action = yield take([&apos;LOGOUT&apos;, &apos;LOGIN_ERROR&apos;])</span><br><span class="line">    if (action.type === &apos;LOGOUT&apos;) &#123;</span><br><span class="line">      yield cancel(task)</span><br><span class="line">    &#125;</span><br><span class="line">    yield call(Api.clearItem, &apos;token&apos;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>yield fork 的结果是一个<a href="https://redux-saga.js.org/docs/api/index.html#task" target="_blank" rel="noopener">Task Object</a>.<br>line 21： 改用 fork api 调用 authorize ，loginFlow 就不会被阻塞<br>line 22：监听 2 个并发的 action，<br>line 22-26: 会有三种情况：<br>1、在登出之前，token已经拿到了，那么会 dispatch LOGIN_SUCCESS，就结束了，就算在登出流程也是正常的<br>2、在登出之前，登录失败了，那么会 dispatch LOGIN_ERROR ，然后清除token，结束；进入另外一个 while 迭代等待下一个 LOGIN_REQUEST<br>3、token还没拿到，用户就登出了，那 loginFlow 会匹配到 LOGOUT ，取消掉 authorize 处理进程，清除token，然后就等待下一个 LOGIN_REQUEST 了<br>line 8： 使用 fork 之后就拿不到token了，因为不应该等待它，所以将 token 存储操作移到 authorize 任务内部了<br>line 11-15:如果task被取消之后，你还需要做一些操作，比如Loading本来是true的，你想改成false，那可以利用<code>canceled</code>这个api来确定是否取消了</p>
+</blockquote>
+<p>3、在多个 Effects 之间启动 race<br>eg:<br>触发一个远程的获取请求，并且限制了 1 秒内响应，否则作超时处理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import &#123; race, call, put &#125; from &apos;redux-saga/effects&apos;</span><br><span class="line">import &#123; delay &#125; from &apos;redux-saga&apos;</span><br><span class="line">function* fetchPostsWithTimeout() &#123;</span><br><span class="line">  const &#123;posts, timeout&#125; = yield race(&#123;</span><br><span class="line">    posts: call(fetchApi, &apos;/posts&apos;),</span><br><span class="line">    timeout: call(delay, 1000)</span><br><span class="line">  &#125;)</span><br><span class="line">  if (posts) &#123;</span><br><span class="line">    put(&#123;type: &apos;POSTS_RECEIVED&apos;, posts&#125;)</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    put(&#123;type: &apos;TIMEOUT_ERROR&apos;&#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>4、通过<code>yield*</code>进行排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">function* playLevelOne() &#123; ... &#125;</span><br><span class="line">function* playLevelTwo() &#123; ... &#125;</span><br><span class="line">function* playLevelThree() &#123; ... &#125;</span><br><span class="line"></span><br><span class="line">function* game() &#123;</span><br><span class="line">  // 利用 yield* 组织saga的顺序</span><br><span class="line">  const score1 = yield* playLevelOne()  // ※</span><br><span class="line">  yield put(showScore(score1))</span><br><span class="line"></span><br><span class="line">  const score2 = yield* playLevelTwo()   // ※</span><br><span class="line">  yield put(showScore(score2))</span><br><span class="line"></span><br><span class="line">  const score3 = yield* playLevelThree()   // ※</span><br><span class="line">  yield put(showScore(score3))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<!-- 5、组合saga -->
+<p>更多高级概念，可<a href="https://redux-saga.js.org/docs/advanced/" target="_blank" rel="noopener">直达这里</a>学习</p>
+<p><a href="#为什么">返回</a></p>
+<h4 id="对比redux-thunk"><a href="#对比redux-thunk" class="headerlink" title="对比redux-thunk"></a>对比redux-thunk</h4><p>一般情况下，<code>action</code> 都是符合 <a href="https://github.com/redux-utilities/flux-standard-action" target="_blank" rel="noopener">FSA</a> 标准的（即：a plain javascript object），如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  type: &apos;ADD_TODO&apos;,</span><br><span class="line">  payload: &#123;</span><br><span class="line">    text: &apos;Do something.&apos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>含义：当执行<code>dispatch(action)</code>时，通知<code>reducer</code>，并且把<code>action.payload (新状态数据)</code> 以<code>action.type</code>的方式(操作) <strong>同步更新</strong> 到本地store。</p>
+<p>但是，涉及请求的时候，payload一般来自于远程服务端；然后redux-thunk就以 middleware 的形式来增强 redux store 的 dispatch 方法，（即支持 <code>dispatch(function)</code>）,看下面代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">// action.js</span><br><span class="line">// -----------------</span><br><span class="line">// 符合 FSA 的 action</span><br><span class="line">export const setReplyModalData = (data) =&gt; &#123;</span><br><span class="line">    return &#123; type: SET_REPLY_MODAL_DATA, payload:&#123;data&#125; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">// 这个 action return 的是一个function</span><br><span class="line">// function 中包含了业务数据请求代码逻辑</span><br><span class="line">export function fetchData(someValue) &#123;</span><br><span class="line">  return (dispatch, getState) =&gt; &#123;</span><br><span class="line">    myAjaxLib.post(&quot;/someEndpoint&quot;, &#123; data: someValue &#125;)</span><br><span class="line">      .then(response =&gt; dispatch(&#123; type: &quot;REQUEST_SUCCEEDED&quot;, payload: response &#125;)</span><br><span class="line">      .catch(error =&gt; dispatch(&#123; type: &quot;REQUEST_FAILED&quot;, error: error &#125;);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// component.js</span><br><span class="line">// ------------</span><br><span class="line">// View 层 dispatch(fn) 触发异步请求</span><br><span class="line">// 这里省略部分代码</span><br><span class="line">this.props.dispatch(fetchData(&#123; hello: &apos;saga&apos; &#125;));</span><br></pre></td></tr></table></figure></p>
+<p>同样的代码，redux-saga的实现：<br>它单独起一个新文件saga.js,然后把异步action迁移到里面<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">// saga.js</span><br><span class="line">// ----------</span><br><span class="line">// worker saga</span><br><span class="line">// 它是一个 generator function</span><br><span class="line">// function 中也包含了业务数据请求代码逻辑，但 是同步的写法</span><br><span class="line">function* fetchData(action) &#123;</span><br><span class="line">  const &#123; payload: &#123; someValue &#125; &#125; = action;</span><br><span class="line">  try &#123;</span><br><span class="line">    const result = yield call(myAjaxLib.post, &quot;/someEndpoint&quot;, &#123; data: someValue &#125;);</span><br><span class="line">    yield put(&#123; type: &quot;REQUEST_SUCCEEDED&quot;, payload: response &#125;);</span><br><span class="line">  &#125; catch (error) &#123;</span><br><span class="line">    yield put(&#123; type: &quot;REQUEST_FAILED&quot;, error: error &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// watcher saga</span><br><span class="line">// 监听每一次 dispatch(action)</span><br><span class="line">// 如果 action.type === &apos;REQUEST&apos;，那么执行 fetchData</span><br><span class="line">export function* watchFetchData() &#123;</span><br><span class="line">  yield takeEvery(&apos;REQUEST&apos;, fetchData);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// component.js</span><br><span class="line">// -------</span><br><span class="line">// View 层 dispatch(action) 触发异步请求</span><br><span class="line">// 这里的 action 依然可以是一个 plain object</span><br><span class="line">this.props.dispatch(&#123;</span><br><span class="line">  type: &apos;REQUEST&apos;,</span><br><span class="line">  payload: &#123;</span><br><span class="line">    someValue: &#123; hello: &apos;saga&apos; &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// action.js</span><br><span class="line">// 然后action里就保持了所有都是符合FSA的action了，更干净</span><br><span class="line">export const setReplyModalData = (data) =&gt; &#123;</span><br><span class="line">    return &#123; type: SET_REPLY_MODAL_DATA, payload:&#123;data&#125; &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>综上，redux-saga对比redux-thunk的优点：</p>
+<ul>
+<li><p>副作用转移到单独的saga.js中，不再掺杂在action.js中，保持 action 的简单纯粹，又使得异步操作集中可以被集中处理。</p>
+</li>
+<li><p>dispatch 的参数依然是一个纯粹的 action (FSA)，而不是充满 “黑魔法” thunk function。</p>
+</li>
+<li><p>每一个 saga  都是 一个 generator function，代码采用 同步书写 的方式来处理 异步逻辑（No Callback Hell），代码变得更易读</p>
+</li>
+<li><p>受益于 generator function 的 saga 实现，代码异常/请求失败 都可以直接通过 try/catch 语法直接捕获处理。</p>
+</li>
+</ul>
+<p><a href="#在dva中使用">返回</a></p>
+<h5 id="额外补充"><a href="#额外补充" class="headerlink" title="额外补充"></a>额外补充</h5><p>请求都要加上try catch，多考虑，避免网页挂掉；<br><strong>那什么时候写具体的catch呢？</strong></p>
+<blockquote>
+<p>感觉 如果是要<strong>获取数据</strong>的时候最好写清楚catch，因为这种情况下后端的toast一般都是网络请求失败这种mw，免得拿不到数据就啥也做不了了，这时，作为前端，可以给到用户一个友好的toast。如果后端没返回errmsg，页面也没任何提示就特别不友好如果是<strong>创建、编辑、新增等</strong>，就不需要前端去做toast，在接口统一处去toast后端返回的error message，才可以toast具体的原因，比如群组重名了（这个是需要后端去查库的）？还是什么数据不合法？还是其他原因，就是<strong>提交类型的接口</strong>，在前端能做的表单校验完成之后，还是有接口报错，那是后端才能检查出来的，就toast后端的抛出来的问题；</p>
+</blockquote>
+<h4 id="最后总结一下"><a href="#最后总结一下" class="headerlink" title="最后总结一下"></a>最后总结一下</h4><ul>
+<li>redux-saga就是一个redux的中间件，用于更优雅的管理异步</li>
+<li>redux-saga有一堆的api可供使用</li>
+<li>可以利用同步的方式处理异步逻辑，便于捕获异常，易于测试；</li>
+</ul>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a href="https://redux-saga.js.org/" target="_blank" rel="noopener">Redux-Saga Tutorial</a></p>
+<p><a href="https://redux-saga-in-chinese.js.org/" target="_blank" rel="noopener">Redux-Saga Tutorial中文版</a><br><a href="https://www.yuque.com/lovesueee/blog/redux-saga#0fitsr" target="_blank" rel="noopener">redux-saga 漫谈</a></p>
+<hr>
+
+      
+
+      
+        <div id="busuanzi_container_page_pv">
+          本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </div>
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/ali.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/wx.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+      <br>
+
+      </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">redux middleware</a>
         		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/11/05/better-code/" class="archive-article-date">
-  	<time datetime="2018-11-05T10:23:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/11/05/better-code/">Write better code together</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
+      		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">async</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://sameenzm.github.io/2019/04/11/redux-saga/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2018/11/17/pursuing-more-natural-code/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Pursuing more natural code</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#目录"><span class="toc-number">1.</span> <span class="toc-text">目录</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#是什么"><span class="toc-number"></span> <span class="toc-text">是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#名词解释"><span class="toc-number">1.</span> <span class="toc-text">名词解释</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么"><span class="toc-number"></span> <span class="toc-text">为什么</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#作用"><span class="toc-number">0.1.</span> <span class="toc-text">作用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#优点"><span class="toc-number">0.2.</span> <span class="toc-text">优点</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#怎么用"><span class="toc-number"></span> <span class="toc-text">怎么用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#hello-saga"><span class="toc-number"></span> <span class="toc-text">hello saga</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#api"><span class="toc-number"></span> <span class="toc-text">api</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#❀Effect-创建器（creators）"><span class="toc-number">1.</span> <span class="toc-text">❀Effect 创建器（creators）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#❀在强大的低阶-API-之上构建的-wrapper-effect"><span class="toc-number">2.</span> <span class="toc-text">❀在强大的低阶 API 之上构建的 wrapper effect</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#❀Effect-组合器（combinators）"><span class="toc-number">3.</span> <span class="toc-text">❀Effect 组合器（combinators）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#在dva中使用"><span class="toc-number">3.1.</span> <span class="toc-text">在dva中使用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Call-vs-Fork"><span class="toc-number">3.2.</span> <span class="toc-text">Call vs Fork</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级概念"><span class="toc-number"></span> <span class="toc-text">高级概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#登录流程案例"><span class="toc-number">0.0.1.</span> <span class="toc-text">登录流程案例</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#对比redux-thunk"><span class="toc-number">1.</span> <span class="toc-text">对比redux-thunk</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#额外补充"><span class="toc-number">1.1.</span> <span class="toc-text">额外补充</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最后总结一下"><span class="toc-number">2.</span> <span class="toc-text">最后总结一下</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考链接"><span class="toc-number">3.</span> <span class="toc-text">参考链接</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+
+  
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNjg3NC8xMzQxMA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
   
 
-    
+  
+
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -283,8 +633,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

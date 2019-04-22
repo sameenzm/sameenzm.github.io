@@ -6,29 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sameenzm.github.io">
-  <title>Write better code together | Sameen&#39;s Blog</title>
+  <title>深拷贝&amp;浅拷贝 | Sameen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="业务代码，可能简单的if-else for循环也就能搞定一些通用逻辑了，但是怎么把简单的代码写的更简洁、可读性更好嘞，想想(￣^￣)…后来看了网上的一篇文章，感觉颇有收获，就做下笔记，再加上自己日常业务开发遇到的，整理出下篇，嗯。一起写出可读性更高的代码吧。">
+  <meta name="description" content="工作中经常会需要拷贝数据，拷贝数据就牵扯到是赋值、浅拷贝还是深拷贝？它们之间的区别是什么？什么场景用？学习、思考一番之后总结此篇。">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Write better code together">
-<meta property="og:url" content="https://sameenzm.github.io/2018/11/05/better-code/index.html">
+<meta property="og:title" content="深拷贝&amp;浅拷贝">
+<meta property="og:url" content="https://sameenzm.github.io/2019/04/22/deep-clone-and-shallow-clone/index.html">
 <meta property="og:site_name" content="Sameen&#39;s Blog">
-<meta property="og:description" content="业务代码，可能简单的if-else for循环也就能搞定一些通用逻辑了，但是怎么把简单的代码写的更简洁、可读性更好嘞，想想(￣^￣)…后来看了网上的一篇文章，感觉颇有收获，就做下笔记，再加上自己日常业务开发遇到的，整理出下篇，嗯。一起写出可读性更高的代码吧。">
+<meta property="og:description" content="工作中经常会需要拷贝数据，拷贝数据就牵扯到是赋值、浅拷贝还是深拷贝？它们之间的区别是什么？什么场景用？学习、思考一番之后总结此篇。">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/compatibility.png">
-<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/tests.png">
-<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/log-result.png">
-<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/match.png">
-<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/exec.png">
-<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/search.png">
-<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/test.png">
-<meta property="og:image" content="https://sameenzm.github.io/2018/11/05/better-code/lodash-get.png">
-<meta property="og:updated_time" content="2018-11-05T11:39:53.407Z">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/22/deep-clone-and-shallow-clone/shallow-lizi.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/22/deep-clone-and-shallow-clone/deep-lizi.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/22/deep-clone-and-shallow-clone/stringify-lizi.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/22/deep-clone-and-shallow-clone/object.assign-shallow.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/22/deep-clone-and-shallow-clone/object.assign.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/22/deep-clone-and-shallow-clone/expansion.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/22/deep-clone-and-shallow-clone/expansion2.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/22/deep-clone-and-shallow-clone/$.extend-deep.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/22/deep-clone-and-shallow-clone/$.extend-shallow.png">
+<meta property="og:updated_time" content="2019-04-22T00:25:49.100Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Write better code together">
-<meta name="twitter:description" content="业务代码，可能简单的if-else for循环也就能搞定一些通用逻辑了，但是怎么把简单的代码写的更简洁、可读性更好嘞，想想(￣^￣)…后来看了网上的一篇文章，感觉颇有收获，就做下笔记，再加上自己日常业务开发遇到的，整理出下篇，嗯。一起写出可读性更高的代码吧。">
-<meta name="twitter:image" content="https://sameenzm.github.io/2018/11/05/better-code/compatibility.png">
+<meta name="twitter:title" content="深拷贝&amp;浅拷贝">
+<meta name="twitter:description" content="工作中经常会需要拷贝数据，拷贝数据就牵扯到是赋值、浅拷贝还是深拷贝？它们之间的区别是什么？什么场景用？学习、思考一番之后总结此篇。">
+<meta name="twitter:image" content="https://sameenzm.github.io/2019/04/22/deep-clone-and-shallow-clone/shallow-lizi.png">
   
   <meta type="keywords" content="前端,技术博客,react,程序媛,分享学习">
   <meta type="description" content="react生命周期方法,前端学习博客">
@@ -175,112 +176,111 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-better-code" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-deep-clone-and-shallow-clone" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Write better code together
+      深拷贝&amp;浅拷贝
     </h1>
   
 
         
-        <a href="/2018/11/05/better-code/" class="archive-article-date">
-  	<time datetime="2018-11-05T10:23:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-05</time>
+        <a href="/2019/04/22/deep-clone-and-shallow-clone/" class="archive-article-date">
+  	<time datetime="2019-04-21T23:43:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>业务代码，可能简单的if-else for循环也就能搞定一些通用逻辑了，但是怎么把简单的代码写的更简洁、可读性更好嘞，想想(￣^￣)…<br>后来看了网上的一篇文章，感觉颇有收获，就做下笔记，再加上自己日常业务开发遇到的，整理出下篇，嗯。<br>一起写出可读性更高的代码吧。</p>
+        <p>工作中经常会需要拷贝数据，拷贝数据就牵扯到是赋值、浅拷贝还是深拷贝？它们之间的区别是什么？什么场景用？<br>学习、思考一番之后总结此篇。</p>
 <a id="more"></a>
-<h2 id="Case-1，多种条件，不要用-“-”-了"><a href="#Case-1，多种条件，不要用-“-”-了" class="headerlink" title="Case 1，多种条件，不要用 “ || ” 了"></a>Case 1，多种条件，不要用 “ || ” 了</h2><p>题目，如果<code>fruit</code>是<code>apple、strawberry</code>，则log <code>red</code>；<br>你会怎么写？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">function test(fruit) &#123;</span><br><span class="line">  if (fruit == &apos;apple&apos; || fruit == &apos;strawberry&apos;) &#123;</span><br><span class="line">    console.log(&apos;red&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>嗯，没什么问题。</p>
-<p>进阶，如果是<code>apple、strawberry、cherry、cranberries</code>，则log <code>red</code><br>这样呢？<br>如果还像上面那样写，if语句就太长了…也太low了吧 是不是！</p>
-<p>改进：使用<code>Array.includes</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function test(fruit) &#123;</span><br><span class="line">  // 把条件提取到数组中</span><br><span class="line">  const redFruits = [&apos;apple&apos;, &apos;strawberry&apos;, &apos;cherry&apos;, &apos;cranberries&apos;];</span><br><span class="line"></span><br><span class="line">  if (redFruits.includes(fruit)) &#123;</span><br><span class="line">    console.log(&apos;red&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>或者使用 <code>Array.indexOf</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function test(fruit) &#123;</span><br><span class="line">  // 把条件提取到数组中</span><br><span class="line">  const redFruits = [&apos;apple&apos;, &apos;strawberry&apos;, &apos;cherry&apos;, &apos;cranberries&apos;];</span><br><span class="line"></span><br><span class="line">  if (redFruits.indexOf(fruit) &gt; -1) &#123;</span><br><span class="line">    console.log(&apos;red&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>includes兼容性：<img src="/2018/11/05/better-code/compatibility.png" alt="compatibility"></p>
-<h2 id="Case-2，多层嵌套"><a href="#Case-2，多层嵌套" class="headerlink" title="Case 2，多层嵌套"></a>Case 2，多层嵌套</h2><p>题目，继续上题，加俩条件：<br>如果没有<code>fruit</code>，抛出错误<br>如果重量(weight)大于10的，则log <code>good</code>；<br>继续写吧<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">function test(fruit, weight ) &#123;</span><br><span class="line">    const redFruits = [&apos;apple&apos;, &apos;strawberry&apos;, &apos;cherry&apos;, &apos;cranberries&apos;];</span><br><span class="line"></span><br><span class="line">    // 条件 1：fruit 必须有值</span><br><span class="line">    if (fruit) &#123;</span><br><span class="line">        // 条件 2：必须为红色</span><br><span class="line">        if (redFruits.includes(fruit)) &#123;</span><br><span class="line">          console.log(&apos;red&apos;);</span><br><span class="line"></span><br><span class="line">          // 条件 3：必须质量大于10</span><br><span class="line">          if (weight &gt; 10) &#123;</span><br><span class="line">            console.log(&apos;good&apos;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        thrownewError(&apos;No fruit!&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 测试结果</span><br><span class="line">test(null); // 报错：No fruits</span><br><span class="line">test(&apos;apple&apos;); // 打印：red</span><br><span class="line">test(&apos;apple&apos;, 20); // 打印：red good</span><br></pre></td></tr></table></figure></p>
-<p>嗯…看起来好长<br>有1个<code>if/else</code>来筛选无效条件，3个if嵌套，可读性凑合<br>试想一下，你得滚动到底部才能知道那还有个 <code>else</code> 语句，是不是不爽(＃￣～￣＃)</p>
-<p>改进：无效条件，优先返回<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function test(fruit, weight ) &#123;</span><br><span class="line">  const redFruits = [&apos;apple&apos;, &apos;strawberry&apos;, &apos;cherry&apos;, &apos;cranberries&apos;];</span><br><span class="line"></span><br><span class="line">  // 条件 1：尽早抛出错误</span><br><span class="line">  if (!fruit) thrownewError(&apos;No fruit!&apos;);</span><br><span class="line"></span><br><span class="line">  // 条件2：必须为红色</span><br><span class="line">  if (redFruits.includes(fruit)) &#123;</span><br><span class="line">    console.log(&apos;red&apos;);</span><br><span class="line"></span><br><span class="line">    // 条件 3：必须是大量存在</span><br><span class="line">    if (weight  &gt; 10) &#123;</span><br><span class="line">      console.log(&apos;good&apos;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这样就少一层嵌套啦(～￣▽￣)～</p>
-<p>进一步：不满足条件，就不给往下走<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function test(fruit, weight ) &#123;</span><br><span class="line">  const redFruits = [&apos;apple&apos;, &apos;strawberry&apos;, &apos;cherry&apos;, &apos;cranberries&apos;];</span><br><span class="line"></span><br><span class="line">  if (!fruit) thrownewError(&apos;No fruit!&apos;); // 条件 1：尽早抛出错误</span><br><span class="line">  if (!redFruits.includes(fruit)) return; // 条件 2：当 fruit 不是红色的时候，直接返回</span><br><span class="line">  console.log(&apos;red&apos;);</span><br><span class="line"></span><br><span class="line">  // 条件 3：必须是大量存在</span><br><span class="line">  if (weight  &gt; 10) &#123;</span><br><span class="line">    console.log(&apos;good&apos;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>思考：以上两种哪种更好？<br>有人觉得第三种 条件反转会导致更多的思考过程（增加认知负担）。始终追求更少的嵌套，更早地返回，但是不要过度。<br>但个人觉得第三种理解上不会太困难，而且少了嵌套看起来更舒服。看个人喜欢和习惯？</p>
-<h2 id="Case-3，用Map-Object替代switch"><a href="#Case-3，用Map-Object替代switch" class="headerlink" title="Case 3，用Map/Object替代switch"></a>Case 3，用Map/Object替代switch</h2><p>看一段代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function test(color) &#123;</span><br><span class="line">  // 使用 switch case 来找到对应颜色的水果</span><br><span class="line">  switch (color) &#123;</span><br><span class="line">    case &apos;red&apos;:</span><br><span class="line">      return [&apos;apple&apos;, &apos;strawberry&apos;];</span><br><span class="line">    case &apos;yellow&apos;:</span><br><span class="line">      return [&apos;banana&apos;, &apos;pineapple&apos;];</span><br><span class="line">    case &apos;purple&apos;:</span><br><span class="line">      return [&apos;grape&apos;];</span><br><span class="line">    default:</span><br><span class="line">      return [];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">//测试结果</span><br><span class="line">test(null); // []</span><br><span class="line">test(&apos;yellow&apos;); // [&apos;banana&apos;, &apos;pineapple&apos;]</span><br></pre></td></tr></table></figure></p>
-<p>上面的代码可以用 对象字面量 来实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const fruitColor = &#123;</span><br><span class="line">    red: [&apos;apple&apos;, &apos;strawberry&apos;],</span><br><span class="line">    yellow: [&apos;banana&apos;, &apos;pineapple&apos;],</span><br><span class="line">    purple: [&apos;grape&apos;]</span><br><span class="line">  &#125;;</span><br><span class="line">function test(color) &#123;</span><br><span class="line">  return fruitColor[color] || [];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>或者用Map实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const fruitColor = new Map()</span><br><span class="line">    .set(&apos;red&apos;, [&apos;apple&apos;, &apos;strawberry&apos;])</span><br><span class="line">    .set(&apos;yellow&apos;, [&apos;banana&apos;, &apos;pineapple&apos;])</span><br><span class="line">    .set(&apos;purple&apos;, [&apos;grape&apos;, &apos;plum&apos;]);</span><br><span class="line">function test(color) &#123;</span><br><span class="line">  return fruitColor.get(color) || [];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Case-4，使用Array的迭代方法们"><a href="#Case-4，使用Array的迭代方法们" class="headerlink" title="Case 4，使用Array的迭代方法们"></a>Case 4，使用Array的迭代方法们</h2><h3 id="一"><a href="#一" class="headerlink" title="一"></a>一</h3><p>看下面数组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const fruits = [</span><br><span class="line">    &#123; name: &apos;apple&apos;, color: &apos;red&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;strawberry&apos;, color: &apos;red&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;banana&apos;, color: &apos;yellow&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;pineapple&apos;, color: &apos;yellow&apos; &#125;,</span><br><span class="line">    &#123; name: &apos;grape&apos;, color: &apos;purple&apos; &#125;</span><br><span class="line"> ];</span><br></pre></td></tr></table></figure></p>
-<p>Q1：输入color，找到对应color的水果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function test(color) &#123;</span><br><span class="line">    return fruits.filter(item =&gt; item.color === color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Q2: 检查 是否存在红色的水果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function test(color) &#123;</span><br><span class="line">    return fruits.some(item =&gt; item.color === color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Q3，检查 是否所有水果都是红色的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function test(color) &#123;</span><br><span class="line">    return fruits.every(item =&gt; item.color === color);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="二"><a href="#二" class="headerlink" title="二"></a>二</h3><p>看下面数据，数组tests和wrongArr：<br>tests：<br><img src="/2018/11/05/better-code/tests.png" alt="tests"><br>wrongArr:   <code>[3,5,7,8]</code><br>取出数组<code>tests</code>中<code>key</code>出现过在<code>wrongArr</code>中的对象 中的<code>relateTo</code>的值；<br>即返回： <code>[‘http://xxxx/a/a/pnj’, ‘http://xxx’, ...]</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function test(color) &#123;</span><br><span class="line">    return tests.map((item, key)=&gt; wrongArr.includes(key) &amp;&amp; item.relateTo)</span><br><span class="line">		.filter(item =&gt; item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如果不加后面的filter会返回<code>[false, false, ‘http://xxx’, false, ‘http://xxx’, …]</code>这样。</p>
-<h2 id="Case-5-正则相关的几个傻傻分不清楚的函数"><a href="#Case-5-正则相关的几个傻傻分不清楚的函数" class="headerlink" title="Case 5  正则相关的几个傻傻分不清楚的函数"></a>Case 5  正则相关的几个傻傻分不清楚的函数</h2><p>match()、search()、exec()、test()</p>
-<table>
+<h2 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h2><p>经过学习，我的理解是，<br>浅拷贝就是把一个对象拷贝一份新的，但是，只拷贝第一层。第一层中 基本数据类型的部分是一份新的，引用数据类型的部分，还是和原来指向同一份，浅拷贝不能拷贝 对象中的子对象<br>深拷贝也是把一个对象拷贝一份新的，并且是完完全全的一份新的，和源对象不会相应影响，（开辟一块新的内存地址，将原对象的各个属性逐个复制进去）</p>
+<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><table>
 <thead>
 <tr>
-<th>-</th>
-<th>match()</th>
-<th>search()</th>
-<th>exec()</th>
-<th>test()</th>
+<th></th>
+<th>和原数据 是否指向同一对象</th>
+<th>第一层数据 为基本数据类型</th>
+<th>原数据中 包含子对象</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>所属对象</td>
-<td>String</td>
-<td>String</td>
-<td>RegExp</td>
-<td>RegExp</td>
+<td> 赋值</td>
+<td>是</td>
+<td>改变 会使原数据一同改变</td>
+<td>改变 会使原数据一同改变</td>
 </tr>
 <tr>
-<td>函数功能</td>
-<td>提取出匹配项</td>
-<td>验证是否匹配</td>
-<td>提取出匹配项</td>
-<td>验证是否匹配</td>
+<td> 浅拷贝</td>
+<td>否</td>
+<td>改变 <strong>不</strong>会使原数据一同改变</td>
+<td>改变 <strong>会</strong>使原数据一同改变</td>
 </tr>
 <tr>
-<td>返回值</td>
-<td>返回数组，可通过下标取值</td>
-<td>返回成功匹配的索引或-1</td>
-<td>返回数组，可通过下标取值</td>
-<td>返回true或false</td>
-</tr>
-<tr>
-<td>Url如下：<a href="https://www.baidu.com/s?tn=baidutop10&amp;rsv_idx=2&amp;wd=%E5%8C%97%E4%BA%AC%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5" target="_blank" rel="noopener">https://www.baidu.com/s?tn=baidutop10&amp;rsv_idx=2&amp;wd=%E5%8C%97%E4%BA%AC%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5</a> 取参数方法，eg：<img src="/2018/11/05/better-code/log-result.png" alt="log-result"></td>
-<td><img src="/2018/11/05/better-code/match.png" alt="match"></td>
-<td>-</td>
-<td><img src="/2018/11/05/better-code/exec.png" alt="exec"></td>
-<td>-</td>
-</tr>
-<tr>
-<td>const str = ‘Take the world as it is.’ (随遇而安。)</td>
-<td>-</td>
-<td><img src="/2018/11/05/better-code/search.png" alt="search"></td>
-<td>-</td>
-<td><img src="/2018/11/05/better-code/test.png" alt="test"></td>
+<td> 深拷贝</td>
+<td>否</td>
+<td>改变 <strong>不</strong>会使原数据一同改变</td>
+<td>改变 <strong>不</strong>会使原数据一同改变</td>
 </tr>
 </tbody>
 </table>
-<h2 id="Case-6-js中获取多层级的对象有什么比较优雅的方式？"><a href="#Case-6-js中获取多层级的对象有什么比较优雅的方式？" class="headerlink" title="Case 6, js中获取多层级的对象有什么比较优雅的方式？"></a>Case 6, js中获取多层级的对象有什么比较优雅的方式？</h2><p>比如有个对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;a: &#123;b: &#123;c: 123&#125;&#125;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这时候你要取c的值就得：<code>a.b.c</code>。<br>如果a或者b不存在，那就变成undefined.xxx，然后就会<span style="color: red">报错</span>了！！！</p>
-<p>目标：没数据也不报错！</p>
-<p>1、<code>obj &amp;&amp; obj.a &amp;&amp; obj.a.b &amp;&amp; obj.a.b.c</code><br>2、    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const defaults = &#123;&#125;;</span><br><span class="line">(((obj || defaults).a || defaults).b || defaults).c</span><br></pre></td></tr></table></figure></p>
-<p>但当业务项目中变量名很长的时候以上两种写法就好长好长啊 (ಥ_ಥ)</p>
-<p>3、不介意使用第三方库的话可以用lodash的get：<br><code>_.get(obj, &#39;a.b.c&#39;, &#39;no data&#39;)</code><br><img src="/2018/11/05/better-code/lodash-get.png" alt="lodash-get"></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h3><p>简单实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function shallowClone(copyObj) &#123;</span><br><span class="line">  if (Object.prototype.toString.call(copyObj)===&apos;[object Object]&apos;) &#123;</span><br><span class="line">    var obj = &#123;&#125;;</span><br><span class="line">    for ( var i in copyObj) &#123;</span><br><span class="line">      obj[i] = copyObj[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return obj;</span><br><span class="line">  &#125;</span><br><span class="line">  else if (Object.prototype.toString.call(copyObj)===&apos;[object Array]&apos;) &#123;</span><br><span class="line">    var arr = copyObj.map(item=&gt;item);</span><br><span class="line">    return arr;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h3><p>简单实现</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">// 获取数据类型</span><br><span class="line">function getType(obj)&#123;</span><br><span class="line">    //tostring会返回对应不同的标签的构造函数</span><br><span class="line">    var toString = Object.prototype.toString;</span><br><span class="line">    var map = &#123;</span><br><span class="line">      &apos;[object Boolean]&apos;  : &apos;boolean&apos;,</span><br><span class="line">      &apos;[object Number]&apos;   : &apos;number&apos;,</span><br><span class="line">      &apos;[object String]&apos;   : &apos;string&apos;,</span><br><span class="line">      &apos;[object Function]&apos; : &apos;function&apos;,</span><br><span class="line">      &apos;[object Array]&apos;    : &apos;array&apos;,</span><br><span class="line">      &apos;[object Date]&apos;     : &apos;date&apos;,</span><br><span class="line">      &apos;[object RegExp]&apos;   : &apos;regExp&apos;,</span><br><span class="line">      &apos;[object Undefined]&apos;: &apos;undefined&apos;,</span><br><span class="line">      &apos;[object Null]&apos;     : &apos;null&apos;,</span><br><span class="line">      &apos;[object Object]&apos;   : &apos;object&apos;</span><br><span class="line">  &#125;;</span><br><span class="line">  if(obj instanceof Element) &#123;</span><br><span class="line">        return &apos;element&apos;;</span><br><span class="line">  &#125;</span><br><span class="line">  return map[toString.call(obj)];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function deepClone(data)&#123;</span><br><span class="line">    var type = getType(data);</span><br><span class="line">    var obj;</span><br><span class="line">    if(type === &apos;array&apos;)&#123;</span><br><span class="line">        obj = [];</span><br><span class="line">    &#125; else if(type === &apos;object&apos;)&#123;</span><br><span class="line">        obj = &#123;&#125;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        //不再具有下一层次</span><br><span class="line">        return data;</span><br><span class="line">    &#125;</span><br><span class="line">    if(type === &apos;array&apos;)&#123;</span><br><span class="line">        for(var i = 0, len = data.length; i &lt; len; i++)&#123;</span><br><span class="line">            obj.push(deepClone(data[i])); // 递归</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else if(type === &apos;object&apos;)&#123;</span><br><span class="line">        for(var key in data)&#123;</span><br><span class="line">            obj[key] = deepClone(data[key]); // 递归</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return obj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>❀ 手写深拷贝，给简短点的(利用递归)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function deepCopy(obj) &#123;</span><br><span class="line">    if(typeof obj !== &apos;object&apos;) &#123;</span><br><span class="line">      return obj;</span><br><span class="line">    &#125;</span><br><span class="line">    const newobj = obj.constructor === Array ? [] : &#123;&#125;;</span><br><span class="line">    for(let i in obj) &#123;</span><br><span class="line">      newobj[i] = typeof obj[i] === &apos;object&apos; ? deepCopy(obj[i]) : obj[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return newobj;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>ps:  函数更多的是完成某些功能，有个输入值和返回值，而且对于上层业务而言更多的是完成业务功能，并不需要真正将函数深拷贝。所以不对函数进行过多的考虑；</p>
+<p>检验栗子<br><code>var obj1 = { &#39;name&#39; : &#39;zhangsan&#39;, &#39;age&#39; : &#39;18&#39;, &#39;language&#39; : [1,[2,3],[4,5]] };</code></p>
+<h5 id="浅拷贝栗子"><a href="#浅拷贝栗子" class="headerlink" title="浅拷贝栗子"></a>浅拷贝栗子</h5><!-- ![浅拷贝栗子](deep-clone-and-shallow-clone/shallow-lizi.png){:height=10 width=10} -->
+<p><img src="/2019/04/22/deep-clone-and-shallow-clone/shallow-lizi.png" width="25%" height="25%"></p>
+<h5 id="深拷贝栗子"><a href="#深拷贝栗子" class="headerlink" title="深拷贝栗子"></a>深拷贝栗子</h5><!-- ![深拷贝栗子](deep-clone-and-shallow-clone/deep-lizi.png) -->
+<p><img src="/2019/04/22/deep-clone-and-shallow-clone/deep-lizi.png" width="25%" height="25%"></p>
+<h2 id="应用实践"><a href="#应用实践" class="headerlink" title="应用实践"></a>应用实践</h2><h3 id="拷贝-对象-常用方式"><a href="#拷贝-对象-常用方式" class="headerlink" title="拷贝 对象 常用方式"></a>拷贝 对象 常用方式</h3><h5 id="1、JSON-parse-JSON-stringify-xxx-——-深拷贝"><a href="#1、JSON-parse-JSON-stringify-xxx-——-深拷贝" class="headerlink" title="1、JSON.parse(JSON.stringify(xxx))  ——  深拷贝"></a>1、JSON.parse(JSON.stringify(xxx))  ——  深拷贝</h5><p><code>var copyObj = JSON.parse(JSON.stringify(obj));</code></p>
+<p>但是，发现<code>JSON.stringify()</code> 有以下几个特点：</p>
+<ul>
+<li>非数组对象的属性不能保证以特定的顺序出现在序列化后的字符串中。</li>
+<li>布尔值、数字、字符串的包装对象在序列化过程中会自动转换成对应的原始值。</li>
+<li>undefined、任意的函数以及 symbol 值，在序列化过程中会被忽略（出现在非数组对象的属性值中时）</li>
+<li>或者被转换成 null（出现在数组中时）。</li>
+<li>所有以 symbol 为属性键的属性都会被完全忽略掉，即便 replacer 参数中强制指定包含了它们。</li>
+<li>不可枚举的属性会被忽略</li>
+</ul>
+<!-- ![stringfy深拷贝栗子](deep-clone-and-shallow-clone/stringify-lizi.png) -->
+<p><img src="/2019/04/22/deep-clone-and-shallow-clone/stringify-lizi.png" width="25%" height="25%"></p>
+<h5 id="2、ES6的Object-assign-——-浅拷贝"><a href="#2、ES6的Object-assign-——-浅拷贝" class="headerlink" title="2、ES6的Object.assign  ——  浅拷贝"></a>2、ES6的Object.assign  ——  浅拷贝</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  name: &apos;zhangsan&apos;,</span><br><span class="line">  job: &apos;学生&apos;</span><br><span class="line">&#125;</span><br><span class="line">var copyObj = Object.assign(&#123;&#125;, obj);</span><br><span class="line">copyObj.name = &apos;lisi&apos;;</span><br></pre></td></tr></table></figure>
+<!-- ![Object.assign浅拷贝栗子](deep-clone-and-shallow-clone/object.assign-shallow.png) -->
+<p><img src="/2019/04/22/deep-clone-and-shallow-clone/object.assign-shallow.png" width="25%" height="25%"></p>
+<p>Object.assign：用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target），并返回合并后的target<br>用法： Object.assign(target, source1, source2);</p>
+<!-- ![Object.assign栗子](deep-clone-and-shallow-clone/object.assign.png) -->
+<p><img src="/2019/04/22/deep-clone-and-shallow-clone/object.assign.png" width="25%" height="25%"></p>
+<h5 id="3、ES6扩展运算符（…）-——-浅拷贝"><a href="#3、ES6扩展运算符（…）-——-浅拷贝" class="headerlink" title="3、ES6扩展运算符（…） —— 浅拷贝"></a>3、ES6扩展运算符（…） —— 浅拷贝</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var obj = &#123;</span><br><span class="line">  name: &apos;zhangsan&apos;,</span><br><span class="line">  job: &apos;学生&apos;</span><br><span class="line">&#125;</span><br><span class="line">var copyObj = &#123; ...obj &#125;;</span><br><span class="line">copyObj.name = &apos;wangwu&apos;;</span><br></pre></td></tr></table></figure>
+<!-- ![扩展运算符栗子](deep-clone-and-shallow-clone/expansion.png) -->
+<p><img src="/2019/04/22/deep-clone-and-shallow-clone/expansion.png" width="25%" height="25%"><br>扩展运算符（…）用于取出参数对象的所有可遍历属性，拷贝到当前对象之中</p>
+<!-- ![扩展运算符栗子2](deep-clone-and-shallow-clone/expansion2.png) -->
+<p><img src="/2019/04/22/deep-clone-and-shallow-clone/expansion2.png" width="25%" height="25%"></p>
+<h3 id="拷贝-简单数组-常用的方式"><a href="#拷贝-简单数组-常用的方式" class="headerlink" title="拷贝 简单数组 常用的方式"></a>拷贝 简单数组 常用的方式</h3><h5 id="1、slice-——-浅拷贝"><a href="#1、slice-——-浅拷贝" class="headerlink" title="1、slice()  ——   浅拷贝"></a>1、slice()  ——   浅拷贝</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var array = [1, 2, 3, 4];</span><br><span class="line">var copyArray = array.slice();</span><br><span class="line">copyArray[0] = 100;</span><br><span class="line">console.log(array); // [1, 2, 3, 4]</span><br><span class="line">console.log(copyArray); // [100, 2, 3, 4]</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>提问: 还有什么比较优雅的方式吗？ 欢迎补充！</p>
+<p>slice() 方法返回一个从已有的数组中截取一部分元素片段组成的新数组（不改变原来的数组！）<br>用法：array．slice(start,end)　start表示是起始元素的下标，　end表示的是终止元素的下标<br>当slice()不带任何参数的时候，默认返回一个长度和原数组相同的新数组</p>
 </blockquote>
-<h2 id="直达"><a href="#直达" class="headerlink" title="直达"></a>直达</h2><p>深入讨论 switch 语句和对象字面量的文章：<br><a href="https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/" target="_blank" rel="noopener">https://toddmotto.com/deprecating-the-switch-statement-for-object-literals/</a></p>
-<p>参考原文链接：<br><a href="https://scotch.io/tutorials/5-tips-to-write-better-conditionals-in-javascript" target="_blank" rel="noopener">https://scotch.io/tutorials/5-tips-to-write-better-conditionals-in-javascript</a></p>
+<h5 id="2、concat-——-浅拷贝"><a href="#2、concat-——-浅拷贝" class="headerlink" title="2、concat()  ——  浅拷贝"></a>2、concat()  ——  浅拷贝</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var array = [1, 2, 3, 4];</span><br><span class="line">var copyArray = array.concat();</span><br><span class="line">copyArray[0] = 100;</span><br><span class="line">console.log(array); // [1, 2, 3, 4]</span><br><span class="line">console.log(copyArray); // [100, 2, 3, 4]</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>此篇不断补充</p>
+<p>concat() 方法用于连接两个或多个数组 ( 该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。)<br>用法：array.concat(array1,array2,……,arrayN)</p>
 </blockquote>
+<p>以上两个方法对于下面这种复杂数组无效！</p>
+<p><code>var array = [ { number: 1 }, { number: 2 }, { number: 3 } ];</code></p>
+<h4 id="其他补充"><a href="#其他补充" class="headerlink" title="其他补充"></a>其他补充</h4><h5 id="还可以用lodash的-cloneDeep-value"><a href="#还可以用lodash的-cloneDeep-value" class="headerlink" title="还可以用lodash的_.cloneDeep(value)"></a>还可以用lodash的_.cloneDeep(value)</h5><p>link: <a href="https://lodash.com/docs/4.17.11#cloneDeep" target="_blank" rel="noopener">https://lodash.com/docs/4.17.11#cloneDeep</a></p>
+<h5 id="jQuery中的-extend"><a href="#jQuery中的-extend" class="headerlink" title="jQuery中的$.extend"></a>jQuery中的$.extend</h5><p>语法：<code>jQuery.extend( [deep ], target, object1 [, objectN ] )</code><br>深浅拷贝对应的参数就是[deep]，是可选的，为true或false。默认情况是false（浅拷贝），并且false是不能够显示的写出来的。如果想写，只能写true（深拷贝）</p>
+<p>深拷贝使用：<br><!-- ![$.extend深拷贝](deep-clone-and-shallow-clone/$.extend-deep.png) --><br><img src="/2019/04/22/deep-clone-and-shallow-clone/$.extend-deep.png" width="25%" height="25%"></p>
+<p>浅拷贝使用：<br><!-- ![$.extend浅拷贝](deep-clone-and-shallow-clone/$.extend-shallow.png) --><br><img src="/2019/04/22/deep-clone-and-shallow-clone/$.extend-shallow.png" width="25%" height="25%"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>浅拷贝，深拷贝都是拷贝一份新的值，区别在于，源对象中还有子对象时，浅拷贝是没有拷贝的，而深拷贝是递归拷贝的。<br>所以浅拷贝的源对象和拷贝对象在引用类型数据上是会相互影响的，而深拷贝的源数据和拷贝数据是完完全全不会相互影响的。</p>
+<p>参考文章：</p>
+<p><a href="https://juejin.im/post/59ac1c4ef265da248e75892b" target="_blank" rel="noopener">js 深拷贝 vs 浅拷贝</a></p>
+<p><a href="https://www.cnblogs.com/penghuwan/p/7359026.html#" target="_blank" rel="noopener">javascript详解javaScript的深拷贝</a></p>
 
       
 
@@ -386,7 +386,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://sameenzm.github.io/2018/11/05/better-code/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://sameenzm.github.io/2019/04/22/deep-clone-and-shallow-clone/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -400,18 +400,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/11/17/pursuing-more-natural-code/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Pursuing more natural code
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/10/16/git/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">git &amp; svn</div>
+    <a href="/2019/04/11/redux-saga/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">初识 redux-saga</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -438,7 +429,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-1，多种条件，不要用-“-”-了"><span class="toc-number">1.</span> <span class="toc-text">Case 1，多种条件，不要用 “ || ” 了</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-2，多层嵌套"><span class="toc-number">2.</span> <span class="toc-text">Case 2，多层嵌套</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-3，用Map-Object替代switch"><span class="toc-number">3.</span> <span class="toc-text">Case 3，用Map/Object替代switch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-4，使用Array的迭代方法们"><span class="toc-number">4.</span> <span class="toc-text">Case 4，使用Array的迭代方法们</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一"><span class="toc-number">4.1.</span> <span class="toc-text">一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二"><span class="toc-number">4.2.</span> <span class="toc-text">二</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-5-正则相关的几个傻傻分不清楚的函数"><span class="toc-number">5.</span> <span class="toc-text">Case 5  正则相关的几个傻傻分不清楚的函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Case-6-js中获取多层级的对象有什么比较优雅的方式？"><span class="toc-number">6.</span> <span class="toc-text">Case 6, js中获取多层级的对象有什么比较优雅的方式？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#直达"><span class="toc-number">7.</span> <span class="toc-text">直达</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#理解"><span class="toc-number">1.</span> <span class="toc-text">理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对比"><span class="toc-number">2.</span> <span class="toc-text">对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现"><span class="toc-number">3.</span> <span class="toc-text">实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#浅拷贝"><span class="toc-number">3.1.</span> <span class="toc-text">浅拷贝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深拷贝"><span class="toc-number">3.2.</span> <span class="toc-text">深拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#浅拷贝栗子"><span class="toc-number">3.2.0.1.</span> <span class="toc-text">浅拷贝栗子</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#深拷贝栗子"><span class="toc-number">3.2.0.2.</span> <span class="toc-text">深拷贝栗子</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用实践"><span class="toc-number">4.</span> <span class="toc-text">应用实践</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#拷贝-对象-常用方式"><span class="toc-number">4.1.</span> <span class="toc-text">拷贝 对象 常用方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、JSON-parse-JSON-stringify-xxx-——-深拷贝"><span class="toc-number">4.1.0.1.</span> <span class="toc-text">1、JSON.parse(JSON.stringify(xxx))  ——  深拷贝</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、ES6的Object-assign-——-浅拷贝"><span class="toc-number">4.1.0.2.</span> <span class="toc-text">2、ES6的Object.assign  ——  浅拷贝</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3、ES6扩展运算符（…）-——-浅拷贝"><span class="toc-number">4.1.0.3.</span> <span class="toc-text">3、ES6扩展运算符（…） —— 浅拷贝</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拷贝-简单数组-常用的方式"><span class="toc-number">4.2.</span> <span class="toc-text">拷贝 简单数组 常用的方式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1、slice-——-浅拷贝"><span class="toc-number">4.2.0.1.</span> <span class="toc-text">1、slice()  ——   浅拷贝</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2、concat-——-浅拷贝"><span class="toc-number">4.2.0.2.</span> <span class="toc-text">2、concat()  ——  浅拷贝</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#其他补充"><span class="toc-number">4.2.1.</span> <span class="toc-text">其他补充</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#还可以用lodash的-cloneDeep-value"><span class="toc-number">4.2.1.1.</span> <span class="toc-text">还可以用lodash的_.cloneDeep(value)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#jQuery中的-extend"><span class="toc-number">4.2.1.2.</span> <span class="toc-text">jQuery中的$.extend</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li></ol>
                     </div>
                 </span>
             </div>

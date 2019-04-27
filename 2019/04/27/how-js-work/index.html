@@ -6,18 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sameenzm.github.io">
-  <title>Archives: 2018/6 | Sameen&#39;s Blog</title>
+  <title>js如何工作的:引擎、运行时、调用栈概述[译] | Sameen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前端开发博客, 前端修炼之地">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Sameen&#39;s Blog">
-<meta property="og:url" content="https://sameenzm.github.io/archives/2018/06/index.html">
+  <meta name="description" content="为了深入学习和了解js是如何工作的，翻译此篇。 原文地址：How JavaScript works: an overview of the engine, the runtime, and the call stack">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js如何工作的:引擎、运行时、调用栈概述[译]">
+<meta property="og:url" content="https://sameenzm.github.io/2019/04/27/how-js-work/index.html">
 <meta property="og:site_name" content="Sameen&#39;s Blog">
-<meta property="og:description" content="前端开发博客, 前端修炼之地">
+<meta property="og:description" content="为了深入学习和了解js是如何工作的，翻译此篇。 原文地址：How JavaScript works: an overview of the engine, the runtime, and the call stack">
 <meta property="og:locale" content="zh-tw">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/27/how-js-work/githut.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/27/how-js-work/v8.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/27/how-js-work/runtime.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/27/how-js-work/callstack.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/27/how-js-work/uncaughtError.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/27/how-js-work/Blowing.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/27/how-js-work/maximum.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/27/how-js-work/error.jpeg">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/27/how-js-work/chart.png">
+<meta property="og:updated_time" content="2019-04-27T16:03:03.224Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sameen&#39;s Blog">
-<meta name="twitter:description" content="前端开发博客, 前端修炼之地">
+<meta name="twitter:title" content="js如何工作的:引擎、运行时、调用栈概述[译]">
+<meta name="twitter:description" content="为了深入学习和了解js是如何工作的，翻译此篇。 原文地址：How JavaScript works: an overview of the engine, the runtime, and the call stack">
+<meta name="twitter:image" content="https://sameenzm.github.io/2019/04/27/how-js-work/githut.png">
   
   <meta type="keywords" content="前端,技术博客,react,程序媛,分享学习">
   <meta type="description" content="react生命周期方法,前端学习博客">
@@ -164,133 +176,266 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-how-js-work" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/24/GMTC/" class="archive-article-date">
-  	<time datetime="2018-06-24T13:22:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-24</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/24/GMTC/">GMTC参会总结</a>
+    <h1 class="article-title" itemprop="name">
+      js如何工作的:引擎、运行时、调用栈概述[译]
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/19/react-component/" class="archive-article-date">
-  	<time datetime="2018-06-19T15:41:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-19</time>
+        
+        <a href="/2019/04/27/how-js-work/" class="archive-article-date">
+  	<time datetime="2019-04-27T13:38:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-27</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/19/react-component/">react-component</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>为了深入学习和了解js是如何工作的，翻译此篇。</p>
+<p>原文地址：<a href="https://blog.sessionstack.com/how-does-javascript-actually-work-part-1-b0bacc073cf" target="_blank" rel="noopener">How JavaScript works: an overview of the engine, the runtime, and the call stack</a></p>
+<a id="more"></a>
+<p>正文开始，</p>
+<p>随着 JavaScript 变得越来越流行，团队可以把它应用在前端，后端，混合应用程序，嵌入式设备等等多方向上。</p>
+<p>本文旨是系列中的第一篇，旨在深入挖掘 JavaScript 是如何工作的：我们认为通过了解 JavaScript 的 building blocks 以及它们是如何一起运行的可以使你写出更好的代码和应用程序。我们也会分享一些我们在构建 SessionStack 时使用的一些经验规则，这是一个轻量级的，强大且高性能保持竞争力的 JavaScript 应用程序。</p>
+<p>正如 <a href="https://githut.info/" target="_blank" rel="noopener">GitHut</a> 统计数据显示， JavaScript 在GitHub 仓库中的活跃程度和总push量处于领先地位。其他的衡量指标也不落后。</p>
+<p><img src="/2019/04/27/how-js-work/githut.png" alt="githut"></p>
+<p>如果项目对 JavaScript 的依赖很大，这意味着开发者必须利用任何语言和生态系统提供的所有东西，对内部进行更深入的了解，以便构建更出色的软件。</p>
+<p>事实证明，很多开发者每天都在使用 JavaScript ，却不了解背后的原理。</p>
+<h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>几乎每个开发者都已经听过 V8 引擎这个概念，也有很多人知道 JavaScript 是单线程的或它使用的是回调队列；</p>
+<p>在本篇文章中，我们将详细介绍所有这些概念，并解释 JavaScript 实际上是如何运行的。通过了解这些细节，你能正确利用提供的API写更好的、非阻塞的应用程序。</p>
+<p>如果你是个 JavaScript 小新，那么这篇文章将帮助你理解为什么 JavaScript 相比其他语言会如此“神奇”。</p>
+<p>如果你是一个经验丰富的 JavaScript 开发者，希望它会给你一些新鲜的视角去认识 你每天使用的 JavaScript 它的 运行时的实际工作原理。</p>
+<h2 id="JavaScript-引擎"><a href="#JavaScript-引擎" class="headerlink" title="JavaScript 引擎"></a>JavaScript 引擎</h2><p>JavaScript 引擎的一个流行的示例是 Google 的 V8 引擎。V8 引擎应用在Chrome和Node.js上。下面是 V8引擎的一个非常简化的示图：<br><img src="/2019/04/27/how-js-work/v8.png" alt="v8"></p>
+<p>引擎主要由两个组件组成：</p>
+<ul>
+<li>内存堆 —— 这是内存分配发生的地方</li>
+<li>调用栈 —— 这是你的代码执行时 栈帧的位置（ 回调函数将会在这里执行）</li>
+</ul>
+<h2 id="运行时"><a href="#运行时" class="headerlink" title="运行时"></a>运行时</h2><p>那些 可以被 Javascript 开发者在浏览器经常使用到的 API （例如setTimeout），并不是由 Javascript 引擎提供的。</p>
+<p>所以，这些 API 怎么来的？<br>事实证明，实际有些复杂。</p>
+<p><img src="/2019/04/27/how-js-work/runtime.png" alt="runtime"></p>
+<p>所以，我们有引擎，但是实际上还需要很多。<br>我们有一些叫做Web APIs 的东西，它们是浏览器提供的，比如DOM，AJAX，setTimeout 等等。</p>
+<p>然后，我们还有流行的事件循环（event loop ）和回调队列（callback queue）。</p>
+<h2 id="调用栈"><a href="#调用栈" class="headerlink" title="调用栈"></a>调用栈</h2><p>Javascript 是一种单线程的编程语言，意味着它只有一个调用栈（call stack），因此它某一时刻只能做一件事情。</p>
+<p>调用栈是一种数据结构，它主要记录程序执行到哪了。当 js 的虚拟机 执行一个函数时，就会把这个函数推到调用栈中，当这个函数执行到return了或者执行完毕了，这个函数就会出栈，从调用栈中删除。<br>来看一个栗子，看看下面的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function multiply(x, y) &#123;</span><br><span class="line">    return x * y;</span><br><span class="line">&#125;</span><br><span class="line">function printSquare(x) &#123;</span><br><span class="line">    var s = multiply(x, x);</span><br><span class="line">    console.log(s);</span><br><span class="line">&#125;</span><br><span class="line">printSquare(5);</span><br></pre></td></tr></table></figure></p>
+<p>当引擎刚开始执行这段代码时，调用栈为空，之后，步骤如下：<br><img src="/2019/04/27/how-js-work/callstack.png" alt="callstack"></p>
+<p>调用栈中的每个条目成为栈帧。</p>
+<p>这正是抛出异常时 栈追踪记录的构造方式。 —— 它基本上是异常发生时调用栈的状态。<br>看看下面的代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">    throw new Error(&apos;SessionStack will help you resolve crashes :)&apos;);</span><br><span class="line">&#125;</span><br><span class="line">function bar() &#123;</span><br><span class="line">    foo();</span><br><span class="line">&#125;</span><br><span class="line">function start() &#123;</span><br><span class="line">    bar();</span><br><span class="line">&#125;</span><br><span class="line">start();</span><br></pre></td></tr></table></figure></p>
+<p>如果在Chrome执行此代码（假设这段代码在文件foo.js中）则将生成以下栈追踪记录：<br><img src="/2019/04/27/how-js-work/uncaughtError.png" alt="UncaughtError"></p>
+<p>“栈溢出” —— js引擎产生的栈 超过 js运行环境所提供的最大数量时 会发生这种情况。如果你使用递归且没有充分的测试你的代码时，这可能很容易发生。看看下面这段示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">function foo() &#123;</span><br><span class="line">    foo();</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br></pre></td></tr></table></figure></p>
+<p>当引擎开始执行这段代码时，它开始调用函数“foo”，然而这个函数在并没有任何终止条件的情况下开始递归调用自己，因此在执行的每个步骤中，相同的函数会一遍又一遍地添加到调用栈中，它看起来像这样：</p>
+<p><img src="/2019/04/27/how-js-work/Blowing.png" alt="Blowing"></p>
+<p>然而在某些时候， 调用栈中函数调用的数量超过了调用栈实际大小，浏览器决定通过抛出错误来处理这个情况，该错误看起来像这样：</p>
+<p><img src="/2019/04/27/how-js-work/maximum.png" alt="maximum"></p>
+<p>在单个线程上运行代码非常简单，因为你不需要处理多线程环境中出现的复杂的场景 —— 例如，死锁。</p>
+<p>但是在单线程上运行也是非常有限的，由于 Javascript 只有一个调用栈，应对复杂调用时，什么会使限制程序性能使其变慢？</p>
+<h2 id="并发-amp-事件循环"><a href="#并发-amp-事件循环" class="headerlink" title="并发 &amp; 事件循环"></a>并发 &amp; 事件循环</h2><p>如果在调用栈中有函数调用需要花费大量时间，那会发生什么？例如，假设你想在浏览器中使用js进行一些复杂的图像转换。</p>
+<p>你可能会问 —— 为什么这是个问题？ 问题是，虽然调用栈有函数执行功能，但浏览器实际上无法执行任何操作 —— 它会被阻塞，这意味着浏览器无法渲染，它无法运行任何其他代码，它只是卡主了，如果你想在应用中使用流畅的UI，这会产生问题。</p>
+<p>这不是唯一的问题。一旦你的浏览器开始在调用栈中处理如此多的任务，他可能会在相当长的时间内停止响应。大多数浏览器通过抛出错误提示信息来处理，询问你是否要终止网页。</p>
+<p><img src="/2019/04/27/how-js-work/error.jpeg" alt=""></p>
+<p>现在，那不是最好的用户体验，是吗？<br>那么，我们如何在不阻塞UI并使用浏览器无响应的情况下执行繁重的代码呢？好吧，解决方案是异步回调。</p>
+<p>这将在“如何实际运行Javascript”教程的第2部分中进行更相信的解释：“在V8引擎内部+有关如何编写优化代码的5个技巧”。</p>
+<blockquote>
+<p>后面的部分 好像就是广告了..</p>
+</blockquote>
+<p>与此同时，如果你在 Javascript 应用程序中难以复制和理解问题，请查看 SessionStack 。SessionStack记录Web应用程序中的所有内容：所有DOM更改，用户交互，Javascript异常，栈跟踪，失败的网络请求和调用消息。</p>
+<p>使用 SessionStack ，你可以将网络应用中的问题作用视频重播，并查看用户发生的所有事情。</p>
+<p><img src="/2019/04/27/how-js-work/chart.png" alt=""></p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div id="busuanzi_container_page_pv">
+          本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+        </div>
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/ali.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/wx.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+      <br>
+
+      </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">typescript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">javascript</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://sameenzm.github.io/2019/04/27/how-js-work/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/11/webpack-code-splitting/" class="archive-article-date">
-  	<time datetime="2018-06-11T13:14:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-11</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/04/22/deep-clone-and-shallow-clone/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深拷贝&amp;浅拷贝</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/11/webpack-code-splitting/">Code Splitting[译]</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">webpack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概览"><span class="toc-number">1.</span> <span class="toc-text">概览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JavaScript-引擎"><span class="toc-number">2.</span> <span class="toc-text">JavaScript 引擎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行时"><span class="toc-number">3.</span> <span class="toc-text">运行时</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#调用栈"><span class="toc-number">4.</span> <span class="toc-text">调用栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#并发-amp-事件循环"><span class="toc-number">5.</span> <span class="toc-text">并发 &amp; 事件循环</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
+
   
-  
-    </div></section>
+  <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zNjg3NC8xMzQxMA==">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
   
 
-    
+  
+
+  
+
+  
+
+  
+
+  
 
 
           </div>
@@ -318,8 +463,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

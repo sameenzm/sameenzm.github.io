@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://sameenzm.github.io">
-  <title>fe-interview-questions | Sameen&#39;s Blog</title>
+  <title>前端面试题集 | Sameen&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前端面试题集，持续更新。有不对的地方欢迎指出，感谢">
 <meta name="keywords" content="javascript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="fe-interview-questions">
+<meta property="og:title" content="前端面试题集">
 <meta property="og:url" content="https://sameenzm.github.io/2019/04/28/fe-interview-questions/index.html">
 <meta property="og:site_name" content="Sameen&#39;s Blog">
 <meta property="og:description" content="前端面试题集，持续更新。有不对的地方欢迎指出，感谢">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-04-28T06:05:02.104Z">
+<meta property="og:updated_time" content="2019-05-04T01:17:49.753Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="fe-interview-questions">
+<meta name="twitter:title" content="前端面试题集">
 <meta name="twitter:description" content="前端面试题集，持续更新。有不对的地方欢迎指出，感谢">
   
   <meta type="keywords" content="前端,技术博客,react,程序媛,分享学习">
@@ -173,7 +173,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      fe-interview-questions
+      前端面试题集
     </h1>
   
 
@@ -188,14 +188,30 @@
       
         <p>前端面试题集，持续更新。<br>有不对的地方欢迎指出，感谢</p>
 <a id="more"></a>
-<h1 id="Javascript篇"><a href="#Javascript篇" class="headerlink" title="Javascript篇"></a>Javascript篇</h1><ul>
+<h1 id="Javascript篇"><a href="#Javascript篇" class="headerlink" title="Javascript篇"></a>Javascript篇</h1><p>关键词目录</p>
+<ul>
 <li><a href="#原型和原型链">原型和原型链</a></li>
 <li><a href="#作用域和作用域链">作用域和作用域链</a></li>
 <li><a href="#闭包">闭包</a></li>
 <li><a href="#事件委托">事件委托</a></li>
+<li><a href="#事件循环">事件循环</a></li>
 <li><a href="#同源策略">同源策略</a></li>
+<li><a href="#数组去重">数组去重</a></li>
+<li><a href="#web安全">web安全</a></li>
 </ul>
-<h2 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h2><blockquote>
+<h1 id="CSS篇"><a href="#CSS篇" class="headerlink" title="CSS篇"></a>CSS篇</h1><p>关键词目录</p>
+<ul>
+<li><a href="#BFC">BFC</a></li>
+<li><a href="#伪类和伪元素">伪类和伪元素</a></li>
+<li><a href="#垂直居中">垂直居中</a></li>
+<li><a href="#两列布局">两列布局</a></li>
+<li><a href="#三列布局">三列布局</a></li>
+<li><a href="#事件循环">事件循环</a></li>
+<li><a href="#同源策略">同源策略</a></li>
+<li><a href="#数组去重">数组去重</a></li>
+<li><a href="#web安全">web安全</a></li>
+</ul>
+<h3 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h3><blockquote>
 <p>说说你对原型和原型链的理解</p>
 </blockquote>
 <p>在javascript中，所有对象都有一个 <code>_proto_</code> 属性（属性值是普通对象）。其中函数对象都有一个 <code>prototype</code> 属性（属性值也是普通对象）。<br>所有对象的 <code>_proto_</code> 属性指向它的构造函数的<code>prototype</code>属性。<br>这个构造函数的<code>prototype</code>就是原型。<br>原型的好处是 某对象 的所有实例对象 都可共享它所包含的属性和方法。</p>
@@ -203,23 +219,51 @@
 <blockquote>
 <p>补充：<br>构造函数、原型和实例的关系：<br>每个构造函数都有一个原型对象（xxx.prototype），原型对象都包含一个指向构造函数的指针，<br>而实例都包含一个指向原型对象的内部指针。<br>那么，假如我们让原型对象等于另一个类型的实例，结果会怎么样呢？显然，此时的原型对象将包含一个指向另一个原型的指针，<br>相应地，另一个原型中也包含着一个指向另一个构造函数的指针。<br>假如另一个原型又是另一个类型的实例，那么上述关系依然成立，如此层层递进，就构成了实例与原型的链条。这就是所谓原型链的基本概念</p>
 </blockquote>
-<h2 id="作用域和作用域链"><a href="#作用域和作用域链" class="headerlink" title="作用域和作用域链"></a>作用域和作用域链</h2><blockquote>
+<h3 id="作用域和作用域链"><a href="#作用域和作用域链" class="headerlink" title="作用域和作用域链"></a>作用域和作用域链</h3><h5 id="回到顶部"><a href="#回到顶部" class="headerlink" title="回到顶部"></a><a href="#Javascript篇">回到顶部</a></h5><blockquote>
 <p>说说你对作用域和作用域链的理解</p>
 </blockquote>
 <p>当代码在一个环境中执行时，会创建 变量对象的一个作用域。<br>作用域链是 多个上下级关系作用域 形成的链，方向是从内到外的。<br>函数内指向函数外的链式结构称为作用域链。<br>查找变量就是沿着作用域链来查找的。<br>用途是 保证 能够有序访问 执行环境中有权访问的 所有变量和函数。（有序访问变量和函数），访问到window对象就被终止。</p>
-<h2 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h2><blockquote>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><h5 id="回到顶部-1"><a href="#回到顶部-1" class="headerlink" title="回到顶部"></a><a href="#JavaScript篇">回到顶部</a></h5><blockquote>
 <p>什么是闭包？有什么作用？</p>
 </blockquote>
 <p>闭包是指有权访问 另一个函数作用域中的变量 的函数；<br>通过 函数执行 形成一个 <strong>不销毁的私有作用域</strong>，作用是保存和保护了里面的私有变量，防止污染全局。</p>
-<h2 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h2><blockquote>
+<h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><h5 id="回到顶部-2"><a href="#回到顶部-2" class="headerlink" title="回到顶部"></a><a href="#JavaScript篇">回到顶部</a></h5><blockquote>
 <p>解释一下事件委托</p>
 </blockquote>
 <p>事件委托就是利用 冒泡的原理，只指定一个事件处理程序，把事件加到父元素或祖先元素上，委托父级代为执行事件，就可以管理某一类型的所有事件。<br>优点： 提高javascript性能。事件委托可以显著提高事件的处理速度，减少内存的占用。</p>
-<h2 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h2><blockquote>
+<h3 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h3><h5 id="回到顶部-3"><a href="#回到顶部-3" class="headerlink" title="回到顶部"></a><a href="#JavaScript篇">回到顶部</a></h5><p><em>一个事件循环有着至少一个任务队列，每个任务队列中都是特定的任务源产生的任务，这些任务源通常都是：事件、回调、I/O操作，DOM操作等，同一个任务队列中的任务严格按照先进先出的顺序执行，不同任务队列的任务执行顺序不一定。任务队列有宏任务和微任务之分。<br>因为JavaScript在浏览器中特点导致了它只能是的单线程的，这样就导致了Javascript中的并发模型不能像传统语言那样多线程操作。<br>JavaScript 的并发模型基于”事件循环”。</em></p>
+<blockquote>
+<p>下面代码的输出结果是什么？</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">console.log(1);</span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">  console.log(2);</span><br><span class="line"></span><br><span class="line">  setTimeout(() =&gt; &#123; console.log(3) &#125;);</span><br><span class="line"></span><br><span class="line">  new Promise(function (resolve) &#123;</span><br><span class="line">    console.log(4);</span><br><span class="line">    resolve();</span><br><span class="line">  &#125;).then(function () &#123;</span><br><span class="line">    console.log(5);</span><br><span class="line">  &#125;, 1000);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">async function async1() &#123;</span><br><span class="line">  console.log(6);</span><br><span class="line">  await async2();</span><br><span class="line">  new Promise(function (resolve) &#123;</span><br><span class="line">    console.log(7);</span><br><span class="line">    resolve();</span><br><span class="line">  &#125;).then(function () &#123;</span><br><span class="line">    console.log(8);</span><br><span class="line">  &#125;);</span><br><span class="line">  console.log(9);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">new Promise(function (resolve) &#123;</span><br><span class="line">  console.log(10);</span><br><span class="line">  resolve();</span><br><span class="line">&#125;).then(function () &#123;</span><br><span class="line">  console.log(11);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">async function async2() &#123;</span><br><span class="line">  console.log(12);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">setTimeout(() =&gt; &#123;</span><br><span class="line">  console.log(13);</span><br><span class="line">  new Promise(function (resolve) &#123;</span><br><span class="line">    console.log(14);</span><br><span class="line">    resolve();</span><br><span class="line">  &#125;).then(function () &#123;</span><br><span class="line">    console.log(15);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">async1();</span><br><span class="line">console.log(16)</span><br></pre></td></tr></table></figure>
+<p>需要关注的几点：<br>1、创建promise对象里面的代码属于同步代码<br>2、promise的then/catch才是异步，需进入任务队列<br>3、setTimeout也会进入任务队列，但是和promise的then/catch似乎不是同一队列，优先级低于 then/catch 的<br>4、遇到await的，eg: await async2(); async2会立刻执行，但是，紧接着await会让出当前线程，将后面的代码加到任务队列中。</p>
+<blockquote>
+<p>答案：1 10 6 12 16 11 7 9 8 2 4 5 13 14 15 3</p>
+</blockquote>
+<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><h5 id="回到顶部-4"><a href="#回到顶部-4" class="headerlink" title="回到顶部"></a><a href="#JavaScript篇">回到顶部</a></h5><blockquote>
 <p>解释一下同源策略</p>
 </blockquote>
 <p>同源策略是由Netscape提出的一个安全策略。指一个域下的页面中，无法通过ajax请求获取到其他域的接口数据。<br>同源指协议、域名、端口号相同。<br>目的是 防止某个文档或脚本从多个不同源装载。保证用户信息的安全，防止被恶意网站窃取敏感数据（例如，登录态的cookie）。</p>
-<h5 id="回到顶部"><a href="#回到顶部" class="headerlink" title="回到顶部"></a><a href="#JavaScript">回到顶部</a></h5>
+<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><h5 id="回到顶部-5"><a href="#回到顶部-5" class="headerlink" title="回到顶部"></a><a href="#JavaScript篇">回到顶部</a></h5><p>法一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function unique(arr) &#123;</span><br><span class="line">    const temp = [];</span><br><span class="line">    arr.forEach(item =&gt; &#123;</span><br><span class="line">        if (temp.indexOf(item) === -1) &#123;</span><br><span class="line">            temp.push(item);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    return temp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>知识点：遍历, indexOf</code></p>
+<p>法二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function unique (arr) &#123;</span><br><span class="line">   return Array.from(new Set(arr))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>知识点：Set</code></p>
+<h3 id="web安全"><a href="#web安全" class="headerlink" title="web安全"></a>web安全</h3><blockquote>
+<p>说说常见web安全及防护原理</p>
+</blockquote>
+<p>①. xss(跨站脚本攻击)，原理是 攻击者 往web页面里面 插入恶意可执行网页脚本代码，使得其他用户浏览该网页时受影响。<br>防御： 转义输入输出的内容。</p>
+<p>②. csrf(跨站请求伪造)，是 一种攻击者盗用用户在当前已登录的web页面上的身份信息执行非本意的操作（模拟发送请求）的攻击方式</p>
+<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><h5 id="回到顶部-6"><a href="#回到顶部-6" class="headerlink" title="回到顶部"></a><a href="#CSS篇">回到顶部</a></h5><blockquote>
+<p>请阐述 BFC (块格式化上下文Block Formatting Context) 及其工作原理。</p>
+</blockquote>
+<h3 id="伪类和伪元素"><a href="#伪类和伪元素" class="headerlink" title="伪类和伪元素"></a>伪类和伪元素</h3><h5 id="回到顶部-7"><a href="#回到顶部-7" class="headerlink" title="回到顶部"></a><a href="#CSS篇">回到顶部</a></h5><h3 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h3><h5 id="回到顶部-8"><a href="#回到顶部-8" class="headerlink" title="回到顶部"></a><a href="#CSS篇">回到顶部</a></h5><h3 id="两列布局"><a href="#两列布局" class="headerlink" title="两列布局"></a>两列布局</h3><h5 id="回到顶部-9"><a href="#回到顶部-9" class="headerlink" title="回到顶部"></a><a href="#CSS篇">回到顶部</a></h5><blockquote>
+<p>写一个左侧固定200px，右侧自适应布局</p>
+</blockquote>
+<p>1、左边左浮动，右边设置margin-left:200px；<br>2、左边绝对定位，右边设置margin-left:200px；<br>3、右侧元素设置顶线和右线的位置为0， 左线位置为200px，宽度为100%；</p>
+<!-- ### 三列布局
+##### [回到顶部](#CSS篇) -->
+<!-- 某模块的宽度自适应，高度是宽的的2倍； -->
+
       
 
       
@@ -338,6 +382,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/05/01/webpack/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          webpack 学习笔记
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/04/27/how-js-work/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">js如何工作的:引擎、运行时、调用栈概述[译]</div>
@@ -367,7 +420,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Javascript篇"><span class="toc-number">1.</span> <span class="toc-text">Javascript篇</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#原型和原型链"><span class="toc-number">1.1.</span> <span class="toc-text">原型和原型链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作用域和作用域链"><span class="toc-number">1.2.</span> <span class="toc-text">作用域和作用域链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#闭包"><span class="toc-number">1.3.</span> <span class="toc-text">闭包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事件委托"><span class="toc-number">1.4.</span> <span class="toc-text">事件委托</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#同源策略"><span class="toc-number">1.5.</span> <span class="toc-text">同源策略</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部"><span class="toc-number">1.5.0.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Javascript篇"><span class="toc-number">1.</span> <span class="toc-text">Javascript篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS篇"><span class="toc-number">2.</span> <span class="toc-text">CSS篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原型和原型链"><span class="toc-number">2.0.1.</span> <span class="toc-text">原型和原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域和作用域链"><span class="toc-number">2.0.2.</span> <span class="toc-text">作用域和作用域链</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部"><span class="toc-number">2.0.2.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#闭包"><span class="toc-number">2.0.3.</span> <span class="toc-text">闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-1"><span class="toc-number">2.0.3.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件委托"><span class="toc-number">2.0.4.</span> <span class="toc-text">事件委托</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-2"><span class="toc-number">2.0.4.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件循环"><span class="toc-number">2.0.5.</span> <span class="toc-text">事件循环</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-3"><span class="toc-number">2.0.5.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同源策略"><span class="toc-number">2.0.6.</span> <span class="toc-text">同源策略</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-4"><span class="toc-number">2.0.6.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组去重"><span class="toc-number">2.0.7.</span> <span class="toc-text">数组去重</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-5"><span class="toc-number">2.0.7.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web安全"><span class="toc-number">2.0.8.</span> <span class="toc-text">web安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC"><span class="toc-number">2.0.9.</span> <span class="toc-text">BFC</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-6"><span class="toc-number">2.0.9.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪类和伪元素"><span class="toc-number">2.0.10.</span> <span class="toc-text">伪类和伪元素</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-7"><span class="toc-number">2.0.10.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中"><span class="toc-number">2.0.11.</span> <span class="toc-text">垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-8"><span class="toc-number">2.0.11.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两列布局"><span class="toc-number">2.0.12.</span> <span class="toc-text">两列布局</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-9"><span class="toc-number">2.0.12.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -510,6 +563,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">布局</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -522,6 +583,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">redux middleware</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">async</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">typescript</a>
               </li>
              
@@ -530,23 +599,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">布局</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">redux middleware</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">async</a>
               </li>
             
             <div class="clearfix"></div>

@@ -16,10 +16,13 @@
 <meta property="og:site_name" content="Sameen&#39;s Blog">
 <meta property="og:description" content="前端面试题集，持续更新。有不对的地方欢迎指出，感谢">
 <meta property="og:locale" content="zh-tw">
-<meta property="og:updated_time" content="2019-05-04T01:17:49.753Z">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/28/fe-interview-questions/browserRender.png">
+<meta property="og:image" content="https://sameenzm.github.io/2019/04/28/fe-interview-questions/renderTree.png">
+<meta property="og:updated_time" content="2019-05-06T12:59:50.619Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试题集">
 <meta name="twitter:description" content="前端面试题集，持续更新。有不对的地方欢迎指出，感谢">
+<meta name="twitter:image" content="https://sameenzm.github.io/2019/04/28/fe-interview-questions/browserRender.png">
   
   <meta type="keywords" content="前端,技术博客,react,程序媛,分享学习">
   <meta type="description" content="react生命周期方法,前端学习博客">
@@ -188,10 +191,10 @@
       
         <p>前端面试题集，持续更新。<br>有不对的地方欢迎指出，感谢</p>
 <a id="more"></a>
-<h1 id="Javascript篇"><a href="#Javascript篇" class="headerlink" title="Javascript篇"></a>Javascript篇</h1><p>关键词目录</p>
-<ul>
+<h1 id="javascript篇"><a href="#javascript篇" class="headerlink" title="javascript篇"></a>javascript篇</h1><ul>
 <li><a href="#原型和原型链">原型和原型链</a></li>
 <li><a href="#作用域和作用域链">作用域和作用域链</a></li>
+<li><a href="#apply">apply,call,bind</a></li>
 <li><a href="#闭包">闭包</a></li>
 <li><a href="#事件委托">事件委托</a></li>
 <li><a href="#事件循环">事件循环</a></li>
@@ -199,17 +202,18 @@
 <li><a href="#数组去重">数组去重</a></li>
 <li><a href="#web安全">web安全</a></li>
 </ul>
-<h1 id="CSS篇"><a href="#CSS篇" class="headerlink" title="CSS篇"></a>CSS篇</h1><p>关键词目录</p>
-<ul>
-<li><a href="#BFC">BFC</a></li>
+<h1 id="css篇"><a href="#css篇" class="headerlink" title="css篇"></a>css篇</h1><ul>
+<li><a href="#bfc">BFC</a></li>
 <li><a href="#伪类和伪元素">伪类和伪元素</a></li>
+<li><a href="#position">position</a></li>
 <li><a href="#垂直居中">垂直居中</a></li>
 <li><a href="#两列布局">两列布局</a></li>
 <li><a href="#三列布局">三列布局</a></li>
-<li><a href="#事件循环">事件循环</a></li>
+<li><a href="#省略号">省略号</a></li>
+<li><a href="#重绘和重排">重绘和重排</a><br>&lt;!– * <a href="#事件循环">事件循环</a></li>
 <li><a href="#同源策略">同源策略</a></li>
 <li><a href="#数组去重">数组去重</a></li>
-<li><a href="#web安全">web安全</a></li>
+<li><a href="#web安全">web安全</a> –&gt;</li>
 </ul>
 <h3 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h3><blockquote>
 <p>说说你对原型和原型链的理解</p>
@@ -223,15 +227,24 @@
 <p>说说你对作用域和作用域链的理解</p>
 </blockquote>
 <p>当代码在一个环境中执行时，会创建 变量对象的一个作用域。<br>作用域链是 多个上下级关系作用域 形成的链，方向是从内到外的。<br>函数内指向函数外的链式结构称为作用域链。<br>查找变量就是沿着作用域链来查找的。<br>用途是 保证 能够有序访问 执行环境中有权访问的 所有变量和函数。（有序访问变量和函数），访问到window对象就被终止。</p>
-<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><h5 id="回到顶部-1"><a href="#回到顶部-1" class="headerlink" title="回到顶部"></a><a href="#JavaScript篇">回到顶部</a></h5><blockquote>
+<h3 id="apply-call-apply"><a href="#apply-call-apply" class="headerlink" title="apply,call,apply"></a>apply,call,apply</h3><h4 id="apply"><a href="#apply" class="headerlink" title="apply"></a>apply</h4><p>用途：<br>在特定的作用域中调用函数，实际上等于设置函数体内 this 对象的值。<br>接收两个参数：一个是 在其中运行函数的 作用域，另一个是 参数数组。</p>
+<h4 id="call"><a href="#call" class="headerlink" title="call"></a>call</h4><p>用途：同apply<br>接收参数：第一个同apply，其余参数都直接传递给函数<br>即：传递给函数的参数必须逐个列举出来</p>
+<p>对比apply：与apply的区别仅在于接收参数的方式不同。</p>
+<h4 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h4><p>用途： 这个方法会  创建  一个函数的  实例，其 this 值会被绑定到传给 bind() 函数的值。</p>
+<blockquote>
+<p>call、apply、bind的区别和作用？实现一个bind</p>
+</blockquote>
+<p>这三个方法都可以 改变函数执行时的上下文，再具体一点就是改变函数运行时的this指向。<br>apply、call是修改函数的作用域（修改this指向），并立即执行。<br>bind是返回了一个新的函数，不是立即执行。<br>apply和call的区别在于apply接受数组作为参数，call是接受逗号分隔的无限多个参数列表。</p>
+<p>实现bind：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Function.prototype.mybind = function(context, ...args) &#123;</span><br><span class="line">  return (...arg2) =&gt; &#123;</span><br><span class="line">    this.apply(context, args.concat(arg2))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h5 id="回到顶部-1"><a href="#回到顶部-1" class="headerlink" title="回到顶部"></a><a href="#javascript篇">回到顶部</a></h5><h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><h5 id="回到顶部-2"><a href="#回到顶部-2" class="headerlink" title="回到顶部"></a><a href="#javascript篇">回到顶部</a></h5><blockquote>
 <p>什么是闭包？有什么作用？</p>
 </blockquote>
 <p>闭包是指有权访问 另一个函数作用域中的变量 的函数；<br>通过 函数执行 形成一个 <strong>不销毁的私有作用域</strong>，作用是保存和保护了里面的私有变量，防止污染全局。</p>
-<h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><h5 id="回到顶部-2"><a href="#回到顶部-2" class="headerlink" title="回到顶部"></a><a href="#JavaScript篇">回到顶部</a></h5><blockquote>
+<h3 id="事件委托"><a href="#事件委托" class="headerlink" title="事件委托"></a>事件委托</h3><h5 id="回到顶部-3"><a href="#回到顶部-3" class="headerlink" title="回到顶部"></a><a href="#javascript篇">回到顶部</a></h5><blockquote>
 <p>解释一下事件委托</p>
 </blockquote>
 <p>事件委托就是利用 冒泡的原理，只指定一个事件处理程序，把事件加到父元素或祖先元素上，委托父级代为执行事件，就可以管理某一类型的所有事件。<br>优点： 提高javascript性能。事件委托可以显著提高事件的处理速度，减少内存的占用。</p>
-<h3 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h3><h5 id="回到顶部-3"><a href="#回到顶部-3" class="headerlink" title="回到顶部"></a><a href="#JavaScript篇">回到顶部</a></h5><p><em>一个事件循环有着至少一个任务队列，每个任务队列中都是特定的任务源产生的任务，这些任务源通常都是：事件、回调、I/O操作，DOM操作等，同一个任务队列中的任务严格按照先进先出的顺序执行，不同任务队列的任务执行顺序不一定。任务队列有宏任务和微任务之分。<br>因为JavaScript在浏览器中特点导致了它只能是的单线程的，这样就导致了Javascript中的并发模型不能像传统语言那样多线程操作。<br>JavaScript 的并发模型基于”事件循环”。</em></p>
+<h3 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h3><h5 id="回到顶部-4"><a href="#回到顶部-4" class="headerlink" title="回到顶部"></a><a href="#javascript篇">回到顶部</a></h5><p><em>一个事件循环有着至少一个任务队列，每个任务队列中都是特定的任务源产生的任务，这些任务源通常都是：事件、回调、I/O操作，DOM操作等，同一个任务队列中的任务严格按照先进先出的顺序执行，不同任务队列的任务执行顺序不一定。任务队列有宏任务和微任务之分。<br>因为JavaScript在浏览器中特点导致了它只能是的单线程的，这样就导致了Javascript中的并发模型不能像传统语言那样多线程操作。<br>JavaScript 的并发模型基于”事件循环”。</em></p>
 <blockquote>
 <p>下面代码的输出结果是什么？</p>
 </blockquote>
@@ -240,11 +253,16 @@
 <blockquote>
 <p>答案：1 10 6 12 16 11 7 9 8 2 4 5 13 14 15 3</p>
 </blockquote>
-<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><h5 id="回到顶部-4"><a href="#回到顶部-4" class="headerlink" title="回到顶部"></a><a href="#JavaScript篇">回到顶部</a></h5><blockquote>
+<p>再做一题了解async和promise的执行顺序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">async function async1() &#123;</span><br><span class="line">  console.log(&apos;async1&apos;);</span><br><span class="line">  await async2();</span><br><span class="line">  console.log(&apos;async100&apos;);</span><br><span class="line">&#125;</span><br><span class="line">async function async2() &#123;</span><br><span class="line">  console.log(&apos;async2&apos;);</span><br><span class="line">&#125;</span><br><span class="line">async1();</span><br><span class="line">new Promise(function (resolve) &#123;</span><br><span class="line">  console.log(&apos;promise&apos;);</span><br><span class="line">  resolve();</span><br><span class="line">&#125;).then(function () &#123;</span><br><span class="line">  console.log(&apos;promise2&apos;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<p>…<br>…<br>…<br>…<br>…<br>…</p>
+<blockquote>
+<p>答案： async1 async2 promise async100 promise2</p>
+</blockquote>
+<h3 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h3><h5 id="回到顶部-5"><a href="#回到顶部-5" class="headerlink" title="回到顶部"></a><a href="#javascript篇">回到顶部</a></h5><blockquote>
 <p>解释一下同源策略</p>
 </blockquote>
 <p>同源策略是由Netscape提出的一个安全策略。指一个域下的页面中，无法通过ajax请求获取到其他域的接口数据。<br>同源指协议、域名、端口号相同。<br>目的是 防止某个文档或脚本从多个不同源装载。保证用户信息的安全，防止被恶意网站窃取敏感数据（例如，登录态的cookie）。</p>
-<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><h5 id="回到顶部-5"><a href="#回到顶部-5" class="headerlink" title="回到顶部"></a><a href="#JavaScript篇">回到顶部</a></h5><p>法一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function unique(arr) &#123;</span><br><span class="line">    const temp = [];</span><br><span class="line">    arr.forEach(item =&gt; &#123;</span><br><span class="line">        if (temp.indexOf(item) === -1) &#123;</span><br><span class="line">            temp.push(item);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    return temp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="数组去重"><a href="#数组去重" class="headerlink" title="数组去重"></a>数组去重</h3><h5 id="回到顶部-6"><a href="#回到顶部-6" class="headerlink" title="回到顶部"></a><a href="#javascript篇">回到顶部</a></h5><p>法一：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">function unique(arr) &#123;</span><br><span class="line">    const temp = [];</span><br><span class="line">    arr.forEach(item =&gt; &#123;</span><br><span class="line">        if (temp.indexOf(item) === -1) &#123;</span><br><span class="line">            temp.push(item);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    return temp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><code>知识点：遍历, indexOf</code></p>
 <p>法二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function unique (arr) &#123;</span><br><span class="line">   return Array.from(new Set(arr))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p><code>知识点：Set</code></p>
@@ -253,16 +271,59 @@
 </blockquote>
 <p>①. xss(跨站脚本攻击)，原理是 攻击者 往web页面里面 插入恶意可执行网页脚本代码，使得其他用户浏览该网页时受影响。<br>防御： 转义输入输出的内容。</p>
 <p>②. csrf(跨站请求伪造)，是 一种攻击者盗用用户在当前已登录的web页面上的身份信息执行非本意的操作（模拟发送请求）的攻击方式</p>
-<h3 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h3><h5 id="回到顶部-6"><a href="#回到顶部-6" class="headerlink" title="回到顶部"></a><a href="#CSS篇">回到顶部</a></h5><blockquote>
+<h3 id="bfc"><a href="#bfc" class="headerlink" title="bfc"></a>bfc</h3><h5 id="回到顶部-7"><a href="#回到顶部-7" class="headerlink" title="回到顶部"></a><a href="#css篇">回到顶部</a></h5><blockquote>
 <p>请阐述 BFC (块格式化上下文Block Formatting Context) 及其工作原理。</p>
 </blockquote>
-<h3 id="伪类和伪元素"><a href="#伪类和伪元素" class="headerlink" title="伪类和伪元素"></a>伪类和伪元素</h3><h5 id="回到顶部-7"><a href="#回到顶部-7" class="headerlink" title="回到顶部"></a><a href="#CSS篇">回到顶部</a></h5><h3 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h3><h5 id="回到顶部-8"><a href="#回到顶部-8" class="headerlink" title="回到顶部"></a><a href="#CSS篇">回到顶部</a></h5><h3 id="两列布局"><a href="#两列布局" class="headerlink" title="两列布局"></a>两列布局</h3><h5 id="回到顶部-9"><a href="#回到顶部-9" class="headerlink" title="回到顶部"></a><a href="#CSS篇">回到顶部</a></h5><blockquote>
+<h3 id="position"><a href="#position" class="headerlink" title="position"></a>position</h3><h5 id="回到顶部-8"><a href="#回到顶部-8" class="headerlink" title="回到顶部"></a><a href="#css篇">回到顶部</a></h5><h4 id="static"><a href="#static" class="headerlink" title="static"></a>static</h4><p>默认值，即没有定位，元素出现在正常的流中。即使设置了top，bottom,left,right也没有任何用。</p>
+<h4 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h4><p>指元素的位置 <strong>相对于浏览器窗口是固定位置</strong>，即使窗口是滚动的它也不会滚动，且fixed定位使元素的位置与文档流无关，因此不占据空间，且它会和其他元素发生重叠。</p>
+<h4 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h4><p>相对定位，元素的定位是 相对它自己 的正常位置的定位。</p>
+<h4 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h4><p>绝对定位，元素相对于 <strong>最近的已定位父元素</strong>，如果元素没有已定位的父元素，那么它的位置相对于<html>。</html></p>
+<h5 id="延伸：position-absolute-和-z-index"><a href="#延伸：position-absolute-和-z-index" class="headerlink" title="延伸：position:absolute 和 z-index"></a>延伸：position:absolute 和 z-index</h5><p>设置了<code>position: absolute;</code>之后的元素在z轴方向上的优先级就大于文档流中的元素，即使文档流中的元素设置了很高的z-index也没用。</p>
+<p>z-index 只在大家都是文档流中的元素或大家都是absolute的时候生效；</p>
+<h3 id="伪类和伪元素"><a href="#伪类和伪元素" class="headerlink" title="伪类和伪元素"></a>伪类和伪元素</h3><h5 id="回到顶部-9"><a href="#回到顶部-9" class="headerlink" title="回到顶部"></a><a href="#css篇">回到顶部</a></h5><h3 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h3><h5 id="回到顶部-10"><a href="#回到顶部-10" class="headerlink" title="回到顶部"></a><a href="#css篇">回到顶部</a></h5><h3 id="两列布局"><a href="#两列布局" class="headerlink" title="两列布局"></a>两列布局</h3><h5 id="回到顶部-11"><a href="#回到顶部-11" class="headerlink" title="回到顶部"></a><a href="#css篇">回到顶部</a></h5><blockquote>
 <p>写一个左侧固定200px，右侧自适应布局</p>
 </blockquote>
 <p>1、左边左浮动，右边设置margin-left:200px；<br>2、左边绝对定位，右边设置margin-left:200px；<br>3、右侧元素设置顶线和右线的位置为0， 左线位置为200px，宽度为100%；</p>
 <!-- ### 三列布局
-##### [回到顶部](#CSS篇) -->
+##### [回到顶部](#css篇) -->
 <!-- 某模块的宽度自适应，高度是宽的的2倍； -->
+<h3 id="省略号"><a href="#省略号" class="headerlink" title="省略号"></a>省略号</h3><p>单行省略号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.xxx &#123;</span><br><span class="line">  white-space:nowrap;</span><br><span class="line">  overflow:hidden;</span><br><span class="line">  text-overflow:ellipsis;</span><br><span class="line">  width：100px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>多行省略号：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.xxx &#123;</span><br><span class="line">  display: -webkit-box;</span><br><span class="line">  -webkit-box-orient: vertical;</span><br><span class="line">  -webkit-line-clamp: 3;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>方法二：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">  position: relative;</span><br><span class="line">  line-height: 20px;</span><br><span class="line">  max-height: 40px;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">&#125;</span><br><span class="line">p::after &#123;</span><br><span class="line">  content: &quot;...&quot;;</span><br><span class="line">  position: absolute;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  right: 0;</span><br><span class="line">  padding-left: 40px;</span><br><span class="line">  background: -webkit-linear-gradient(left, transparent, #fff 55%);</span><br><span class="line">  background: -o-linear-gradient(right, transparent, #fff 55%);</span><br><span class="line">  background: -moz-linear-gradient(right, transparent, #fff 55%);</span><br><span class="line">  background: linear-gradient(to right, transparent, #fff 55%);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="重排和重绘"><a href="#重排和重绘" class="headerlink" title="重排和重绘"></a>重排和重绘</h3><h5 id="Reflow-——-回流-重排"><a href="#Reflow-——-回流-重排" class="headerlink" title="Reflow —— 回流(重排)"></a>Reflow —— 回流(重排)</h5><p>计算渲染树 在设备视口内的 确切位置和大小, 这就是“布局”阶段，这个计算的阶段就是回流。<br>布局流程的输出是一个“盒模型”，它会精确地捕获 每个元素在视口内的确切位置和尺寸：所有相对测量值都转换为屏幕上的绝对像素。</p>
+<h5 id="Repaint-——-重绘"><a href="#Repaint-——-重绘" class="headerlink" title="Repaint —— 重绘"></a>Repaint —— 重绘</h5><p>通过 渲染树和回流阶段，我们知道了哪些节点是可见的，以及可见节点的样式和具体的几何信息(位置、大小)，<br>那么我们就可以将渲染树的每个节点都 转换为 屏幕上的实际像素，这个阶段就叫做重绘节点。</p>
+<p>浏览器渲染流程：</p>
+<ol>
+<li>解析 HTML，构建 DOM 树。</li>
+<li>解析 CSS，构建 CSSOM 树。</li>
+<li>将 DOM 与 CSSOM 合并成一个渲染树(Render Tree)。</li>
+<li>Layout(回流): 根据渲染树来布局(Layout)，以计算每个节点的几何信息(位置，大小)。</li>
+<li>Painting(重绘)：根据渲染树以及回流得到的几何信息，得到节点的 绝对像素。</li>
+<li>Display: 将像素发送给GPU，展示在页面上。（这一步其实还有很多内容，比如会在GPU将多个合成层合并为同一个层，并展示在页面中。而css3硬件加速的原理则是新建合成层。）<br><img src="/2019/04/28/fe-interview-questions/browserRender.png" alt=""></li>
+</ol>
+<blockquote>
+<p>何时触发回流和重绘</p>
+</blockquote>
+<p>repaint重绘：</p>
+<ul>
+<li>reflow回流必定引起repaint重绘，重绘可以单独触发</li>
+<li>背景色、颜色、字体改变（注意：字体大小发生变化时，会触发回流）</li>
+</ul>
+<p>reflow回流：</p>
+<ul>
+<li>页面第一次渲染（初始化）</li>
+<li>DOM树变化（如：增删节点）</li>
+<li>Render树变化（如：padding改变）</li>
+<li>字体大小发生变化</li>
+<li>内容发生变化，比如文本变化或图片被另一个不同尺寸的图片所替代</li>
+<li>浏览器窗口resize</li>
+<li>当你查询布局信息，包括offsetLeft、offsetTop、offsetWidth、offsetHeight、 scrollTop/Left/Width/Height、clientTop/Left/Width/Height、调用了getComputedStyle()或者IE的currentStyle时，浏览器为了返回最新值，会触发回流。</li>
+</ul>
+<p>注意：回流一定会触发重绘，而重绘不一定会回流（看上面的流程图就知道了）</p>
+<p>生成渲染树：<br><img src="/2019/04/28/fe-interview-questions/renderTree.png" alt=""><br>看上图，<code>display:none</code>的span整合到render tree里的时候就没了.</p>
+<p>请注意 visibility: hidden 与 display: none 是不一样的。前者隐藏元素，但元素仍占据着布局空间（即将其渲染成一个空框），而后者 (display: none) 将元素从渲染树中完全移除，元素既不可见，也不是布局的组成部分。</p>
+<p>名词解释：</p>
+<h6 id="GPU"><a href="#GPU" class="headerlink" title="GPU"></a>GPU</h6><p>图形处理器(Graphics Processing Unit),显卡的处理器，它是显卡的“心脏”。<br>时下的GPU多数拥有2D或3D图形加速功能。如果CPU想画一个二维图形，只需要发个指令给GPU，如“在坐标位置（x, y）处画个长和宽为a×b大小的长方形”，GPU就可以迅速计算出该图形的所有像素，并在显示器上指定位置画出相应的图形，画完后就通知CPU “我画完了”，然后等待CPU发出下一条图形指令。</p>
 
       
 
@@ -420,7 +481,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Javascript篇"><span class="toc-number">1.</span> <span class="toc-text">Javascript篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS篇"><span class="toc-number">2.</span> <span class="toc-text">CSS篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原型和原型链"><span class="toc-number">2.0.1.</span> <span class="toc-text">原型和原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域和作用域链"><span class="toc-number">2.0.2.</span> <span class="toc-text">作用域和作用域链</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部"><span class="toc-number">2.0.2.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#闭包"><span class="toc-number">2.0.3.</span> <span class="toc-text">闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-1"><span class="toc-number">2.0.3.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件委托"><span class="toc-number">2.0.4.</span> <span class="toc-text">事件委托</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-2"><span class="toc-number">2.0.4.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件循环"><span class="toc-number">2.0.5.</span> <span class="toc-text">事件循环</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-3"><span class="toc-number">2.0.5.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同源策略"><span class="toc-number">2.0.6.</span> <span class="toc-text">同源策略</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-4"><span class="toc-number">2.0.6.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组去重"><span class="toc-number">2.0.7.</span> <span class="toc-text">数组去重</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-5"><span class="toc-number">2.0.7.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web安全"><span class="toc-number">2.0.8.</span> <span class="toc-text">web安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BFC"><span class="toc-number">2.0.9.</span> <span class="toc-text">BFC</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-6"><span class="toc-number">2.0.9.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪类和伪元素"><span class="toc-number">2.0.10.</span> <span class="toc-text">伪类和伪元素</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-7"><span class="toc-number">2.0.10.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中"><span class="toc-number">2.0.11.</span> <span class="toc-text">垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-8"><span class="toc-number">2.0.11.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两列布局"><span class="toc-number">2.0.12.</span> <span class="toc-text">两列布局</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-9"><span class="toc-number">2.0.12.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#javascript篇"><span class="toc-number">1.</span> <span class="toc-text">javascript篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css篇"><span class="toc-number">2.</span> <span class="toc-text">css篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原型和原型链"><span class="toc-number">2.0.1.</span> <span class="toc-text">原型和原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域和作用域链"><span class="toc-number">2.0.2.</span> <span class="toc-text">作用域和作用域链</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部"><span class="toc-number">2.0.2.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#apply-call-apply"><span class="toc-number">2.0.3.</span> <span class="toc-text">apply,call,apply</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#apply"><span class="toc-number">2.0.3.1.</span> <span class="toc-text">apply</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#call"><span class="toc-number">2.0.3.2.</span> <span class="toc-text">call</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bind"><span class="toc-number">2.0.3.3.</span> <span class="toc-text">bind</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-1"><span class="toc-number">2.0.3.3.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#闭包"><span class="toc-number">2.0.4.</span> <span class="toc-text">闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-2"><span class="toc-number">2.0.4.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件委托"><span class="toc-number">2.0.5.</span> <span class="toc-text">事件委托</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-3"><span class="toc-number">2.0.5.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件循环"><span class="toc-number">2.0.6.</span> <span class="toc-text">事件循环</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-4"><span class="toc-number">2.0.6.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同源策略"><span class="toc-number">2.0.7.</span> <span class="toc-text">同源策略</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-5"><span class="toc-number">2.0.7.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组去重"><span class="toc-number">2.0.8.</span> <span class="toc-text">数组去重</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-6"><span class="toc-number">2.0.8.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web安全"><span class="toc-number">2.0.9.</span> <span class="toc-text">web安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bfc"><span class="toc-number">2.0.10.</span> <span class="toc-text">bfc</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-7"><span class="toc-number">2.0.10.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position"><span class="toc-number">2.0.11.</span> <span class="toc-text">position</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-8"><span class="toc-number">2.0.11.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#static"><span class="toc-number">2.0.11.1.</span> <span class="toc-text">static</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fixed"><span class="toc-number">2.0.11.2.</span> <span class="toc-text">fixed</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#relative"><span class="toc-number">2.0.11.3.</span> <span class="toc-text">relative</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#absolute"><span class="toc-number">2.0.11.4.</span> <span class="toc-text">absolute</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#延伸：position-absolute-和-z-index"><span class="toc-number">2.0.11.4.1.</span> <span class="toc-text">延伸：position:absolute 和 z-index</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪类和伪元素"><span class="toc-number">2.0.12.</span> <span class="toc-text">伪类和伪元素</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-9"><span class="toc-number">2.0.12.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中"><span class="toc-number">2.0.13.</span> <span class="toc-text">垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-10"><span class="toc-number">2.0.13.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两列布局"><span class="toc-number">2.0.14.</span> <span class="toc-text">两列布局</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-11"><span class="toc-number">2.0.14.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#省略号"><span class="toc-number">2.0.15.</span> <span class="toc-text">省略号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重排和重绘"><span class="toc-number">2.0.16.</span> <span class="toc-text">重排和重绘</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Reflow-——-回流-重排"><span class="toc-number">2.0.16.0.1.</span> <span class="toc-text">Reflow —— 回流(重排)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Repaint-——-重绘"><span class="toc-number">2.0.16.0.2.</span> <span class="toc-text">Repaint —— 重绘</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#GPU"><span class="toc-number">2.0.16.0.2.1.</span> <span class="toc-text">GPU</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -563,14 +624,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">布局</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -579,15 +632,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">布局</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">redux middleware</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">async</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -600,6 +653,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">redux middleware</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">async</a>
               </li>
             
             <div class="clearfix"></div>

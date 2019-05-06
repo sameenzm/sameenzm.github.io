@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://sameenzm.github.io/2019/05/01/webpack/babelrc.png">
 <meta property="og:image" content="https://sameenzm.github.io/2019/05/01/webpack/analyse.jpg">
 <meta property="og:image" content="https://sameenzm.github.io/2019/05/01/webpack/codeUtilization.png">
-<meta property="og:updated_time" content="2019-05-04T01:24:15.409Z">
+<meta property="og:updated_time" content="2019-05-06T13:59:53.275Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="webpack 学习笔记">
 <meta name="twitter:description" content="我的webpack学习笔记。从webpack是什么、各种核心概念(loader、plugins)，高级概念(treeShaking、codeSplitting、代码分析)的学习笔记。如有错误，欢迎指出~持续补充学习。">
@@ -288,7 +288,7 @@
 <p>ps: 字体图标网站：<a href="https://www.iconfont.cn/" target="_blank" rel="noopener">www.iconfont.cn</a></p>
 <p>文档直达：<br><a href="https://webpack.js.org/guides/asset-management" target="_blank" rel="noopener">Asset Management</a></p>
 <p><a href="#目录">回到顶部</a></p>
-<h2 id="plugins"><a href="#plugins" class="headerlink" title="plugins"></a>plugins</h2><p>plugin可以再webpack运行到某个时刻，在打包节点帮你做一些事情。<br>类似在webpack某生命周期下，就可以用plugins为webpack 做一些事情。</p>
+<h2 id="plugins"><a href="#plugins" class="headerlink" title="plugins"></a>plugins</h2><p>plugin 可以在 webpack运行到某个时刻的时候，在打包节点帮你做一些事情。<br>类似在webpack某生命周期下，就可以用plugins为webpack 做一些事情。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin = require(&apos;html-webpack-plugin&apos;);</span><br><span class="line">const CleanWebpackPlugin = require(&apos;clean-webpack-plugin&apos;);</span><br><span class="line">module.exports = &#123;</span><br><span class="line">  ...</span><br><span class="line">  plugins: [</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">      template: &apos;src/index.html&apos; // 提前准备好模板文件</span><br><span class="line">    &#125;),</span><br><span class="line">    new CleanWebpackPlugin([&apos;dist&apos;])  // 打包之前删除dist文件</span><br><span class="line">  ]</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="html-webpack-plugin"><a href="#html-webpack-plugin" class="headerlink" title="html-webpack-plugin"></a>html-webpack-plugin</h5><p>在打包结束后，自动生成一个html文件 放到dist中，并将打包好的bundle.js注入到这个html文件中。</p>
 <h5 id="clean-webpack-plugin"><a href="#clean-webpack-plugin" class="headerlink" title="clean-webpack-plugin"></a>clean-webpack-plugin</h5><p>在打包之前，删除某文件夹</p>
@@ -329,8 +329,10 @@
 <h2 id="babel"><a href="#babel" class="headerlink" title="babel"></a>babel</h2><h5 id="如果你写的是业务代码，那么你可以这样配置就行："><a href="#如果你写的是业务代码，那么你可以这样配置就行：" class="headerlink" title="如果你写的是业务代码，那么你可以这样配置就行："></a>如果你写的是业务代码，那么你可以这样配置就行：</h5><p>需要装的包：<br><code>babel-loader</code> <code>@babel/core</code> <a href="https://babeljs.io/docs/en/babel-preset-env" target="_blank" rel="noopener"><code>@babel/preset-env</code></a> <code>@babel/polyfill</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    ...</span><br><span class="line">    &#123;</span><br><span class="line">      test: /\.js$/,</span><br><span class="line">      include: path.resolve(__dirname, &apos;../src&apos;), // src下的要使用该loader</span><br><span class="line">      exclude: /node_modules/, // node_modules不使用该loader</span><br><span class="line">      loader: &apos;babel-loader&apos;,  // es6转es5的loader</span><br><span class="line">      // 这里做个配置：</span><br><span class="line">      options: &#123;</span><br><span class="line">        presets: [[&apos;@babel/preset-env&apos;, &#123;</span><br><span class="line">          useBuiltIns: &apos;usage&apos;,  // 当做babel-polyfill填充时，加低版本浏览器不支持的特性变量时，不是所有的都加，用到的才加。</span><br><span class="line">          targets: &#123;</span><br><span class="line">            chrome: &quot;67&quot; // 代表大于67的浏览器就不用去做babel转换了，因为支持足够好了</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;]]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>@babel/preset-env 转换ES6代码，包含了所有es6转es5的翻译规则<br>安装这个之后还得做一个配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// .babelrc 或者 像上面一样配置在options里</span><br><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [&quot;@babel/preset-env&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>@babel/preset-env 转换ES6代码，包含了所有es6转es5的翻译规则</p>
 </blockquote>
+<p>安装这个之后还得做一个配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// .babelrc 或者 像上面一样配置在options里</span><br><span class="line">&#123;</span><br><span class="line">  &quot;presets&quot;: [&quot;@babel/preset-env&quot;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>借助 @babel/polyfill 为了兼容低版本浏览器。把低版本浏览器缺失的变量、函数填充到浏览器里。<br>配置 <code>useBuiltIns</code> 则不是全都添加，用到的才加。（这样打包出来的文件会小一些，提升打包效率）<br>配置<code>targets</code>，符合条件的浏览器不用打包也可以提升效率。<br>@babel/polyfill 可能会污染全局环境,因为实现是把变量放在window上，所以不适合给库代码配置。</p>
 </blockquote>
@@ -346,7 +348,7 @@
 <p>@babel/preset-react 转换react代码</p>
 </blockquote>
 <p>文档直达：<br><a href="https://babeljs.io/setup#installation" target="_blank" rel="noopener">babel installation</a>、<br><a href="#目录">回到顶部</a></p>
-<h2 id="webpack高级概念"><a href="#webpack高级概念" class="headerlink" title="webpack高级概念"></a>webpack高级概念</h2><h3 id="treeshaking"><a href="#treeshaking" class="headerlink" title="treeshaking"></a>treeshaking</h3><p>摇树，即意思是 把没用过的都摇掉，即只打包用过的代码；<br>Tree Shaking 只支持ES Module（只支持import引入，即静态引入，不支持require引入(动态引入)）<br>但是有不想被摇掉的文件比如样式文件，就配下<code>usedExports</code>和<code>sideEffects</code></p>
+<h2 id="webpack高级概念"><a href="#webpack高级概念" class="headerlink" title="webpack高级概念"></a>webpack高级概念</h2><h3 id="treeshaking"><a href="#treeshaking" class="headerlink" title="treeshaking"></a>treeshaking</h3><p>摇树，即意思是 把没用过的都摇掉，即只打包用过的代码；<br>Tree Shaking 只支持ES Module（只支持import引入，即静态引入，不支持require引入(动态引入)）<br>但是有不想被摇掉的文件比如样式文件，就在配好<code>usedExports</code>后再配下<code>sideEffects</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">// development 配置</span><br><span class="line">...</span><br><span class="line">optimization: &#123;</span><br><span class="line">  usedExports: true // 哪些模块使用了才打包</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 <p>package.json中也要加代码(配置不要Tree Shaking的文件)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">  // css文件一般就是单纯的引入，但是是要用的，别把样式文件摇掉了</span><br><span class="line">  &quot;sideEffects&quot;: [&quot;*.css&quot;],</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>如果是production环境，默认有treeShaking了，所以不用配置<code>usedExports</code><br>没有不要Tree Shaking的，则配 <code>&quot;sideEffects&quot;: false</code> ，生产环境也要配<code>sideEffects</code>；</p>
@@ -544,6 +546,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2019/05/04/react/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          react源码解析学习
+        
+      </div>
+    </a>
+  
   
     <a href="/2019/04/28/fe-interview-questions/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">前端面试题集</div>
@@ -716,14 +727,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">布局</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
              
@@ -732,15 +735,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">布局</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">redux middleware</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">async</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -753,6 +756,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">redux middleware</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">async</a>
               </li>
             
             <div class="clearfix"></div>

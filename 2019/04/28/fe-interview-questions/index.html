@@ -18,7 +18,7 @@
 <meta property="og:locale" content="zh-tw">
 <meta property="og:image" content="https://sameenzm.github.io/2019/04/28/fe-interview-questions/browserRender.png">
 <meta property="og:image" content="https://sameenzm.github.io/2019/04/28/fe-interview-questions/renderTree.png">
-<meta property="og:updated_time" content="2019-05-06T14:18:47.272Z">
+<meta property="og:updated_time" content="2019-05-08T05:28:34.366Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端面试题集">
 <meta name="twitter:description" content="前端面试题集，持续更新。有不对的地方欢迎指出，感谢">
@@ -216,6 +216,9 @@
 <li><a href="#数组去重">数组去重</a></li>
 <li><a href="#web安全">web安全</a></li>
 </ul>
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><ul>
+<li><a href="#http状态码">http状态码</a></li>
+</ul>
 <h3 id="原型和原型链"><a href="#原型和原型链" class="headerlink" title="原型和原型链"></a>原型和原型链</h3><blockquote>
 <p>说说你对原型和原型链的理解</p>
 </blockquote>
@@ -325,6 +328,103 @@
 <p>请注意 visibility: hidden 与 display: none 是不一样的。前者隐藏元素，但元素仍占据着布局空间（即将其渲染成一个空框），而后者 (display: none) 将元素从渲染树中完全移除，元素既不可见，也不是布局的组成部分。</p>
 <p>名词解释：</p>
 <h6 id="GPU"><a href="#GPU" class="headerlink" title="GPU"></a>GPU</h6><p>图形处理器(Graphics Processing Unit),显卡的处理器，它是显卡的“心脏”。<br>时下的GPU多数拥有2D或3D图形加速功能。如果CPU想画一个二维图形，只需要发个指令给GPU，如“在坐标位置（x, y）处画个长和宽为a×b大小的长方形”，GPU就可以迅速计算出该图形的所有像素，并在显示器上指定位置画出相应的图形，画完后就通知CPU “我画完了”，然后等待CPU发出下一条图形指令。</p>
+<h3 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h3><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+<th>详解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2xx</td>
+<td></td>
+</tr>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>响应成功(从客户端发来的请求被服务器端正常处理了)</td>
+</tr>
+<tr>
+<td>202</td>
+<td></td>
+<td>服务器已接受请求，但尚未处理</td>
+</tr>
+<tr>
+<td>204</td>
+<td>No Content</td>
+<td>请求处理成功，但无资源可返回</td>
+</tr>
+<tr>
+<td>206</td>
+<td>Partial Content</td>
+<td>客户端进行部分请求，服务器已成功处理了这部分GET请求</td>
+</tr>
+<tr>
+<td>3xx</td>
+<td></td>
+</tr>
+<tr>
+<td>301</td>
+<td>Moved Permanently</td>
+<td>永久性重定向，请求的资源已被永久的分配了新的URI(书签是要更新的)</td>
+</tr>
+<tr>
+<td>302</td>
+<td>Found</td>
+<td>临时性重定向，请求的资源临时被分配了新的URI</td>
+</tr>
+<tr>
+<td>304</td>
+<td>Not Modified</td>
+<td>客户端带着附带条件(If-Modified-Since之类)发请求，未满足条件时，服务器资源也未变，可直接使用客户端未过期的缓存。</td>
+</tr>
+<tr>
+<td>4xx</td>
+<td></td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>请求报文中存在语法错误</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>发送的请求需求有 通过HTTP认证的 认证信息。</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>请求资源的访问被服务器拒绝了(没权限访问)</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>服务器上无法找到请求的资源(没找到资源)</td>
+</tr>
+<tr>
+<td>5xx</td>
+<td></td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internet Server Error</td>
+<td>服务器在执行请求时发生了错误(服务端出bug了之类)</td>
+</tr>
+<tr>
+<td>502</td>
+<td></td>
+<td>错误网关，服务器作为网关或代理，从上游服务器接收到无效响应</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td>服务器暂时处于超负载或正在进行停机维护，现在无法处理请求(服务不可用)</td>
+</tr>
+</tbody>
+</table>
 
       
 
@@ -482,7 +582,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#javascript篇"><span class="toc-number">1.</span> <span class="toc-text">javascript篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css篇"><span class="toc-number">2.</span> <span class="toc-text">css篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原型和原型链"><span class="toc-number">2.0.1.</span> <span class="toc-text">原型和原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域和作用域链"><span class="toc-number">2.0.2.</span> <span class="toc-text">作用域和作用域链</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部"><span class="toc-number">2.0.2.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#apply-call-apply"><span class="toc-number">2.0.3.</span> <span class="toc-text">apply,call,apply</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#apply"><span class="toc-number">2.0.3.1.</span> <span class="toc-text">apply</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#call"><span class="toc-number">2.0.3.2.</span> <span class="toc-text">call</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bind"><span class="toc-number">2.0.3.3.</span> <span class="toc-text">bind</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-1"><span class="toc-number">2.0.3.3.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#闭包"><span class="toc-number">2.0.4.</span> <span class="toc-text">闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-2"><span class="toc-number">2.0.4.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件委托"><span class="toc-number">2.0.5.</span> <span class="toc-text">事件委托</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-3"><span class="toc-number">2.0.5.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件循环"><span class="toc-number">2.0.6.</span> <span class="toc-text">事件循环</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-4"><span class="toc-number">2.0.6.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同源策略"><span class="toc-number">2.0.7.</span> <span class="toc-text">同源策略</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-5"><span class="toc-number">2.0.7.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组去重"><span class="toc-number">2.0.8.</span> <span class="toc-text">数组去重</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-6"><span class="toc-number">2.0.8.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web安全"><span class="toc-number">2.0.9.</span> <span class="toc-text">web安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bfc"><span class="toc-number">2.0.10.</span> <span class="toc-text">bfc</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-7"><span class="toc-number">2.0.10.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position"><span class="toc-number">2.0.11.</span> <span class="toc-text">position</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-8"><span class="toc-number">2.0.11.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#static"><span class="toc-number">2.0.11.1.</span> <span class="toc-text">static</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fixed"><span class="toc-number">2.0.11.2.</span> <span class="toc-text">fixed</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#relative"><span class="toc-number">2.0.11.3.</span> <span class="toc-text">relative</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#absolute"><span class="toc-number">2.0.11.4.</span> <span class="toc-text">absolute</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#延伸：position-absolute-和-z-index"><span class="toc-number">2.0.11.4.1.</span> <span class="toc-text">延伸：position:absolute 和 z-index</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪类和伪元素"><span class="toc-number">2.0.12.</span> <span class="toc-text">伪类和伪元素</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-9"><span class="toc-number">2.0.12.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中"><span class="toc-number">2.0.13.</span> <span class="toc-text">垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-10"><span class="toc-number">2.0.13.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两列布局"><span class="toc-number">2.0.14.</span> <span class="toc-text">两列布局</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-11"><span class="toc-number">2.0.14.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#省略号"><span class="toc-number">2.0.15.</span> <span class="toc-text">省略号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重排和重绘"><span class="toc-number">2.0.16.</span> <span class="toc-text">重排和重绘</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Reflow-——-回流-重排"><span class="toc-number">2.0.16.0.1.</span> <span class="toc-text">Reflow —— 回流(重排)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Repaint-——-重绘"><span class="toc-number">2.0.16.0.2.</span> <span class="toc-text">Repaint —— 重绘</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#GPU"><span class="toc-number">2.0.16.0.2.1.</span> <span class="toc-text">GPU</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#javascript篇"><span class="toc-number">1.</span> <span class="toc-text">javascript篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#css篇"><span class="toc-number">2.</span> <span class="toc-text">css篇</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#其他"><span class="toc-number">3.</span> <span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#原型和原型链"><span class="toc-number">3.0.1.</span> <span class="toc-text">原型和原型链</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域和作用域链"><span class="toc-number">3.0.2.</span> <span class="toc-text">作用域和作用域链</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部"><span class="toc-number">3.0.2.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#apply-call-apply"><span class="toc-number">3.0.3.</span> <span class="toc-text">apply,call,apply</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#apply"><span class="toc-number">3.0.3.1.</span> <span class="toc-text">apply</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#call"><span class="toc-number">3.0.3.2.</span> <span class="toc-text">call</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bind"><span class="toc-number">3.0.3.3.</span> <span class="toc-text">bind</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-1"><span class="toc-number">3.0.3.3.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#闭包"><span class="toc-number">3.0.4.</span> <span class="toc-text">闭包</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-2"><span class="toc-number">3.0.4.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件委托"><span class="toc-number">3.0.5.</span> <span class="toc-text">事件委托</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-3"><span class="toc-number">3.0.5.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事件循环"><span class="toc-number">3.0.6.</span> <span class="toc-text">事件循环</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-4"><span class="toc-number">3.0.6.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#同源策略"><span class="toc-number">3.0.7.</span> <span class="toc-text">同源策略</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-5"><span class="toc-number">3.0.7.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数组去重"><span class="toc-number">3.0.8.</span> <span class="toc-text">数组去重</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-6"><span class="toc-number">3.0.8.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web安全"><span class="toc-number">3.0.9.</span> <span class="toc-text">web安全</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bfc"><span class="toc-number">3.0.10.</span> <span class="toc-text">bfc</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-7"><span class="toc-number">3.0.10.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position"><span class="toc-number">3.0.11.</span> <span class="toc-text">position</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-8"><span class="toc-number">3.0.11.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#static"><span class="toc-number">3.0.11.1.</span> <span class="toc-text">static</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#fixed"><span class="toc-number">3.0.11.2.</span> <span class="toc-text">fixed</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#relative"><span class="toc-number">3.0.11.3.</span> <span class="toc-text">relative</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#absolute"><span class="toc-number">3.0.11.4.</span> <span class="toc-text">absolute</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#延伸：position-absolute-和-z-index"><span class="toc-number">3.0.11.4.1.</span> <span class="toc-text">延伸：position:absolute 和 z-index</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#伪类和伪元素"><span class="toc-number">3.0.12.</span> <span class="toc-text">伪类和伪元素</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-9"><span class="toc-number">3.0.12.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#垂直居中"><span class="toc-number">3.0.13.</span> <span class="toc-text">垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-10"><span class="toc-number">3.0.13.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#两列布局"><span class="toc-number">3.0.14.</span> <span class="toc-text">两列布局</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#回到顶部-11"><span class="toc-number">3.0.14.0.1.</span> <span class="toc-text">回到顶部</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#省略号"><span class="toc-number">3.0.15.</span> <span class="toc-text">省略号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重排和重绘"><span class="toc-number">3.0.16.</span> <span class="toc-text">重排和重绘</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Reflow-——-回流-重排"><span class="toc-number">3.0.16.0.1.</span> <span class="toc-text">Reflow —— 回流(重排)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Repaint-——-重绘"><span class="toc-number">3.0.16.0.2.</span> <span class="toc-text">Repaint —— 重绘</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#GPU"><span class="toc-number">3.0.16.0.2.1.</span> <span class="toc-text">GPU</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#http状态码"><span class="toc-number">3.0.17.</span> <span class="toc-text">http状态码</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -653,15 +753,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">redux middleware</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">async</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">ubuntu</a>
               </li>
             
             <div class="clearfix"></div>
